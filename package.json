@@ -1,0 +1,16 @@
+{
+  "name": "mono-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "build:web": "pnpm --filter web build",
+    "start:server": "pnpm --filter express-trpc-prisma dev",
+    "start:web": "pnpm --filter web start",
+    "start:mobile": "pnpm --filter mobile start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
