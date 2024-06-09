@@ -1,13 +1,17 @@
+import ScheduleDayFilter from '@/src/components/HomeScreen/ScheduleDayFilter';
+import ScheduleEventCard from '@/src/components/HomeScreen/ScheduleEventCard';
+import ScheduleLegend from '@/src/components/HomeScreen/ScheduleLegend';
 import MaskedView from '@react-native-masked-view/masked-view';
-import { Circle, Search } from '@tamagui/lucide-icons';
+import { Search } from '@tamagui/lucide-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, TextInput, View } from 'react-native';
-import { Button, ScrollView, XStack, YStack } from 'tamagui';
+import { ScrollView, YStack } from 'tamagui';
 
 export default function Index() {
   return (
     <ScrollView>
       <YStack margin="$4" style={{ flex: 1, gap: 12 }}>
+        {/* TITULO */}
         <MaskedView
           maskElement={
             <Text
@@ -31,6 +35,8 @@ export default function Index() {
             }}
           />
         </MaskedView>
+
+        {/* INPUT - BUSCAR EVENTO */}
         <View
           style={{
             flexDirection: 'row',
@@ -59,315 +65,55 @@ export default function Index() {
             underlineColorAndroid="transparent"
           />
         </View>
-        <YStack style={{ gap: 4 }}>
-          <Button
-            style={{
-              backgroundColor: '#000021',
-              color: '#F2F2F2',
-              fontWeight: 'bold',
-              fontSize: 16,
-              borderRadius: 5,
-              height: 42,
-            }}
-          >
-            Domingo
-          </Button>
-          <Button
-            style={{
-              backgroundColor: '#000021',
-              color: '#F2F2F2',
-              fontWeight: 'bold',
-              fontSize: 16,
-              borderRadius: 5,
-              height: 42,
-            }}
-          >
-            Segunda
-          </Button>
-          <Button
-            style={{
-              backgroundColor: '#000021',
-              color: '#F2F2F2',
-              fontWeight: 'bold',
-              fontSize: 16,
-              borderRadius: 5,
-              height: 42,
-            }}
-          >
-            Terça
-          </Button>
-          <Button
-            style={{
-              backgroundColor: '#000021',
-              color: '#F2F2F2',
-              fontWeight: 'bold',
-              fontSize: 16,
-              borderRadius: 5,
-              height: 42,
-            }}
-          >
-            Quarta
-          </Button>
-          <Button
-            style={{
-              backgroundColor: '#000021',
-              color: '#F2F2F2',
-              fontWeight: 'bold',
-              fontSize: 16,
-              borderRadius: 5,
-              height: 42,
-            }}
-          >
-            Quinta
-          </Button>
-        </YStack>
 
-        {/* <YStack>
-        <Text style={{ fontWeight: '500' }}>Legenda:</Text>
-        <YStack
-          style={{
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'stretch',
-            gap: 6,
-          }}
-        >
-          <XStack
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'stretch',
-              gap: 6,
-            }}
-          >
-            <XStack
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <Circle size={16} fill={'#52AED5'} color={'#52AED5'}></Circle>
-              <Text style={{ fontSize: 10, width: 96 }}>
-                Abertura e Sessões Nobres
-              </Text>
-            </XStack>
-            <XStack
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <Circle size={16} fill={'#F2D12D'} color={'#F2D12D'}></Circle>
-              <Text style={{ fontSize: 10, width: 96 }}>
-                Reuniões Organizações pela SBC
-              </Text>
-            </XStack>
-            <XStack
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <Circle size={16} fill={'#F6921E'} color={'#F6921E'}></Circle>
-              <Text style={{ fontSize: 10, width: 96 }}>
-                Eventos Sociais de Promoção da Interação entre Participantes
-              </Text>
-            </XStack>
-          </XStack>
+        {/* BUTTONS - DIAS DA SEMANA */}
+        <ScheduleDayFilter></ScheduleDayFilter>
 
-          <XStack
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'stretch',
-              gap: 6,
-            }}
-          >
-            <XStack
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <Circle size={16} fill={'#12BD62'} color={'#12BD62'}></Circle>
-              <Text style={{ fontSize: 10, width: 96 }}>
-                Eventos Satélites do CSBC
-              </Text>
-            </XStack>
-            <XStack
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <Circle size={16} fill={'#556AD2'} color={'#556AD2'}></Circle>
-              <Text style={{ fontSize: 10, width: 96 }}>
-                Eventos-Base do CSBC
-              </Text>
-            </XStack>
-            <XStack
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <Circle size={16} fill={'#9D09B1'} color={'#9D09B1'}></Circle>
-              <Text style={{ fontSize: 10, width: 96 }}>
-                Eventos Especiais do CSBC
-              </Text>
-            </XStack>
-          </XStack>
-        </YStack>
-      </YStack> */}
+        {/* LEGENDA */}
+        <ScheduleLegend></ScheduleLegend>
 
-        <YStack>
-          <Text style={{ fontWeight: '500', marginBottom: 6 }}>Legenda:</Text>
-          <YStack
-            style={{
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignItems: 'stretch',
-              gap: 6,
-            }}
-          >
-            <XStack
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'stretch',
-                gap: 6,
-              }}
-            >
-              <XStack
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                <Circle size={16} fill={'#52AED5'} color={'#52AED5'}></Circle>
-                <Text style={{ fontSize: 11, width: 156 }}>
-                  Abertura e Sessões Nobres
-                </Text>
-              </XStack>
-              <XStack
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                <Circle size={16} fill={'#12BD62'} color={'#12BD62'}></Circle>
-                <Text style={{ fontSize: 11, width: 156 }}>
-                  Eventos Satélites do CSBC
-                </Text>
-              </XStack>
-            </XStack>
-            <XStack
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'stretch',
-                gap: 6,
-              }}
-            >
-              <XStack
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                <Circle size={16} fill={'#F2D12D'} color={'#F2D12D'}></Circle>
-                <Text style={{ fontSize: 11, width: 156 }}>
-                  Reuniões Organizações pela SBC
-                </Text>
-              </XStack>
-              <XStack
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                <Circle size={16} fill={'#F6921E'} color={'#F6921E'}></Circle>
-                <Text style={{ fontSize: 11, width: 156 }}>
-                  Eventos Sociais de Promoção da Interação entre Participantes
-                </Text>
-              </XStack>
-            </XStack>
-            <XStack
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'stretch',
-                gap: 6,
-              }}
-            >
-              <XStack
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                <Circle size={16} fill={'#9D09B1'} color={'#9D09B1'}></Circle>
-                <Text style={{ fontSize: 11, width: 156 }}>
-                  Eventos Especiais do CSBC
-                </Text>
-              </XStack>
-              <XStack
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                <Circle size={16} fill={'#556AD2'} color={'#556AD2'}></Circle>
-                <Text style={{ fontSize: 11, width: 156 }}>
-                  Eventos-Base do CSBC
-                </Text>
-              </XStack>
-            </XStack>
-          </YStack>
-        </YStack>
+        {/* NOME DIA DA SEMANA */}
         <View style={{ alignItems: 'center', marginTop: 4 }}>
           <Text style={{ fontWeight: '500', fontSize: 24 }}>
             Segunda - 22 de Julho
           </Text>
         </View>
+
+        {/* PROGRAMAÇÃO */}
         <YStack style={{ gap: 5 }}>
-          <Text style={{ fontWeight: 'bold' }}>8h30 - 10h30</Text>
-          <View
-            style={{
-              backgroundColor: '#F2D12D',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 8,
-              borderRadius: 4,
-            }}
-          >
-            <Text style={{ fontWeight: '600' }}>Reuniões SRs</Text>
-            <Text>Sala: A definir</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: '#556AD2',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 8,
-              borderRadius: 4,
-            }}
-          >
-            <Text style={{ fontWeight: '600', color: 'white' }}>COMPUTEC</Text>
-            <Text style={{ color: 'white' }}>Sala: A definir</Text>
-          </View>
+          {/* ToDo: informações vindas do backend */}
+          <Text style={{ fontWeight: '600', fontSize: 18 }}>8h30 - 10h30</Text>
+          <ScheduleEventCard
+            eventName="Reuniões SRs"
+            eventLocation="A definir"
+            eventBackgroundColor="#F2D12D"
+            eventTextColor="black"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="COMPUTEC"
+            eventLocation="A definir"
+            eventBackgroundColor="#556AD2"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="CQEB"
+            eventLocation="A definir"
+            eventBackgroundColor="#556AD2"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="WCGE"
+            eventLocation="A definir"
+            eventBackgroundColor="#12BD62"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="WEI"
+            eventLocation="A definir"
+            eventBackgroundColor="#556AD2"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="SEMISH"
+            eventLocation="A definir"
+            eventBackgroundColor="#556AD2"
+          ></ScheduleEventCard>
         </YStack>
       </YStack>
     </ScrollView>
