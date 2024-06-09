@@ -3,8 +3,8 @@ import { Button } from "tamagui";
 import { useAuth } from "@/utils/auth";
 
 export default function Index() {
-  const { userSession, signIn, logOut} = useAuth();
-  
+  const { userSession, signIn, logOut } = useAuth();
+
   return (
     <View
       style={{
@@ -14,9 +14,9 @@ export default function Index() {
       }}
     >
       <Text> HomePage </Text>
-      <Button onPress={signIn}> SignIn </Button> 
-      <Text> {userSession?.user?.username || "Nao tem sessão"} </Text> 
-      <Button onPress={logOut}> LogOut </Button> 
+      <Button onPress={signIn}> SignIn </Button>
+      <Text> {userSession?.user?.username || "Nao tem sessão"} </Text>
+      <Button onPress={logOut}> LogOut </Button>
     </View>
   );
 }
