@@ -13,11 +13,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                String  @id @default(cuid())
+  provider_id       String
+  provider_user_id  Int     @unique
+  user_id           String  @unique
+  user              User    @relation(references: [id], fields: [user_id])
+}
+
 model User {
   id        String    @id @default(cuid())
-  github_id Int       @unique
-  username  String
+  name      String
+  email     String
   sessions  Session[]
+  accounts  Account[]
 }
 
 model Session {
@@ -26,3 +35,33 @@ model Session {
   expiresAt DateTime
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
+
+model Event {
+  id        String   @id @default(cuid())
+  title     String
+  local     String
+  startTime DateTime @db.Time
+  endTime   DateTime @db.Time
+  date      DateTime @db.Date
+  color     String
+}
+
+model Post {
+  id String @id @default(cuid())
+  title String
+  subtitle String
+  image String
+  description String
+  date DateTime @db.Date
+  time DateTime @db.Time
+  local String
+  posted DateTime @default(now())
+  notifications Notification[]
+}
+
+model Notification {
+  id String @id @default(cuid())
+  post_id String
+  post Post @relation(references: [id], fields: [post_id])
+}
+

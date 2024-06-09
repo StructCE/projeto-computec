@@ -8,8 +8,8 @@ interface AuthProps {
     userSession?: {
         user: {
             id: string,
-            githubId: string,
-            username: string
+            name: string,
+            email: string
         } | null,
         session: {
             id: string,
@@ -42,9 +42,11 @@ export const AuthProvider = ({children}: any) => {
     async function signIn() {
         const result = await Browser.openAuthSessionAsync(
             `${API_ADDRESS}/auth/login/github`,
-            "exp://192.168.100.10:8081"
+            `exp:${API_ADDRESS.split(":")[1]}:8081`
         );
-        if (result.type !== "success") return;
+        if (result.type !== "success") {
+            return;
+        } 
         const url = Linking.parse(result.url);
         const sessionToken = url.queryParams?.session_token?.toString() ?? null;
         if (!sessionToken)

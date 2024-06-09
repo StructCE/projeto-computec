@@ -1,4 +1,4 @@
-import { OAuth2RequestError, generateState } from "arctic";
+import { GitHub, OAuth2RequestError, generateState } from "arctic";
 import express from "express";
 import { github, lucia } from "../../auth";
 import { parseCookies, serializeCookie } from "oslo/cookie";
@@ -33,7 +33,6 @@ githubLoginRouter.get("/auth/login/github/callback", async (req, res) => {
 		return;
 	}
 	try {
-
 		const tokens = await github.validateAuthorizationCode(code);
 		const githubUserResponse = await fetch("https://api.github.com/user", {
 			headers: {
@@ -41,24 +40,47 @@ githubLoginRouter.get("/auth/login/github/callback", async (req, res) => {
 			}
 		});
 		const githubUser: GitHubUser = await githubUserResponse.json();
-		const existingUser = await db.user.findFirst({
+		const existingAccount = await db.account.findFirst({
 			where: {
-				github_id: githubUser.id
+				provider_user_id: githubUser.id
 			}
 		})
-
+		if (existingAccount) {
+			const session = await lucia.createSession(existingAccount.user_id, {});
+			return res
+				.redirect(`exp://${req.hostname}:8081/?session_token=${session.id}`);
+		}
+		const existingUser = await db.user.findFirst({
+			where: {
+				email: githubUser.email
+			}
+		})
 		if (existingUser) {
-			const session = await lucia.createSession(existingUser.id, {});
+			const account = await db.account.create({
+				data: {
+					provider_id: "github",
+					provider_user_id: githubUser.id,
+					user_id: existingUser.id,
+				}
+			})
+			const session = await lucia.createSession(account.user_id, {});
 			return res
 				.redirect(`exp://${req.hostname}:8081/?session_token=${session.id}`);
 		}
 		const newUser = await db.user.create({
 			data: {
-				github_id: githubUser.id,
-				username: githubUser.login,
+				name: githubUser.name,
+				email: githubUser.email
 			}
 		});
-		const session = await lucia.createSession(newUser.id, {});
+		const newAccount = await db.account.create({
+			data: {
+				provider_id: "github",
+				provider_user_id: githubUser.id,
+				user_id: newUser.id
+			}
+		})
+		const session = await lucia.createSession(newAccount.user_id, {});
 		return res
 			.redirect(`exp://${req.hostname}:8081/?session_token=${session.id}`);
 	} catch (e) {
@@ -74,5 +96,6 @@ githubLoginRouter.get("/auth/login/github/callback", async (req, res) => {
 
 interface GitHubUser {
 	id: number;
-	login: string;
+	name: string;
+	email: string;
 }

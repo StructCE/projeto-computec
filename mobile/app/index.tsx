@@ -15,7 +15,7 @@ export default function Index() {
     >
       <Text> HomePage </Text>
       <Button onPress={signIn}> SignIn </Button> 
-      <Text> {userSession?.user?.username || "Nao tem sessão"} </Text> 
+      <Text> {userSession?.user?.name || "Nao tem sessão"} </Text> 
       <Button onPress={logOut}> LogOut </Button> 
     </View>
   );
