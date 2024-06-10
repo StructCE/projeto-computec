@@ -5,7 +5,7 @@ import tamaguiConfig from "@/tamagui.config";
 import { AuthProvider } from "@/utils/auth";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
-
+//import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 export default function RootLayout() {
   const [interLoaded, interError] = useFonts({
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
@@ -22,6 +22,7 @@ export default function RootLayout() {
   if (!interLoaded && !interError) {
     return null;
   }
+
   return (
     <TRPCProvider>
       <AuthProvider>

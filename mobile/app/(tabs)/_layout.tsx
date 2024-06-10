@@ -2,13 +2,32 @@ import { Tabs } from "expo-router";
 import { Home, Map, ScrollText, BookOpenText } from "lucide-react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "@/src/components/Header";
+import {
+  getFocusedRouteNameFromRoute,
+  useNavigationState,
+} from "@react-navigation/native";
+import { useEffect, useState } from "react";
 
 export default function TabNavigationLayout() {
+  const [currentRouteName, setCurrentRouteName] = useState("index");
+  const navigationState = useNavigationState((state) => state);
+
+  useEffect(() => {
+    if (navigationState) {
+      const route = navigationState.routes.find((r) => r.name === "(tabs)");
+      const subRouteName = getFocusedRouteNameFromRoute(route) || "index";
+      setCurrentRouteName(subRouteName);
+    }
+  }, [navigationState]);
   return (
     <>
       <Tabs
-        screenOptions={{
-          header: Header,
+        screenOptions={({ route }) => ({
+          header: () => (
+            <Header
+              routeName={route.name as "index" | "map" | "anais" | "news"}
+            />
+          ),
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#CBC8C8",
           tabBarBackground: () => (
@@ -26,7 +45,7 @@ export default function TabNavigationLayout() {
             paddingBottom: `${2}%`,
             paddingTop: `${2}%`,
           },
-        }}
+        })}
       >
         <Tabs.Screen
           name="index"

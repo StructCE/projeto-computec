@@ -1,10 +1,16 @@
 import { StatusBar } from "react-native";
 import { XStack } from "tamagui";
 import { Image } from "tamagui";
-import { Bell } from "lucide-react-native";
+import { Bell, UserRoundCog } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
-const Header = () => {
+type RouteNames = "index" | "map" | "anais" | "news";
+
+type HeaderProps = {
+  routeName: RouteNames;
+};
+
+const Header = ({ routeName }: HeaderProps) => {
   return (
     <XStack
       ai={"center"}
@@ -18,7 +24,11 @@ const Header = () => {
         height={100}
       />
       <TouchableOpacity>
-        <Bell size={30} color={"black"} />
+        {routeName !== "news" ? (
+          <Bell size={30} color={"black"} />
+        ) : (
+          <UserRoundCog size={30} color={"black"} />
+        )}
       </TouchableOpacity>
     </XStack>
   );
