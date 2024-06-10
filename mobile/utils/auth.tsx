@@ -18,12 +18,16 @@ interface AuthProps {
             expiresAt: Date
         } | null
     },
-    signIn?: () => Promise<void>,
-    logOut?: () => Promise<Response | undefined>
+    signIn: (provider: "google" | "github") => Promise<void>,
+    logOut: () => Promise<Response | undefined>
 }       
 
 const API_ADDRESS = getBaseUrl();
-const AuthContext = createContext<AuthProps>({});
+const AuthContext = createContext<AuthProps>({
+    userSession: undefined,
+    signIn: async () => {},
+    logOut: async () => undefined
+});
 export const useAuth = () => {
     return useContext(AuthContext);
 };
@@ -39,9 +43,9 @@ export const AuthProvider = ({children}: any) => {
     }, [])
     const userSession = api.getUserSession.useQuery({sessionId: sessionToken}).data;
     
-    async function signIn() {
+    async function signIn(provider: "google" | "github") {
         const result = await Browser.openAuthSessionAsync(
-            `${API_ADDRESS}/auth/login/github`,
+            `${API_ADDRESS}/auth/login/${provider}`,
             `exp:${API_ADDRESS.split(":")[1]}:8081`
         );
         if (result.type !== "success") {

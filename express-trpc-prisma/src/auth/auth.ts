@@ -1,7 +1,7 @@
 import { Lucia } from "lucia";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma"
 import { db } from "../db";
-import { GitHub } from "arctic"
+import { GitHub, Google } from "arctic"
 
 export const adapter = new PrismaAdapter(db.session, db.user);
 
@@ -22,6 +22,7 @@ export const lucia = new Lucia(adapter, {
 });
 
 export const github = new GitHub(process.env.GITHUB_CLIENT_ID!, process.env.GITHUB_CLIENT_SECRET!);
+export const google = new Google(process.env.GOOGLE_CLIENT_ID!, process.env.GOOGLE_CLIENT_SECRET!, "http://192.168.100.16:3001/auth/login/google/callback") // Troque 192.168.100.16 pelo ip da sua máquina
 
 declare module "lucia" {
 	interface Register {

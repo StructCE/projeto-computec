@@ -14,7 +14,8 @@ export default function Index() {
       }}
     >
       <Text> HomePage </Text>
-      <Button onPress={signIn}> SignIn </Button> 
+      <Button onPress={() => signIn("github")}> SignIn with GitHub </Button> 
+      <Button onPress={() => signIn("google")}> SignIn with Google </Button> 
       <Text> {userSession?.user?.name || "Nao tem sessão"} </Text> 
       <Button onPress={logOut}> LogOut </Button> 
     </View>
