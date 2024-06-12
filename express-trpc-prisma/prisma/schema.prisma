@@ -50,13 +50,20 @@ model Post {
   id String @id @default(cuid())
   title String
   subtitle String
-  image String
   description String
   date DateTime @db.Date
   time DateTime @db.Time
   local String
   posted DateTime @default(now())
+  images Image[]
   notifications Notification[]
+}
+
+model Image {
+  id String @id @default(cuid())
+  public_id String
+  post_id String
+  post Post @relation(references: [id], fields: [post_id])
 }
 
 model Notification {
