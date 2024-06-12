@@ -6,8 +6,6 @@ import type { User, Session } from "lucia";
 
 export const authRouter = express.Router();
 
-authRouter.use(express.urlencoded());
-
 authRouter.use("/auth", async (req, res, next) => {
 	const sessionId = req.headers.authorization && req.headers.authorization.split(' ')[1];
 	if (!sessionId) {
