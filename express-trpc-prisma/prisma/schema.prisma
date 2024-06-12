@@ -36,39 +36,62 @@ model Session {
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
+model Day {
+  id      String @id @default(cuid())
+  date    String
+  events EventDayPeriod[]
+}
+
+model Period {
+  id        String @id @default(cuid())
+  startTime String
+  endTime   String
+  events    EventDayPeriod[]
+}
+
+model EventDayPeriod {
+  id        String  @id @default(cuid())
+  local     String?
+  day_id    String
+  period_id String
+  event_id  String
+  day       Day     @relation(references: [id], fields: [day_id])
+  period    Period  @relation(references: [id], fields: [period_id])
+  event     Event   @relation(references: [id], fields: [event_id])
+}
+
+
 model Event {
   id        String   @id @default(cuid())
-  title     String
-  local     String
-  startTime DateTime @db.Time
-  endTime   DateTime @db.Time
-  date      DateTime @db.Date
+  name      String
   color     String
+  link      String?
+  periods   EventDayPeriod[]   
 }
 
 model Post {
-  id String @id @default(cuid())
-  title String
-  subtitle String
-  description String
-  date DateTime @db.Date
-  time DateTime @db.Time
-  local String
-  posted DateTime @default(now())
-  images Image[]
+  id            String   @id @default(cuid())
+  title         String
+  subtitle      String
+  description   String
+  date          DateTime @db.Date
+  time          DateTime @db.Time
+  local         String
+  posted        DateTime @default(now())
+  images        Image[]
   notifications Notification[]
 }
 
 model Image {
-  id String @id @default(cuid())
+  id        String @id @default(cuid())
   public_id String
-  post_id String
-  post Post @relation(references: [id], fields: [post_id])
+  post_id   String
+  post      Post   @relation(references: [id], fields: [post_id])
 }
 
 model Notification {
-  id String @id @default(cuid())
+  id      String @id @default(cuid())
   post_id String
-  post Post @relation(references: [id], fields: [post_id])
+  post    Post   @relation(references: [id], fields: [post_id])
 }
 

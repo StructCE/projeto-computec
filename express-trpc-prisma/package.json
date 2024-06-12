@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch --experimental-global-webcrypto src/server.ts"
+    "dev": "tsx watch --experimental-global-webcrypto src/server.ts",
+    "db:seed": "tsx prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
