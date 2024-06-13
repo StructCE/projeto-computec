@@ -4,12 +4,10 @@ export default function ScheduleEventCard({
   eventName,
   eventLocation,
   eventBackgroundColor,
-  eventTextColor = 'white',
 }: {
   eventName: string;
   eventLocation: string;
   eventBackgroundColor: string;
-  eventTextColor?: string;
 }) {
   return (
     <>
@@ -23,12 +21,8 @@ export default function ScheduleEventCard({
           borderRadius: 4,
         }}
       >
-        <Text style={{ fontWeight: '600', color: `${eventTextColor}` }}>
-          {eventName}
-        </Text>
-        <Text style={{ color: `${eventTextColor}` }}>
-          Sala: {eventLocation}
-        </Text>
+        <Text style={{ fontWeight: '600', color: 'white' }}>{eventName}</Text>
+        <Text style={{ color: 'white' }}>Sala: {eventLocation}</Text>
       </View>
     </>
   );

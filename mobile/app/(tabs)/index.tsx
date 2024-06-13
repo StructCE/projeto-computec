@@ -86,13 +86,22 @@ export default function Index() {
           <ScheduleEventCard
             eventName="Reuniões SRs"
             eventLocation="A definir"
-            eventBackgroundColor="#F2D12D"
-            eventTextColor="black"
+            eventBackgroundColor="#52AED5"
           ></ScheduleEventCard>
           <ScheduleEventCard
             eventName="COMPUTEC"
             eventLocation="A definir"
-            eventBackgroundColor="#556AD2"
+            eventBackgroundColor="#52AED5"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="WEI"
+            eventLocation="A definir"
+            eventBackgroundColor="#52AED5"
+          ></ScheduleEventCard>
+          <ScheduleEventCard
+            eventName="SEMISH"
+            eventLocation="A definir"
+            eventBackgroundColor="#52AED5"
           ></ScheduleEventCard>
           <ScheduleEventCard
             eventName="CQEB"
@@ -101,16 +110,6 @@ export default function Index() {
           ></ScheduleEventCard>
           <ScheduleEventCard
             eventName="WCGE"
-            eventLocation="A definir"
-            eventBackgroundColor="#12BD62"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="WEI"
-            eventLocation="A definir"
-            eventBackgroundColor="#556AD2"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="SEMISH"
             eventLocation="A definir"
             eventBackgroundColor="#556AD2"
           ></ScheduleEventCard>
