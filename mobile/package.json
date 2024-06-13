@@ -15,6 +15,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "0.3.1",
     "@react-navigation/native": "^6.0.2",
     "@tamagui/babel-plugin": "^1.98.1",
     "@tamagui/config": "^1.98.1",
@@ -24,6 +25,7 @@
     "@trpc/react-query": "11.0.0-rc.364",
     "@trpc/server": "11.0.0-rc.364",
     "expo": "~51.0.8",
+    "expo-blur": "~13.0.2",
     "expo-constants": "~16.0.1",
     "expo-font": "~12.0.5",
     "expo-linear-gradient": "~13.0.2",
