@@ -44,8 +44,8 @@ model Day {
 
 model Period {
   id        String @id @default(cuid())
-  startTime String
-  endTime   String
+  startTime DateTime @db.Time
+  endTime   DateTime @db.Time
   events    EventDayPeriod[]
 }
 
@@ -64,7 +64,6 @@ model EventDayPeriod {
 model Event {
   id        String   @id @default(cuid())
   name      String
-  color     String
   link      String?
   periods   EventDayPeriod[]   
 }

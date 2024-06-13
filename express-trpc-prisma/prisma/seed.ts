@@ -9,65 +9,65 @@ const days = [
 ]
 
 const periods = [
-    ["08:30", "10:30"], // 0
-    ["10:30", "11:00"], // 1
-    ["11:00", "13:00"], // 2
-    ["13:00", "14:00"], // 3
-    ["14:00", "16:00"], // 4
-    ["16:00", "16:30"], // 5
-    ["16:30", "18:30"], // 6
-    ["18:30", "19:00"], // 7
-    ["18:30", "19:30"], // 8
-    ["19:00", "20:00"], // 9
-    ["20:00", "21:30"], // 10
-    ["19:30", "21:30"], // 11
+    ["08:30:00.000", "10:30:00.000"], // 0
+    ["10:30:00.000", "11:00:00.000"], // 1
+    ["11:00:00.000", "13:00:00.000"], // 2
+    ["13:00:00.000", "14:00:00.000"], // 3
+    ["14:00:00.000", "16:00:00.000"], // 4
+    ["16:00:00.000", "16:30:00.000"], // 5
+    ["16:30:00.000", "18:30:00.000"], // 6
+    ["18:30:00.000", "19:00:00.000"], // 7  
+    ["18:30:00.000", "19:30:00.000"], // 8
+    ["19:00:00.000", "20:00:00.000"], // 9
+    ["20:00:00.000", "21:30:00.000"], // 10
+    ["19:30:00.000", "21:30:00.000"], // 11
 ]
 
 const events = [
-    ["Coffe-Break", "LARANJA"],
-    ["Almoço", "LARANJA"],
-    ["CQ", "AZUL", "https://csbc.sbc.org.br/2024/cq/"],
-    ["CONSELHO SBC", "AMARELO"],
-    ["Reunião SRs", "AMARELO"],
-    ["COMPUTEC", "AZUL"],
-    ["WEI", "AZUL", "https://csbc.sbc.org.br/2024/wei/"],
-    ["SEMISH", "AZUL", "https://csbc.sbc.org.br/2024/semish/"],
-    ["WCAMA", "VERDE", "https://csbc.sbc.org.br/2024/wcama/"],
-    ["WCGE", "VERDE", "https://csbc.sbc.org.br/2024/wcge/"],
-    ["JAI 1", "AZUL", "https://csbc.sbc.org.br/2024/jai/"],
-    ["WPerformance", "VERDE", "https://csbc.sbc.org.br/2024/wperformance/"],
-    ["BraSNAM", "VERDE", "https://csbc.sbc.org.br/2024/brasnam2024/"],
-    ["CQEB", "AZUL", "https://csbc.sbc.org.br/2024/cqeb/"],
-    ["REUNIÃO CEs", "AMARELO"],
-    ["WIT", "AZUL", "https://csbc.sbc.org.br/2024/wit/"],
-    ["EIMP", "VERDE", "https://csbc.sbc.org.br/2024/eimp/"],
-    ["WASHES", "VERDE", "https://csbc.sbc.org.br/2024/washes/"],
-    ["JAI 2", "AZUL", "https://csbc.sbc.org.br/2024/jai/"],
-    ["Fórum PG", "AMARELO"],
-    ["ETC", "VERDE", "https://csbc.sbc.org.br/2024/etc/"],
-    ["JAI 3", "AZUL", "https://csbc.sbc.org.br/2024/jai/"],
-    ["WTESTBEDS", "VERDE", "https://csbc.sbc.org.br/2024/wtestbeds/"],
-    ["CTD (Mestrado)", "AZUL", "https://csbc.sbc.org.br/2024/ctd/"],
-    ["SBCup", "VERDE", "https://csbc.sbc.org.br/2024/sbcup/"],
-    ["WICS", "VERDE", "https://csbc.sbc.org.br/2024/wics/"],
-    ["JAI 4", "AZUL", "https://csbc.sbc.org.br/2024/jai/"],
-    ["ENCompIF", "VERDE", "https://csbc.sbc.org.br/2024/encompif/"],
-    ["cblockchain", "VERDE", "https://csbc.sbc.org.br/2024/cblockchain/"],
-    ["CAPES e CNPq", "AMARELO"],
-    ["Reunião do CGI", "AMARELO"],
-    ["Reunião do PROFISSA", "AMARELO"],
-    ["CTIC", "AZUL", "https://csbc.sbc.org.br/2024/ctic/"],
-    ["CTD (Doutorado)", "AZUL", "https://csbc.sbc.org.br/2024/ctd/"],
-    ["WBL", "VERDE", "https://csbc.sbc.org.br/2024/wbl/"],
-    ["SECOMU", "AZUL", "https://csbc.sbc.org.br/2024/secomu/"],
-    ["Assembleia", "AZUL"],
-    ["Jantar", "LARANJA"],
-    ["Abertura", "LARANJA"],
-    ["Coquetel", "LARANJA"],
-    ["Intervalo", "CINZA"]
+    ["Coffe-Break"],
+    ["Almoço"],
+    ["CQ", "https://csbc.sbc.org.br/2024/cq/"],
+    ["CONSELHO SBC"],
+    ["Reunião SRs"],
+    ["COMPUTEC"],
+    ["WEI", "https://csbc.sbc.org.br/2024/wei/"],
+    ["SEMISH", "https://csbc.sbc.org.br/2024/semish/"],
+    ["WCAMA", "https://csbc.sbc.org.br/2024/wcama/"],
+    ["WCGE", "https://csbc.sbc.org.br/2024/wcge/"],
+    ["JAI 1", "https://csbc.sbc.org.br/2024/jai/"],
+    ["WPerformance", "https://csbc.sbc.org.br/2024/wperformance/"],
+    ["BraSNAM", "https://csbc.sbc.org.br/2024/brasnam2024/"],
+    ["CQEB", "https://csbc.sbc.org.br/2024/cqeb/"],
+    ["REUNIÃO CEs"],
+    ["WIT", "https://csbc.sbc.org.br/2024/wit/"],
+    ["EIMP", "https://csbc.sbc.org.br/2024/eimp/"],
+    ["WASHES", "https://csbc.sbc.org.br/2024/washes/"],
+    ["JAI 2", "https://csbc.sbc.org.br/2024/jai/"],
+    ["Fórum PG"],
+    ["ETC", "https://csbc.sbc.org.br/2024/etc/"],
+    ["JAI 3", "https://csbc.sbc.org.br/2024/jai/"],
+    ["WTESTBEDS", "https://csbc.sbc.org.br/2024/wtestbeds/"],
+    ["CTD (Mestrado)", "https://csbc.sbc.org.br/2024/ctd/"],
+    ["SBCup", "https://csbc.sbc.org.br/2024/sbcup/"],
+    ["WICS", "https://csbc.sbc.org.br/2024/wics/"],
+    ["JAI 4", "https://csbc.sbc.org.br/2024/jai/"],
+    ["ENCompIF", "https://csbc.sbc.org.br/2024/encompif/"],
+    ["cblockchain", "https://csbc.sbc.org.br/2024/cblockchain/"],
+    ["CAPES e CNPq"],
+    ["Reunião do CGI"],
+    ["Reunião do PROFISSA"],
+    ["CTIC", "https://csbc.sbc.org.br/2024/ctic/"],
+    ["CTD (Doutorado)", "https://csbc.sbc.org.br/2024/ctd/"],
+    ["WBL", "https://csbc.sbc.org.br/2024/wbl/"],
+    ["SECOMU", "https://csbc.sbc.org.br/2024/secomu/"],
+    ["Assembleia"],
+    ["Jantar"],
+    ["Abertura"],
+    ["Coquetel"],
+    ["Intervalo"]
 ]
 
-const eventsDayPeriod = [
+const eventsDayPeriod: [string | undefined, string, string, string][] = [
     ["Ipê Rosa", "Segunda", "0","Reunião SRs"],
     ["Ipê Amarelo", "Segunda", "0","COMPUTEC"],
     ["Ipê Roxo", "Segunda", "0","WEI"],
@@ -247,10 +247,12 @@ const createDays = async () => {
 const createPeriods = async () => {
     let periodsCreated = {};
     const promises = periods.map(async (period, index) => {
+        const startTime = "1970-01-01T" + period[0] + "Z";
+        const endTime = "1970-01-01T" + period[1] + "Z";
         const periodCreated = await db.period.create({
             data: {
-                startTime: period[0],
-                endTime: period[1]
+                startTime,
+                endTime
             }
         });
         periodsCreated[index] = periodCreated;
@@ -266,25 +268,51 @@ const createEvents = async () => {
         const eventCreated = await db.event.create({
             data: {
                 name: event[0],
-                color: event[1],
-                link: event[2]
-            }
-        });
+                link: event[1],
+                }
+                });
         eventsCreated[event[0]] = eventCreated;
-    });
+        });
     await Promise.all(promises);
     console.log("Events created:", eventsCreated);
     return eventsCreated;
 };
 
+const createEventsDayPeriod = async (
+    days: Record<string, {id: string}>,
+    periods: Record<string, {id: string}>,
+    events: Record<string, {id: string}>
+) => {
+    let eventsDayPeriodCreated = {};
+    const promises = eventsDayPeriod.map(async (eventDayPeriod, index) => {
+        const day = days[eventDayPeriod[1]];
+        const period = periods[eventDayPeriod[2]];
+        const event = events[eventDayPeriod[3]];
+        const local = eventDayPeriod[0];
+        if (day && period && event) {
+            const data = {day, period, event, local};
+            console.log(data);
+            const eventDayPeriodCreated = await db.eventDayPeriod.create({
+                data: {
+                    day_id: day.id, 
+                    period_id: period.id,
+                    event_id: event.id,
+                    local
+                }});
+            eventsDayPeriodCreated[index] = eventDayPeriodCreated;
+        }
+    });
+    await Promise.all(promises);
+    console.log("Events per period and day created:", eventsDayPeriodCreated);
+    return eventsDayPeriodCreated;
+}
+
 async function seed() {
     const days = await createDays();
     const periods = await createPeriods();
     const events = await createEvents();
+    const eventsDayPeriods = await createEventsDayPeriod(days, periods, events);
     console.log("Seeding completed");
-    console.log("Days:", days);
-    console.log("Periods:", periods);
-    console.log("Events:", events);
 }
 
 seed().catch(error => console.error("Error seeding database:", error));
