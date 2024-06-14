@@ -1,7 +1,7 @@
 import { View, Text, XStack, Image } from "tamagui";
 import { TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
-import { StyleSheet } from "react-native"; // Trocar para estilo inline
+import { StyleSheet } from "react-native";
 import {
   MavenPro_600SemiBold,
   MavenPro_400Regular,
@@ -45,7 +45,6 @@ export default function Login() {
             Entrar com Google
           </Text>
           <View w={24} h={24}></View>
-          {/* Gambiarra na linha 47? Verificar em dispositivos de telas menores */}
         </XStack>
       </TouchableOpacity>
 
@@ -77,7 +76,6 @@ export default function Login() {
             Entrar com Github
           </Text>
           <View w={24} h={24}></View>
-          {/* Gambiarra na linha 79? Verificar em dispositivos de telas menores */}
         </XStack>
       </TouchableOpacity>
 
