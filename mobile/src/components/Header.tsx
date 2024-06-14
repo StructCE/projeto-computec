@@ -1,8 +1,9 @@
 import { StatusBar } from "react-native";
-import { XStack } from "tamagui";
+import { View, XStack } from "tamagui";
 import { Image } from "tamagui";
 import { Bell, UserRoundCog } from "lucide-react-native";
 import { Link } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 type RouteNames = "index" | "map" | "anais" | "news";
 
@@ -27,7 +28,28 @@ const Header = ({ routeName }: HeaderProps) => {
         <Bell size={30} color={"black"} />
       ) : (
         <Link href={"(tabs)/admin/login"}>
-          <UserRoundCog size={30} color={"black"} />
+          <View>
+            <XStack>
+              <LinearGradient
+                colors={["#a92227", "#ed7a17"]}
+                start={{ x: 0, y: 1 }}
+                locations={[0.4, 1]}
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 1000,
+                  borderStyle: "solid",
+                  borderCurve: "circular",
+                  padding: 20,
+                }}
+              />
+              <UserRoundCog // Verificar se o icone foge do gradiente em diferentes telas
+                style={{ position: "absolute", top: 2, left: 6 }}
+                size={30}
+                color={"white"}
+              />
+            </XStack>
+          </View>
         </Link>
       )}
     </XStack>
