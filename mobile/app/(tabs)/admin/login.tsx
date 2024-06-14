@@ -13,7 +13,7 @@ export default function Login() {
     MavenPro_400Regular,
   });
   if (!fontsLoaded) {
-    return <Text>Carregando...</Text>;
+    return;
   }
 
   return (
