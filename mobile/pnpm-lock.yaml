@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@expo-google-fonts/maven-pro':
+        specifier: ^0.2.3
+        version: 0.2.3
       '@react-navigation/native':
         specifier: ^6.0.2
         version: 6.1.17(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -39,8 +42,8 @@ importers:
         specifier: ~16.0.1
         version: 16.0.1(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-font:
-        specifier: ~12.0.5
-        version: 12.0.5(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
+        specifier: ~12.0.7
+        version: 12.0.7(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-linear-gradient:
         specifier: ~13.0.2
         version: 13.0.2(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
@@ -1041,6 +1044,9 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@expo-google-fonts/maven-pro@0.2.3':
+    resolution: {integrity: sha512-ox5q7e2Vu4yQM5/xleHwu7UPJhs941PVPBlpnogt+MfuEg6YE4H8HRRP4jAnS5g/h61NY6lPQdFi5NtrHgS7pQ==}
 
   '@expo/bunyan@4.0.0':
     resolution: {integrity: sha512-Ydf4LidRB/EBI+YrB+cVLqIseiRfjUI/AeHBgjGMtq3GroraDu81OV7zqophRgupngoL3iS3JUMDMnxO7g39qA==}
@@ -3130,8 +3136,8 @@ packages:
     peerDependencies:
       expo: '*'
 
-  expo-font@12.0.5:
-    resolution: {integrity: sha512-h/VkN4jlHYDJ6T6pPgOYTVoDEfBY0CTKQe4pxnPDGQiE6H+DFdDgk+qWVABGpRMH0+zXoHB+AEi3OoQjXIynFA==}
+  expo-font@12.0.7:
+    resolution: {integrity: sha512-rbSdpjtT/A3M+u9xchR9tdD+5VGSxptUis7ngX5zfAVp3O5atOcPNSA82Jeo15HkrQE+w/upfFBOvi56lsGdsQ==}
     peerDependencies:
       expo: '*'
 
@@ -7090,6 +7096,8 @@ snapshots:
   '@esbuild/win32-x64@0.20.2':
     optional: true
 
+  '@expo-google-fonts/maven-pro@0.2.3': {}
+
   '@expo/bunyan@4.0.0':
     dependencies:
       uuid: 8.3.2
@@ -10343,7 +10351,7 @@ snapshots:
     dependencies:
       expo: 51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))
 
-  expo-font@12.0.5(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))):
+  expo-font@12.0.7(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))):
     dependencies:
       expo: 51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))
       fontfaceobserver: 2.3.0
@@ -10441,7 +10449,7 @@ snapshots:
       babel-preset-expo: 11.0.6(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))
       expo-asset: 10.0.6(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-file-system: 17.0.1(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
-      expo-font: 12.0.5(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
+      expo-font: 12.0.7(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-keep-awake: 13.0.2(expo@51.0.8(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-modules-autolinking: 1.11.1
       expo-modules-core: 1.12.11

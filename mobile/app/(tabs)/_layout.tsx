@@ -75,6 +75,12 @@ export default function TabNavigationLayout() {
             tabBarIcon: ({ color }) => <BookOpenText size={30} color={color} />,
           }}
         />
+        <Tabs.Screen
+          name="admin/login"
+          options={{
+            href: null,
+          }}
+        />
       </Tabs>
     </>
   );

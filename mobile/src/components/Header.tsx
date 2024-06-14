@@ -2,7 +2,7 @@ import { StatusBar } from "react-native";
 import { XStack } from "tamagui";
 import { Image } from "tamagui";
 import { Bell, UserRoundCog } from "lucide-react-native";
-import { TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
 
 type RouteNames = "index" | "map" | "anais" | "news";
 
@@ -23,13 +23,13 @@ const Header = ({ routeName }: HeaderProps) => {
         width={100}
         height={100}
       />
-      <TouchableOpacity>
-        {routeName !== "news" ? (
-          <Bell size={30} color={"black"} />
-        ) : (
+      {routeName !== "news" ? (
+        <Bell size={30} color={"black"} />
+      ) : (
+        <Link href={"(tabs)/admin/login"}>
           <UserRoundCog size={30} color={"black"} />
-        )}
-      </TouchableOpacity>
+        </Link>
+      )}
     </XStack>
   );
 };
