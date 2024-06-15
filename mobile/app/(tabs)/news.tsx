@@ -1,8 +1,6 @@
 import NewsCard from '@/src/components/NewsScreen/NewsCard';
 import PageTitle from '@/src/components/PageTitle';
-import MaskedView from '@react-native-masked-view/masked-view';
-import { LinearGradient } from 'expo-linear-gradient';
-import { ScrollView, Text, View, YStack } from 'tamagui';
+import { ScrollView, YStack } from 'tamagui';
 
 export default function News() {
   const post1 = {
@@ -14,7 +12,12 @@ export default function News() {
     ],
     title: 'Evento hackerman cancelado!',
     subtitle: 'Está programação foi cancelada por problemas técnicos',
-    date: '31/05',
+    description:
+      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+    date: '23/07',
+    time: '17h00',
+    local: 'BSAS',
+    posted: '31/05',
   };
   const post2 = {
     images: [
@@ -24,7 +27,12 @@ export default function News() {
     ],
     title: 'Criador do Linux presente no OS AI',
     subtitle: 'Criador do Linux estará presente no evento base, no dia 25/06.',
-    date: '29/05',
+    description:
+      'É com grande entusiasmo que anunciamos a presença de Linus Torvalds, o renomado criador do Linux, no evento Base, que ocorrerá no dia 25 de junho. Esta é uma oportunidade única para profissionais e entusiastas da tecnologia interagirem com uma das figuras mais influentes da história da computação',
+    date: '21/07',
+    time: '15h00',
+    local: 'Salão OS',
+    posted: '29/05',
   };
   const post3 = {
     images: [
@@ -37,7 +45,12 @@ export default function News() {
     title: 'What is Lorem Ipsum?',
     subtitle:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    date: '14/06',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    date: '22/07',
+    time: '16h00',
+    local: 'PAT',
+    posted: '14/06',
   };
 
   return (

@@ -8,7 +8,11 @@ type Post = {
   images: string[];
   title: string;
   subtitle: string;
+  description: string;
   date: string;
+  time: string;
+  local: string;
+  posted: string;
 };
 
 const { width, height } = Dimensions.get('window');
@@ -42,7 +46,7 @@ export default function NewsCard({ post }: { post: Post }) {
         {post.images.map((image) => {
           return (
             <Image
-              key={image}
+              key={image} // Mudar para id da notícia
               source={{
                 uri: image,
               }}
@@ -72,7 +76,7 @@ export default function NewsCard({ post }: { post: Post }) {
             paddingRight: 16,
             alignSelf: 'center',
             width: imageWidth,
-            height: '100%',
+            flex: 1,
           }}
         >
           <View
@@ -91,11 +95,11 @@ export default function NewsCard({ post }: { post: Post }) {
                 fontWeight: 'bold',
               }}
             >
-              {post.date}
+              {post.posted}
             </Text>
           </View>
           <BlurView
-            intensity={30}
+            intensity={15}
             style={{
               width: imageWidth - imageWidth / 5,
               overflow: 'hidden',
@@ -105,9 +109,8 @@ export default function NewsCard({ post }: { post: Post }) {
               borderColor: 'rgba(0, 0, 0, 0.01)',
               paddingLeft: 24,
               paddingRight: 12,
-              paddingVertical: 16,
+              paddingVertical: 20,
               marginVertical: 12,
-              flex: 1,
             }}
           >
             <YStack style={{ gap: 6 }}>
@@ -122,7 +125,19 @@ export default function NewsCard({ post }: { post: Post }) {
             </YStack>
           </BlurView>
           <Link
-            href={{ pathname: '', params: {} }} // ToDo: link redirecionar para página do post
+            href={{
+              pathname: '/noticia',
+              params: {
+                images: post.images,
+                title: post.title,
+                subtitle: post.subtitle,
+                description: post.description,
+                date: post.date,
+                time: post.time,
+                local: post.local,
+                posted: post.posted,
+              },
+            }}
             style={{
               color: 'white',
               backgroundColor: '#C1272D',
