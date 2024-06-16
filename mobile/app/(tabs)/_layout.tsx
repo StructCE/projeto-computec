@@ -22,6 +22,7 @@ export default function TabNavigationLayout() {
   return (
     <>
       <Tabs
+        backBehavior="history"
         screenOptions={({ route }) => ({
           header: () => (
             <Header

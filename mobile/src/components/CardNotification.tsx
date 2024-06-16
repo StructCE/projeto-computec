@@ -27,7 +27,7 @@ const CardNotification = (props: dataNotificationList) => {
   return (
     <TouchableOpacity>
       <View marginVertical="$1.5" marginHorizontal="$5">
-        <XStack ai={"center"}>
+        <XStack>
           <View>
             <Image
               borderTopLeftRadius={10}
@@ -41,8 +41,9 @@ const CardNotification = (props: dataNotificationList) => {
               }}
             />
           </View>
-          <YStack>
+          <YStack fd={"column"}>
             <Text
+              flex={1}
               paddingRight="$11"
               color={"#1B1B1B"}
               style={styles.mavenProMedium}
