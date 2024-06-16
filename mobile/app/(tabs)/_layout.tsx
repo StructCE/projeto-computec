@@ -81,6 +81,12 @@ export default function TabNavigationLayout() {
             href: null,
           }}
         />
+        <Tabs.Screen
+          name="listNotification"
+          options={{
+            tabBarButton: () => null,
+          }}
+        />
       </Tabs>
     </>
   );

@@ -25,7 +25,9 @@ const Header = ({ routeName }: HeaderProps) => {
         height={100}
       />
       {routeName !== "news" ? (
-        <Bell size={30} color={"black"} />
+        <Link href={"/listNotification"}>
+          <Bell size={30} color={"black"} />
+        </Link>
       ) : (
         <Link href={"(tabs)/admin/login"}>
           <View>
