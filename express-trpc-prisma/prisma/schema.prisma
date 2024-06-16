@@ -38,8 +38,8 @@ model Session {
 
 model Day {
   id      String @id @default(cuid())
-  date    String
-  events EventDayPeriod[]
+  date    DateTime   
+  events  EventDayPeriod[]
 }
 
 model Period {

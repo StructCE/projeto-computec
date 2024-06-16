@@ -41,7 +41,7 @@ export const AuthProvider = ({children}: any) => {
             setToken(token);
         }
     }, [])
-    const userSession = api.getUserSession.useQuery({sessionId: sessionToken}).data;
+    const userSession = api.user.getUserSession.useQuery({sessionId: sessionToken}).data;
     
     async function signIn(provider: "google" | "github") {
         const result = await Browser.openAuthSessionAsync(
