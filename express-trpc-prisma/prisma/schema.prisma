@@ -70,13 +70,12 @@ model Event {
 
 model Post {
   id            String   @id @default(cuid())
+  created_at    DateTime @default(now())
   title         String
   subtitle      String
   description   String
-  date          DateTime @db.Date
-  time          DateTime @db.Time
-  local         String
-  posted        DateTime @default(now())
+  dateTime      DateTime?
+  local         String?
   images        Image[]
   notifications Notification[]
 }

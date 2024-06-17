@@ -246,6 +246,35 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
   ["Flor de Pequi", "25", "2", "ENCompIF"],
 ];
 
+const posts: [string, string, string, string, string, string[]][] = [
+  [
+    "Evento hackerman cancelado",
+    "Esta programação foi cancelada por problemas técnicos",
+    "Descrição do evento hackerman cancelado",
+    "2024-06-16T08:00:00.000Z",
+    "Ipê Amarelo",
+    ["cld-sample-5", "cld-sample-4"],
+  ],
+
+  [
+    "Criador do linux presente no OS AI",
+    "Criador do linux estará presente no evento base, no dia 25/06",
+    "Descrição do evento criador do linux presente no OS AI",
+    "2024-06-17T08:00:00.000Z",
+    "Ipê Rosa",
+    ["cld-sample-5", "cld-sample-4"],
+  ],
+
+  [
+    "Outra notícia de exemplo",
+    "Outra notícia de exemplo é o subtítulo de outra notícia de exemplo",
+    "Descrição de outra notícia de exemplo",
+    "2024-06-18T08:00:00.000Z",
+    "Ipê Roxo",
+    ["cld-sample-5", "cld-sample-4"],
+  ],
+];
+
 const createDays = async () => {
   let daysCreated = {};
   const promises = days.map(async (day) => {
@@ -328,11 +357,53 @@ const createEventsDayPeriod = async (
   return eventsDayPeriodCreated;
 };
 
+const createPostsAndNotifications = async () => {
+  let postsCreated = {};
+  const promises = posts.map(async (post, index) => {
+    const dateTime = new Date();
+    dateTime.setDate(dateTime.getDate() - index);
+    const postCreated = await db.post.create({
+      data: {
+        title: post[0],
+        subtitle: post[1],
+        description: post[2],
+        dateTime: post[3],
+        local: post[4],
+        created_at: dateTime,
+      },
+    });
+    const notificationCreated = await db.notification.create({
+      data: {
+        post_id: postCreated.id,
+      },
+    });
+    const imagesCreated = await Promise.all(
+      post[5].map(async (public_id) => {
+        return await db.image.create({
+          data: {
+            public_id: public_id,
+            post_id: postCreated.id,
+          },
+        });
+      })
+    );
+    postsCreated[postCreated.title] = {
+      ...postCreated,
+      images: imagesCreated,
+      notification: notificationCreated,
+    };
+  });
+  await Promise.all(promises);
+  console.log(postsCreated);
+  return postsCreated;
+};
+
 async function seed() {
   const days = await createDays();
   const periods = await createPeriods();
   const events = await createEvents();
   const eventsDayPeriods = await createEventsDayPeriod(days, periods, events);
+  const postsCreated = await createPostsAndNotifications();
   console.log("Seeding completed");
 }
 
