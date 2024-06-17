@@ -1,7 +1,6 @@
-import { db } from "../../../db";
-import { procedure, createTRPCRouter } from "../../trpc";
-import { getEvents } from "./getEvents";
+import { createTRPCRouter } from "../../trpc";
+import { getEvents } from "./procedures";
 
 export const eventsRouter = createTRPCRouter({
-  getEvents: procedure.query(getEvents),
+  getEvents: getEvents,
 });

@@ -1,4 +1,5 @@
-import { db } from "../../../db";
+import { db } from "../../../../db";
+import { procedure } from "../../../trpc";
 
 const UPPER_FLOOR = ["Ipê Rosa", "Ipê Amarelo", "Ipê Roxo", "Ipê Branco"];
 const GROUND_FLOOR = [
@@ -129,7 +130,7 @@ const getUpdatedDays = async (): Promise<
   }));
 };
 
-export const getEvents = async () => {
+export const getEvents = procedure.query(async () => {
   const daysUpdated = await getUpdatedDays();
   return daysUpdated;
-};
+});
