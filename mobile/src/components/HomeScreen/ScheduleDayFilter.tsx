@@ -1,14 +1,22 @@
-import { Button, YStack } from 'tamagui';
+import { Button, YStack } from "tamagui";
+import React from "react";
 
-export default function ScheduleDayFilter() {
+export default function ScheduleDayFilter({
+  state,
+  setState,
+}: {
+  state: number;
+  setState: React.Dispatch<React.SetStateAction<number>>;
+}) {
   return (
     <>
       <YStack style={{ gap: 4 }}>
         <Button
+          onPress={() => setState(21)}
           style={{
-            backgroundColor: '#000021',
-            color: '#F2F2F2',
-            fontWeight: 'bold',
+            backgroundColor: "#000021",
+            color: "#F2F2F2",
+            fontWeight: "bold",
             fontSize: 16,
             borderRadius: 5,
             height: 42,
@@ -17,10 +25,11 @@ export default function ScheduleDayFilter() {
           Domingo
         </Button>
         <Button
+          onPress={() => setState(22)}
           style={{
-            backgroundColor: '#000021',
-            color: '#F2F2F2',
-            fontWeight: 'bold',
+            backgroundColor: "#000021",
+            color: "#F2F2F2",
+            fontWeight: "bold",
             fontSize: 16,
             borderRadius: 5,
             height: 42,
@@ -29,10 +38,11 @@ export default function ScheduleDayFilter() {
           Segunda
         </Button>
         <Button
+          onPress={() => setState(23)}
           style={{
-            backgroundColor: '#000021',
-            color: '#F2F2F2',
-            fontWeight: 'bold',
+            backgroundColor: "#000021",
+            color: "#F2F2F2",
+            fontWeight: "bold",
             fontSize: 16,
             borderRadius: 5,
             height: 42,
@@ -41,10 +51,11 @@ export default function ScheduleDayFilter() {
           Terça
         </Button>
         <Button
+          onPress={() => setState(24)}
           style={{
-            backgroundColor: '#000021',
-            color: '#F2F2F2',
-            fontWeight: 'bold',
+            backgroundColor: "#000021",
+            color: "#F2F2F2",
+            fontWeight: "bold",
             fontSize: 16,
             borderRadius: 5,
             height: 42,
@@ -53,10 +64,11 @@ export default function ScheduleDayFilter() {
           Quarta
         </Button>
         <Button
+          onPress={() => setState(25)}
           style={{
-            backgroundColor: '#000021',
-            color: '#F2F2F2',
-            fontWeight: 'bold',
+            backgroundColor: "#000021",
+            color: "#F2F2F2",
+            fontWeight: "bold",
             fontSize: 16,
             borderRadius: 5,
             height: 42,

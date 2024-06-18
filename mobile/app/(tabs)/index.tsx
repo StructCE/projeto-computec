@@ -1,13 +1,21 @@
 import ScheduleDayFilter from "@/src/components/HomeScreen/ScheduleDayFilter";
 import ScheduleEventCard from "@/src/components/HomeScreen/ScheduleEventCard";
 import ScheduleLegend from "@/src/components/HomeScreen/ScheduleLegend";
+import { api } from "@/utils/api";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { Search } from "@tamagui/lucide-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import { ScrollView, YStack } from "tamagui";
 
 export default function Index() {
+  const events = api.event.getEvents.useQuery();
+  const today = new Date();
+  const firstDate =
+    today.getDate() > 21 && today.getDate() < 25 ? today.getDate() : 21;
+  const [day, setDay] = useState(firstDate);
+
   return (
     <ScrollView>
       <YStack margin="$4" style={{ flex: 1, gap: 12 }}>
@@ -67,53 +75,52 @@ export default function Index() {
         </View>
 
         {/* BUTTONS - DIAS DA SEMANA */}
-        <ScheduleDayFilter></ScheduleDayFilter>
+        <ScheduleDayFilter state={day} setState={setDay}></ScheduleDayFilter>
 
         {/* LEGENDA */}
         <ScheduleLegend></ScheduleLegend>
 
-        {/* NOME DIA DA SEMANA */}
-        <View style={{ alignItems: "center", marginTop: 4 }}>
-          <Text style={{ fontWeight: "500", fontSize: 24 }}>
-            Segunda - 22 de Julho
-          </Text>
-        </View>
+        {/* FILTRO DE EVENTOS */}
+        {events.data
+          ?.filter((eventsPerDay) => eventsPerDay.day === day)
+          .map((eventsPerDay) => (
+            <YStack
+              key={`day-${eventsPerDay.day}`}
+              margin="$4"
+              style={{ flex: 1, gap: 12 }}
+            >
+              {/* NOME DIA DA SEMANA */}
+              <View
+                key={`day-header-${eventsPerDay.day}`}
+                style={{ alignItems: "center", marginTop: 4 }}
+              >
+                <Text style={{ fontWeight: "500", fontSize: 24 }}>
+                  {`${eventsPerDay.weekDay} - ${eventsPerDay.day} de julho`}
+                </Text>
+              </View>
 
-        {/* PROGRAMAÇÃO */}
-        <YStack style={{ gap: 5 }}>
-          {/* ToDo: informações vindas do backend */}
-          <Text style={{ fontWeight: "600", fontSize: 18 }}>8h30 - 10h30</Text>
-          <ScheduleEventCard
-            eventName="Reuniões SRs"
-            eventLocation="A definir"
-            eventBackgroundColor="#52AED5"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="COMPUTEC"
-            eventLocation="A definir"
-            eventBackgroundColor="#52AED5"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="WEI"
-            eventLocation="A definir"
-            eventBackgroundColor="#52AED5"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="SEMISH"
-            eventLocation="A definir"
-            eventBackgroundColor="#52AED5"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="CQEB"
-            eventLocation="A definir"
-            eventBackgroundColor="#556AD2"
-          ></ScheduleEventCard>
-          <ScheduleEventCard
-            eventName="WCGE"
-            eventLocation="A definir"
-            eventBackgroundColor="#556AD2"
-          ></ScheduleEventCard>
-        </YStack>
+              {/* INFORMAÇÕES VINDAS DO BACKEND */}
+              {eventsPerDay.sessions.map((session) => (
+                <YStack
+                  key={`session-${eventsPerDay.day}-${session.period}`}
+                  style={{ gap: 5 }}
+                >
+                  <Text style={{ fontWeight: "600", fontSize: 18 }}>
+                    {session.period}
+                  </Text>
+                  {session.events.map((event) => (
+                    <ScheduleEventCard
+                      key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
+                      eventName={event.event}
+                      eventLocation={event.local}
+                      eventBackgroundColor={event.color}
+                      eventLink={event.link}
+                    />
+                  ))}
+                </YStack>
+              ))}
+            </YStack>
+          ))}
       </YStack>
     </ScrollView>
   );

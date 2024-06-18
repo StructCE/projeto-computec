@@ -236,14 +236,14 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
 
   [, "25", "5", "Coffe-Break"],
 
-  ["Ipê Rosa", "25", "2", "SBCup"],
-  ["Ipê Amarelo", "25", "2", "WIT"],
-  ["Ipê Roxo", "25", "2", "WEI"],
-  ["Ipê Branco", "25", "2", "ETC"],
-  ["Caliandra", "25", "2", "EIMP"],
-  ["Cajuzinho", "25", "2", "WBL"],
-  ["Chuveirinho", "25", "2", "WTESTBEDS"],
-  ["Flor de Pequi", "25", "2", "ENCompIF"],
+  ["Ipê Rosa", "25", "6", "SBCup"],
+  ["Ipê Amarelo", "25", "6", "WIT"],
+  ["Ipê Roxo", "25", "6", "WEI"],
+  ["Ipê Branco", "25", "6", "ETC"],
+  ["Caliandra", "25", "6", "EIMP"],
+  ["Cajuzinho", "25", "6", "WBL"],
+  ["Chuveirinho", "25", "6", "WTESTBEDS"],
+  ["Flor de Pequi", "25", "6", "ENCompIF"],
 ];
 
 const posts: [string, string, string, string, string, string[]][] = [
