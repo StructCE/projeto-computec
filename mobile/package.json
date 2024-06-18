@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -16,6 +15,7 @@
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "0.3.1",
+    "@cloudinary/url-gen": "^1.19.0",
     "@react-navigation/native": "^6.0.2",
     "@tamagui/babel-plugin": "^1.98.1",
     "@tamagui/config": "^1.98.1",
@@ -24,7 +24,7 @@
     "@tanstack/react-query": "^5.35.5",
     "@trpc/client": "11.0.0-rc.364",
     "@trpc/react-query": "11.0.0-rc.364",
-    "@trpc/server": "11.0.0-rc.364",
+    "cloudinary-react-native": "^1.0.0",
     "expo": "~51.0.8",
     "expo-constants": "~16.0.1",
     "expo-font": "~12.0.5",
