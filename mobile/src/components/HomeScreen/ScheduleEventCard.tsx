@@ -1,6 +1,6 @@
 import { Text, View, TouchableOpacity, Linking } from "react-native";
 
-export default function ScheduleEventCard({
+export function ScheduleEventCard({
   eventName,
   eventLocation,
   eventBackgroundColor,

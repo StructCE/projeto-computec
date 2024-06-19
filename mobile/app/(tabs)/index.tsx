@@ -1,6 +1,8 @@
-import ScheduleDayFilter from "@/src/components/HomeScreen/ScheduleDayFilter";
-import ScheduleEventCard from "@/src/components/HomeScreen/ScheduleEventCard";
-import ScheduleLegend from "@/src/components/HomeScreen/ScheduleLegend";
+import {
+  ScheduleDayFilter,
+  ScheduleEventCard,
+  ScheduleLegend,
+} from "@/src/components/HomeScreen";
 import { api } from "@/utils/api";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { Search } from "@tamagui/lucide-icons";
