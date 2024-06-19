@@ -9,7 +9,6 @@ type Post = {
   subtitle: string;
   description: string;
   date: Date;
-  time: string;
   local: string;
   posted: string;
 };

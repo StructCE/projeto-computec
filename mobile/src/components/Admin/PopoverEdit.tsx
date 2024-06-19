@@ -1,4 +1,6 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import { SquarePen, Upload } from 'lucide-react-native';
 import { useState } from 'react';
@@ -11,8 +13,6 @@ import {
   Popover,
   ScrollView,
   Text,
-  TextArea,
-  View,
   XStack,
   YStack,
 } from 'tamagui';
@@ -23,7 +23,6 @@ type Post = {
   subtitle: string;
   description: string;
   date: Date;
-  time: string;
   local: string;
   posted: string;
 };
@@ -39,7 +38,7 @@ export default function PopoverEdit({
   const [inputDescription, setInputDescription] = useState(post.description);
 
   /* ImagePicker */
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState(''); // ToDo: Poder editar as imagens ja existentes, alem de adicionar novas
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: false,
@@ -55,6 +54,20 @@ export default function PopoverEdit({
     } else {
       alert('Você não selecionou nenhuma imagem.');
     }
+  };
+
+  /* DatePicker */
+  const [newdate, setNewdate] = useState(new Date());
+  const onChangeDatePicker = (
+    event: DateTimePickerEvent | undefined,
+    selectedDate: Date | undefined
+  ) => {
+    if (event?.type === 'neutralButtonPressed') {
+      setNewdate(new Date(0));
+    } else {
+      setNewdate(selectedDate!);
+    }
+    // 'newdate' armazena a nova data e horario apos mudanca no DatePicker, porem nos meus testes o horario estava saindo 3 horas adiantado (verificar antes de usar)
   };
 
   return (
@@ -129,9 +142,9 @@ export default function PopoverEdit({
             <XStack
               style={{
                 flex: 1,
-                justifyContent: 'space-around',
+                justifyContent: 'space-evenly',
                 alignItems: 'center',
-                marginVertical: 4,
+                marginVertical: 8,
               }}
             >
               <Button
@@ -142,40 +155,20 @@ export default function PopoverEdit({
                   outlineWidth: 0,
                   borderColor: '#ededed',
                 }}
-                size={64}
+                size={40}
                 icon={Upload}
                 onPress={pickImageAsync}
               >
-                <Text color={'black'} fontSize={17}>
-                  Imagens
-                </Text>
+                <Text color={'black'}>Imagens</Text>
               </Button>
-              <YStack
-                style={{
-                  gap: 8,
-                  alignItems: 'center',
-                }}
-              >
-                <DateTimePicker
-                  mode="date"
-                  value={post.date}
-                  accentColor="#ED7A17"
-                />
-                <XStack>
-                  <DateTimePicker
-                    mode="time"
-                    value={new Date()}
-                    accentColor="#ED7A17"
-                    minuteInterval={5}
-                  />
-                  <DateTimePicker
-                    mode="time"
-                    value={new Date()}
-                    accentColor="#ED7A17"
-                    minuteInterval={5}
-                  />
-                </XStack>
-              </YStack>
+              <DateTimePicker
+                mode="datetime"
+                accentColor="#ED7A17"
+                value={post.date}
+                onChange={onChangeDatePicker}
+                minuteInterval={10}
+                timeZoneName={'America/Sao_Paulo'}
+              />
             </XStack>
           </ScrollView>
           <XStack
@@ -203,10 +196,10 @@ export default function PopoverEdit({
                   elevation: 5,
                 }}
                 onPress={() => {
-                  setInputTitle('');
-                  setInputSubtitle('');
-                  setInputLocal('');
-                  setInputDescription('');
+                  setInputTitle(post.title);
+                  setInputSubtitle(post.subtitle);
+                  setInputLocal(post.local);
+                  setInputDescription(post.description);
                 }}
               >
                 Cancelar
