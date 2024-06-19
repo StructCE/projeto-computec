@@ -1,4 +1,5 @@
 import { Trash2 } from 'lucide-react-native';
+import React from 'react';
 import type { PopoverProps } from 'tamagui';
 import { Adapt, Button, Label, Popover, Text, XStack, YStack } from 'tamagui';
 
@@ -19,7 +20,7 @@ export default function PopoverDelete({
 }: PopoverProps & { post: Post }) {
   return (
     <Popover size="$5" allowFlip {...props}>
-      <Popover.Trigger asChild style={{ backgroundColor: 'lightgray' }}>
+      <Popover.Trigger asChild>
         <Button icon={Trash2} color={'red'} size={48} />
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
