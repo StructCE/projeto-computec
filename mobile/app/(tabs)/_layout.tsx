@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Home, Map, ScrollText, BookOpenText } from "lucide-react-native";
+import { Home, Map, ScrollText, BookOpenText } from "@tamagui/lucide-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "@/src/components/Header";
 

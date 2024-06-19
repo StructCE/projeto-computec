@@ -1,8 +1,6 @@
-import { StatusBar } from "react-native";
-import { XStack } from "tamagui";
-import { Image } from "tamagui";
-import { Bell } from "lucide-react-native";
-import { TouchableOpacity } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
+import { XStack, Image } from "tamagui";
+import { Bell } from "@tamagui/lucide-icons";
 
 const Header = () => {
   return (
@@ -12,7 +10,7 @@ const Header = () => {
       justifyContent="space-between"
       marginTop={StatusBar.currentHeight}
     >
-      <Image //Implementar redirecionamento para home usando Link ou TouchableOpacity sem quebrar o padding
+      <Image
         source={require("../../../mobile/assets/images/CSBC_logo.png")}
         width={100}
         height={100}
