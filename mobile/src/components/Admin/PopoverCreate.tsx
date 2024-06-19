@@ -1,6 +1,6 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
-import { SquarePen, Upload } from 'lucide-react-native';
+import { Plus, Upload } from 'lucide-react-native';
 import { useState } from 'react';
 import type { PopoverProps } from 'tamagui';
 import {
@@ -33,10 +33,10 @@ export default function PopoverEdit({
   ...props
 }: PopoverProps & { post: Post }) {
   /* Inputs */
-  const [inputTitle, setInputTitle] = useState(post.title);
-  const [inputSubtitle, setInputSubtitle] = useState(post.subtitle);
-  const [inputLocal, setInputLocal] = useState(post.local);
-  const [inputDescription, setInputDescription] = useState(post.description);
+  const [inputTitle, setInputTitle] = useState('');
+  const [inputSubtitle, setInputSubtitle] = useState('');
+  const [inputLocal, setInputLocal] = useState('');
+  const [inputDescription, setInputDescription] = useState('');
 
   /* ImagePicker */
   const [selectedImage, setSelectedImage] = useState('');
@@ -60,7 +60,15 @@ export default function PopoverEdit({
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
-        <Button icon={SquarePen} color={'#FBB03B'} size={48} />
+        <Button
+          icon={Plus}
+          size={48}
+          style={{
+            color: 'white',
+            backgroundColor: '#ED7A17',
+            borderRadius: 32,
+          }}
+        />
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
         <Popover.Sheet
@@ -96,33 +104,34 @@ export default function PopoverEdit({
         <YStack gap="$3">
           <ScrollView>
             <Label style={{ fontWeight: 'bold', fontSize: 24 }}>
-              Editar postagem
+              Criar postagem
             </Label>
             <Text style={{ fontSize: 16, marginVertical: 4 }}>
-              Altere os campos para atualizar informações da notícia "
-              <Text color={'#C1272D'} fontWeight={600}>
-                {post.title}
-              </Text>
-              ".
+              Preencha todos os campos{' '}
+              <Text color="#C1272D">obrigatórios*</Text> para criar uma notícia.
             </Text>
             <Input
               style={{ marginVertical: 4 }}
+              placeholder="Título*"
               value={inputTitle}
               onChangeText={setInputTitle}
             ></Input>
             <Input
               style={{ marginVertical: 4 }}
+              placeholder="Subtítulo*"
               value={inputSubtitle}
               onChangeText={setInputSubtitle}
             ></Input>
             <Input
               style={{ marginVertical: 4 }}
+              placeholder="Local"
               value={inputLocal}
               onChangeText={setInputLocal}
             ></Input>
-            {/* Tentei usar TextArea e Input multiline para a descrição mas estava dando um bug ao preencher o campo no expo, não soube arrumar por isso deixei como Input */}
+            {/* Tentei usar TextArea para a descrição mas estava dando um bug ao preencher o campo no expo */}
             <Input
               style={{ marginVertical: 4 }}
+              placeholder="Descrição*"
               value={inputDescription}
               onChangeText={setInputDescription}
             ></Input>
@@ -158,7 +167,7 @@ export default function PopoverEdit({
               >
                 <DateTimePicker
                   mode="date"
-                  value={post.date}
+                  value={new Date()}
                   accentColor="#ED7A17"
                 />
                 <XStack>
@@ -184,11 +193,6 @@ export default function PopoverEdit({
               justifyContent: 'space-evenly',
               gap: 24,
               marginBottom: 48,
-              shadowColor: '#1A1A1A',
-              shadowOffset: { width: 0, height: 0 },
-              shadowOpacity: 0.2,
-              shadowRadius: 3,
-              elevation: 5,
             }}
           >
             <Popover.Close asChild>
@@ -218,6 +222,7 @@ export default function PopoverEdit({
                 color: 'white',
                 flex: 1,
                 fontWeight: 'bold',
+                borderRadius: 5,
                 shadowColor: '#1A1A1A',
                 shadowOffset: { width: 0, height: 0 },
                 shadowOpacity: 0.3,
@@ -225,10 +230,10 @@ export default function PopoverEdit({
                 elevation: 5,
               }}
               onPress={() => {
-                /* Código para salvar a edição da postagem */
+                /* Código para criar a postagem */
               }}
             >
-              Salvar
+              Criar
             </Button>
           </XStack>
         </YStack>

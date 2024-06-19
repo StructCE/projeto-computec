@@ -8,7 +8,7 @@ type Post = {
   title: string;
   subtitle: string;
   description: string;
-  date: string;
+  date: Date;
   time: string;
   local: string;
   posted: string;
@@ -71,7 +71,19 @@ export default function PopoverDelete({
             }}
           >
             <Popover.Close asChild>
-              <Button style={{ fontSize: 14, flex: 1 }}>Cancelar</Button>
+              <Button
+                style={{
+                  fontSize: 14,
+                  flex: 1,
+                  shadowColor: '#1A1A1A',
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3,
+                  elevation: 5,
+                }}
+              >
+                Cancelar
+              </Button>
             </Popover.Close>
             <Button
               style={{
@@ -79,6 +91,11 @@ export default function PopoverDelete({
                 color: 'white',
                 flex: 1,
                 fontWeight: 'bold',
+                shadowColor: '#1A1A1A',
+                shadowOffset: { width: 0, height: 0 },
+                shadowOpacity: 0.3,
+                shadowRadius: 4,
+                elevation: 5,
               }}
               onPress={() => {
                 /* Código para deletar postagem */
