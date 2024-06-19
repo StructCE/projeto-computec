@@ -74,9 +74,6 @@ importers:
       expo-web-browser:
         specifier: ~13.0.3
         version: 13.0.3(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
-      lucide-react-native:
-        specifier: ^0.390.0
-        version: 0.390.0(react-native-svg@15.3.0(react-native@0.74.1(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.1(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -5084,13 +5081,6 @@ packages:
 
   ltgt@2.2.1:
     resolution: {integrity: sha512-AI2r85+4MquTw9ZYqabu4nMwy9Oftlfa/e/52t9IjtfG+mGBbTNdAoZ3RQKLHR6r0wQnwZnPIEh/Ya6XTWAKNA==}
-
-  lucide-react-native@0.390.0:
-    resolution: {integrity: sha512-JFxyXoRP2GLW2Zft4znWXbNpfexA4kC60KKXyJT3BZ+jDK5dvhZVzp1/3A2jCFbNYsZFJFVBXJcD+ahstBKl7w==}
-    peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-      react-native-svg: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
 
   make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
@@ -14476,12 +14466,6 @@ snapshots:
       yallist: 4.0.0
 
   ltgt@2.2.1: {}
-
-  lucide-react-native@0.390.0(react-native-svg@15.3.0(react-native@0.74.1(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.1(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      react-native: 0.74.1(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0)
-      react-native-svg: 15.3.0(react-native@0.74.1(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
 
   make-dir@2.1.0:
     dependencies:
