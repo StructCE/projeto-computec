@@ -1,6 +1,4 @@
-import PopoverCreate from '@/src/components/Admin/PopoverCreate';
-import PopoverDelete from '@/src/components/Admin/PopoverDelete';
-import PopoverEdit from '@/src/components/Admin/PopoverEdit';
+import AdminNewsPage from '@/src/components/Admin/AdminNewsPage';
 import { View, XStack } from 'tamagui';
 
 const post1 = {
@@ -14,22 +12,11 @@ const post1 = {
   subtitle: 'Está programação foi cancelada por problemas técnicos',
   description:
     'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
-  date: new Date('2024-6-20T10:20:30Z'),
-  time: '17h00',
+  date: new Date(2024, 5, 20, 15, 30, 0, 0), // Ano, Mes, Dia, Hora, Min, Seg, Miliseg (O mês vai de 0 a 11, ex: 5 representa Junho)
   local: 'BSAS',
   posted: '31/05',
 };
 
 export default function News() {
-  return (
-    <View flex={1} jc={'center'} ai={'center'}>
-      <XStack gap="$2" flex={1} justifyContent="center" alignItems="center">
-        <XStack style={{ backgroundColor: 'lightgray', padding: 24, gap: 16 }}>
-          <PopoverDelete post={post1}></PopoverDelete>
-          <PopoverEdit post={post1}></PopoverEdit>
-          <PopoverCreate post={post1}></PopoverCreate>
-        </XStack>
-      </XStack>
-    </View>
-  );
+  return <AdminNewsPage />;
 }
