@@ -17,20 +17,7 @@ import {
   YStack,
 } from 'tamagui';
 
-type Post = {
-  images: string[];
-  title: string;
-  subtitle: string;
-  description: string;
-  date: Date;
-  local: string;
-  posted: string;
-};
-
-export default function PopoverEdit({
-  post,
-  ...props
-}: PopoverProps & { post: Post }) {
+export default function PopoverCreate({ ...props }: PopoverProps) {
   /* Inputs */
   const [inputTitle, setInputTitle] = useState('');
   const [inputSubtitle, setInputSubtitle] = useState('');
@@ -75,11 +62,12 @@ export default function PopoverEdit({
       <Popover.Trigger asChild>
         <Button
           icon={Plus}
-          size={48}
+          size={56}
           style={{
             color: 'white',
             backgroundColor: '#ED7A17',
             borderRadius: 32,
+            width: 56,
           }}
         />
       </Popover.Trigger>

@@ -66,7 +66,7 @@ export default function PopoverDelete({
               flex: 1,
               justifyContent: 'space-evenly',
               gap: 24,
-              marginBottom: 96,
+              marginBottom: 48,
             }}
           >
             <Popover.Close asChild>
