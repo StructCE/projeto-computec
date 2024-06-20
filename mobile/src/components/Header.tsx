@@ -19,7 +19,7 @@ const Header = ({ routeName }: HeaderProps) => {
       justifyContent="space-between"
       marginTop={StatusBar.currentHeight}
     >
-      <Image //Implementar redirecionamento para home usando Link ou TouchableOpacity sem quebrar o padding
+      <Image
         source={require("../../../mobile/assets/images/CSBC_logo.png")}
         width={100}
         height={100}
