@@ -2,8 +2,9 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
-import { SquarePen, Upload } from 'lucide-react-native';
+import { Eye, EyeOff, SquarePen, Trash2, Upload } from 'lucide-react-native';
 import { useState } from 'react';
+import { Dimensions, ImageBackground } from 'react-native';
 import type { PopoverProps } from 'tamagui';
 import {
   Adapt,
@@ -13,9 +14,12 @@ import {
   Popover,
   ScrollView,
   Text,
+  View,
   XStack,
   YStack,
 } from 'tamagui';
+
+const { width, height } = Dimensions.get('window');
 
 type Post = {
   images: string[];
@@ -70,6 +74,15 @@ export default function PopoverEdit({
     // 'newdate' armazena a nova data e horario apos mudanca no DatePicker, porem nos meus testes o horario estava saindo 3 horas adiantado (verificar antes de usar)
   };
 
+  const [showImages, setShowImages] = useState<boolean>(false);
+  function handleShowImages() {
+    if (showImages === true) {
+      return 'flex';
+    } else {
+      return 'none';
+    }
+  }
+
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
@@ -106,7 +119,7 @@ export default function PopoverEdit({
           },
         ]}
       >
-        <YStack gap="$3">
+        <YStack>
           <ScrollView>
             <Label style={{ fontWeight: 'bold', fontSize: 24 }}>
               Editar postagem
@@ -142,11 +155,23 @@ export default function PopoverEdit({
             <XStack
               style={{
                 flex: 1,
-                justifyContent: 'space-evenly',
-                alignItems: 'center',
                 marginVertical: 8,
               }}
             >
+              <Button
+                icon={showImages ? EyeOff : Eye}
+                style={{
+                  backgroundColor: '#f8f8f8',
+                  color: '#ED7A17',
+                  borderWidth: 1,
+                  outlineWidth: 0,
+                  borderColor: '#ededed',
+                  width: 32,
+                  marginRight: 8,
+                }}
+                size={40}
+                onPress={() => setShowImages(!showImages)}
+              ></Button>
               <Button
                 style={{
                   backgroundColor: '#f8f8f8',
@@ -154,6 +179,7 @@ export default function PopoverEdit({
                   borderWidth: 1,
                   outlineWidth: 0,
                   borderColor: '#ededed',
+                  padding: 8,
                 }}
                 size={40}
                 icon={Upload}
@@ -170,60 +196,86 @@ export default function PopoverEdit({
                 timeZoneName={'America/Sao_Paulo'}
               />
             </XStack>
-          </ScrollView>
-          <XStack
-            style={{
-              flex: 1,
-              justifyContent: 'space-evenly',
-              gap: 24,
-              marginBottom: 48,
-              shadowColor: '#1A1A1A',
-              shadowOffset: { width: 0, height: 0 },
-              shadowOpacity: 0.2,
-              shadowRadius: 3,
-              elevation: 5,
-            }}
-          >
-            <Popover.Close asChild>
+            <YStack style={{ gap: 8 }} display={handleShowImages()}>
+              {post.images.map((image) => (
+                <ImageBackground
+                  source={{ uri: image, width: width - 48 }}
+                  style={{ borderRadius: 8, overflow: 'hidden' }}
+                >
+                  <Button
+                    icon={Trash2}
+                    size={40}
+                    style={{
+                      width: 40,
+                      margin: 8,
+                      marginTop: 48,
+                      alignSelf: 'flex-end',
+                      color: 'red',
+                    }}
+                    onPress={() => {
+                      /* Código para remover a imagem */
+                    }}
+                  ></Button>
+                </ImageBackground>
+              ))}
+            </YStack>
+            <XStack
+              style={{
+                flex: 1,
+                justifyContent: 'space-between',
+                gap: 12,
+                marginHorizontal: 6,
+                marginTop: 12,
+                marginBottom: 48,
+                shadowColor: '#1A1A1A',
+                shadowOffset: { width: 0, height: 0 },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+                elevation: 5,
+              }}
+            >
+              <Popover.Close asChild>
+                <Button
+                  style={{
+                    fontSize: 14,
+                    flex: 1,
+                    shadowColor: '#1A1A1A',
+                    shadowOffset: { width: 0, height: 0 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3,
+                    elevation: 5,
+                  }}
+                  onPress={() => {
+                    setInputTitle(post.title);
+                    setInputSubtitle(post.subtitle);
+                    setInputLocal(post.local);
+                    setInputDescription(post.description);
+                    // Código para desfazer edições feitas nas imagens?
+                  }}
+                >
+                  Cancelar
+                </Button>
+              </Popover.Close>
               <Button
                 style={{
-                  fontSize: 14,
+                  backgroundColor: '#ED7A17',
+                  color: 'white',
                   flex: 1,
+                  fontWeight: 'bold',
                   shadowColor: '#1A1A1A',
                   shadowOffset: { width: 0, height: 0 },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 3,
+                  shadowOpacity: 0.3,
+                  shadowRadius: 4,
                   elevation: 5,
                 }}
                 onPress={() => {
-                  setInputTitle(post.title);
-                  setInputSubtitle(post.subtitle);
-                  setInputLocal(post.local);
-                  setInputDescription(post.description);
+                  /* Código para salvar a edição da postagem */
                 }}
               >
-                Cancelar
+                Salvar
               </Button>
-            </Popover.Close>
-            <Button
-              style={{
-                backgroundColor: '#ED7A17',
-                color: 'white',
-                flex: 1,
-                fontWeight: 'bold',
-                shadowColor: '#1A1A1A',
-                shadowOffset: { width: 0, height: 0 },
-                shadowOpacity: 0.3,
-                shadowRadius: 4,
-                elevation: 5,
-              }}
-              onPress={() => {
-                /* Código para salvar a edição da postagem */
-              }}
-            >
-              Salvar
-            </Button>
-          </XStack>
+            </XStack>
+          </ScrollView>
         </YStack>
       </Popover.Content>
     </Popover>
