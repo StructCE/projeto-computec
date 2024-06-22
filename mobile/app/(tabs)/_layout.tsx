@@ -1,24 +1,9 @@
 import { Tabs } from "expo-router";
 import { Home, Map, ScrollText, BookOpenText } from "@tamagui/lucide-icons";
-import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient } from "@tamagui/linear-gradient";
 import Header from "@/src/components/Header";
-import {
-  getFocusedRouteNameFromRoute,
-  useNavigationState,
-} from "@react-navigation/native";
-import { useEffect, useState } from "react";
 
 export default function TabNavigationLayout() {
-  const [currentRouteName, setCurrentRouteName] = useState("index");
-  const navigationState = useNavigationState((state) => state);
-
-  useEffect(() => {
-    if (navigationState) {
-      const route = navigationState.routes.find((r) => r.name === "(tabs)");
-      const subRouteName = getFocusedRouteNameFromRoute(route) || "index";
-      setCurrentRouteName(subRouteName);
-    }
-  }, [navigationState]);
   return (
     <>
       <Tabs
