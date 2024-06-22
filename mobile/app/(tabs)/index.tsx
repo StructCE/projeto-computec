@@ -4,12 +4,12 @@ import {
   ScheduleLegend,
 } from "@/src/components/HomeScreen";
 import { api } from "@/utils/api";
-import MaskedView from "@react-native-masked-view/masked-view";
 import { Search } from "@tamagui/lucide-icons";
-import { LinearGradient } from "expo-linear-gradient";
+import { ScrollView, YStack, XStack, Text, View } from "tamagui";
+import { LinearGradient } from "@tamagui/linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
 import { useState } from "react";
-import { Text, TextInput, View } from "react-native";
-import { ScrollView, YStack } from "tamagui";
+import { TextInput } from "react-native";
 
 export default function Index() {
   const events = api.event.getEvents.useQuery();
@@ -20,15 +20,14 @@ export default function Index() {
 
   return (
     <ScrollView>
-      <YStack margin="$4" style={{ flex: 1, gap: 12 }}>
+      <YStack margin="$4" flex={1} gap={12}>
         {/* TITULO */}
         <MaskedView
           maskElement={
             <Text
+              fontSize={24}
               style={{
-                fontSize: 24,
-                fontWeight: "bold",
-                fontFamily: "Maven Pro",
+                fontFamily: "MavenProBold",
               }}
             >
               PROGRAMAÇÃO DA SEMANA
@@ -47,40 +46,43 @@ export default function Index() {
         </MaskedView>
 
         {/* INPUT - BUSCAR EVENTO */}
-        <View
-          style={{
-            flexDirection: "row",
-            height: 44,
-            alignItems: "center",
-            backgroundColor: "#FFF",
-            borderRadius: 5,
-            shadowColor: "#1A1A1A",
-            shadowOffset: { width: 0, height: 0 },
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-            elevation: 5,
-          }}
+        <XStack
+          height={44}
+          alignItems="center"
+          backgroundColor="#FFF"
+          borderRadius={5}
+          shadowColor="#1A1A1A"
+          shadowOffset={{ width: 0, height: 0 }}
+          shadowOpacity={0.3}
+          shadowRadius={4}
+          elevation={5}
         >
           <Search
             size="$1.5"
             padding={12}
-            color={"rgba(26,26,26,0.8)"}
+            color="rgba(26,26,26,0.8)"
             margin={10}
-            style={{ alignItems: "center" }}
+            alignItems="center"
           />
           <TextInput
             placeholder="Buscar evento"
-            placeholderTextColor={"rgba(26,26,26,0.25)"}
-            style={{ flex: 1, fontSize: 16, height: 40 }}
+            placeholderTextColor="#000000"
+            cursorColor="#000000"
+            style={{
+              flex: 1,
+              fontSize: 16,
+              height: 40,
+              fontFamily: "MavenProRegular",
+            }}
             underlineColorAndroid="transparent"
           />
-        </View>
+        </XStack>
 
         {/* BUTTONS - DIAS DA SEMANA */}
-        <ScheduleDayFilter state={day} setState={setDay}></ScheduleDayFilter>
+        <ScheduleDayFilter state={day} setState={setDay} />
 
         {/* LEGENDA */}
-        <ScheduleLegend></ScheduleLegend>
+        <ScheduleLegend />
 
         {/* FILTRO DE EVENTOS */}
         {events.data
@@ -89,14 +91,20 @@ export default function Index() {
             <YStack
               key={`day-${eventsPerDay.day}`}
               margin="$4"
-              style={{ flex: 1, gap: 12 }}
+              flex={1}
+              gap={12}
             >
               {/* NOME DIA DA SEMANA */}
               <View
                 key={`day-header-${eventsPerDay.day}`}
-                style={{ alignItems: "center", marginTop: 4 }}
+                alignItems="center"
+                marginTop={4}
               >
-                <Text style={{ fontWeight: "500", fontSize: 24 }}>
+                <Text
+                  fontWeight="500"
+                  fontSize={24}
+                  style={{ fontFamily: "MavenProSemiBold" }}
+                >
                   {`${eventsPerDay.weekDay} - ${eventsPerDay.day} de julho`}
                 </Text>
               </View>
@@ -105,9 +113,13 @@ export default function Index() {
               {eventsPerDay.sessions.map((session) => (
                 <YStack
                   key={`session-${eventsPerDay.day}-${session.period}`}
-                  style={{ gap: 5 }}
+                  gap={5}
                 >
-                  <Text style={{ fontWeight: "600", fontSize: 18 }}>
+                  <Text
+                    fontWeight="600"
+                    fontSize={18}
+                    style={{ fontFamily: "MavenProMedium" }}
+                  >
                     {session.period}
                   </Text>
                   {session.events.map((event) => (

@@ -14,6 +14,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo-google-fonts/maven-pro": "^0.2.3",
     "@react-native-masked-view/masked-view": "0.3.1",
     "@cloudinary/url-gen": "^1.19.0",
     "@react-navigation/native": "^6.0.2",
@@ -27,7 +28,7 @@
     "cloudinary-react-native": "^1.0.0",
     "expo": "~51.0.8",
     "expo-constants": "~16.0.1",
-    "expo-font": "~12.0.5",
+    "expo-font": "~12.0.7",
     "expo-linear-gradient": "~13.0.2",
     "expo-linking": "~6.3.1",
     "expo-router": "~3.5.14",
