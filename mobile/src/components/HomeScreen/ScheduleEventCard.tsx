@@ -1,4 +1,5 @@
-import { Text, View, TouchableOpacity, Linking } from "react-native";
+import { TouchableOpacity, Linking } from "react-native";
+import { Text, View } from "tamagui";
 
 export function ScheduleEventCard({
   eventName,
@@ -18,22 +19,43 @@ export function ScheduleEventCard({
     );
   };
 
-  return (
-    <TouchableOpacity onPress={handlePress}>
-      <View
+  const CardContent = (
+    <View
+      style={{
+        backgroundColor: eventBackgroundColor,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 8,
+        borderRadius: 4,
+      }}
+    >
+      <Text
         style={{
-          backgroundColor: eventBackgroundColor,
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 8,
-          borderRadius: 4,
+          fontWeight: "600",
+          color: "white",
+          fontFamily: "MavenProMedium",
+          fontSize: 15,
         }}
       >
-        <Text style={{ fontWeight: "600", color: "white" }}>{eventName}</Text>
-        {eventLocation && (
-          <Text style={{ color: "white" }}>Sala: {eventLocation}</Text>
-        )}
-      </View>
-    </TouchableOpacity>
+        {eventName}
+      </Text>
+      {eventLocation && (
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "MavenProRegular",
+            fontSize: 15,
+          }}
+        >
+          Sala: {eventLocation}
+        </Text>
+      )}
+    </View>
+  );
+
+  return eventLink ? (
+    <TouchableOpacity onPress={handlePress}>{CardContent}</TouchableOpacity>
+  ) : (
+    <>{CardContent}</>
   );
 }

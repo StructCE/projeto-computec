@@ -13,23 +13,24 @@ export function ScheduleDayFilter({
       return {
         backgroundColor: "#F2F2F2",
         color: "#000000",
-        fontWeight: "bold",
-        fontSize: 16,
+        fontSize: 17,
         borderRadius: 5,
         height: 42,
         borderWidth: 2,
         borderColor: "#000000",
-      };
-    } else {
-      return {
-        backgroundColor: "#000021",
-        color: "#F2F2F2",
         fontWeight: "bold",
-        fontSize: 16,
-        borderRadius: 5,
-        height: 42,
+        fontFamily: "MavenProBold",
       };
     }
+    return {
+      backgroundColor: "#000021",
+      color: "#F2F2F2",
+      fontSize: 17,
+      borderRadius: 5,
+      height: 42,
+      fontWeight: "bold",
+      fontFamily: "MavenProBold",
+    };
   };
 
   return (
