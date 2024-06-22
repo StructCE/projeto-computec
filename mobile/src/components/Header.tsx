@@ -1,9 +1,9 @@
 import { StatusBar } from "react-native";
-import { View, XStack } from "tamagui";
-import { Image } from "tamagui";
-import { Bell, UserRoundCog } from "lucide-react-native";
+import { View, XStack, Image } from "tamagui";
+import { LinearGradient } from "@tamagui/linear-gradient";
+import { Bell, UserRoundCog } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
+import { useAuth } from "@/utils/auth";
 
 type RouteNames = "index" | "map" | "anais" | "news";
 
@@ -12,6 +12,7 @@ type HeaderProps = {
 };
 
 const Header = ({ routeName }: HeaderProps) => {
+  const { userSession } = useAuth();
   return (
     <XStack
       ai={"center"}
@@ -29,7 +30,7 @@ const Header = ({ routeName }: HeaderProps) => {
           <Bell size={30} color={"black"} />
         </Link>
       ) : (
-        <Link href={"(tabs)/admin/login"}>
+        <Link href={userSession ? "(tabs)/admin/crud" : "(tabs)/admin/login"}>
           <View>
             <XStack>
               <LinearGradient
