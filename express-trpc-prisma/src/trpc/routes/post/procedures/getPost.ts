@@ -13,5 +13,10 @@ export const getPost = procedure
         images: true,
       },
     });
-    return post;
+    return post
+      ? {
+          ...post,
+          images: post?.images.map((image) => image.public_id),
+        }
+      : undefined;
   });
