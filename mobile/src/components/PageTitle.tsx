@@ -1,6 +1,6 @@
-import MaskedView from '@react-native-masked-view/masked-view';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Text } from 'tamagui';
+import MaskedView from "@react-native-masked-view/masked-view";
+import { LinearGradient } from "@tamagui/linear-gradient";
+import { Text } from "tamagui";
 
 export default function PageTitle({ title }: { title: string }) {
   return (
@@ -10,7 +10,7 @@ export default function PageTitle({ title }: { title: string }) {
           <Text
             style={{
               fontSize: 24,
-              fontWeight: 'bold',
+              fontWeight: "bold",
             }}
           >
             {title}
@@ -18,7 +18,7 @@ export default function PageTitle({ title }: { title: string }) {
         }
       >
         <LinearGradient
-          colors={['#a92227', '#ed7a17']}
+          colors={["#a92227", "#ed7a17"]}
           start={{ x: 0.5, y: 2 }}
           end={{ x: 0.5, y: -0.5 }}
           locations={[0.4, 1]}
