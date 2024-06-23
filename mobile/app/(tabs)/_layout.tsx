@@ -55,13 +55,6 @@ export default function TabNavigationLayout() {
           }}
         />
         <Tabs.Screen
-          name="news"
-          options={{
-            title: "Notícias",
-            tabBarIcon: ({ color }) => <BookOpenText size={30} color={color} />,
-          }}
-        />
-        <Tabs.Screen
           name="admin/login"
           options={{
             href: null,
@@ -69,6 +62,19 @@ export default function TabNavigationLayout() {
         />
         <Tabs.Screen
           name="listNotification"
+          options={{
+            tabBarButton: () => null,
+          }}
+        />
+        <Tabs.Screen
+          name="posts"
+          options={{
+            title: "Notícias",
+            tabBarIcon: ({ color }) => <BookOpenText size={30} color={color} />,
+          }}
+        />
+        <Tabs.Screen
+          name="post"
           options={{
             tabBarButton: () => null,
           }}
