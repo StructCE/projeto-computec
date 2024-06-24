@@ -3,6 +3,7 @@ import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ImageBackground, ScrollView } from 'react-native';
 import { Text, View, XStack, YStack } from 'tamagui';
+import PageTitle from '../PageTitle';
 import PopoverCreate from './PopoverCreate';
 import PopoverDelete from './PopoverDelete';
 import PopoverEdit from './PopoverEdit';
@@ -61,28 +62,7 @@ export default function AdminNewsPage() {
     <View style={{ flex: 1, position: 'relative' }}>
       <ScrollView style={{ margin: 24 }}>
         {/* Titulo -> Substituir por componente PageTitle */}
-        <MaskedView
-          maskElement={
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: 'bold',
-              }}
-            >
-              Gerenciamento de Conteúdo
-            </Text>
-          }
-        >
-          <LinearGradient
-            colors={['#a92227', '#ed7a17']}
-            start={{ x: 0.5, y: 2 }}
-            end={{ x: 0.5, y: -0.5 }}
-            locations={[0.4, 1]}
-            style={{
-              height: 30,
-            }}
-          />
-        </MaskedView>
+        <PageTitle title="Gerenciamento de Conteúdo"></PageTitle>
 
         {posts.map((post) => (
           <View>
