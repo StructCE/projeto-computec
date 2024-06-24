@@ -12,5 +12,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "expo": "^51.0.14",
+    "react-native-pager-view": "6.3.0"
+  }
 }

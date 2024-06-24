@@ -11,7 +11,17 @@ const checkDatePast = (date: Date): string => {
   return `Há ${diffInDays} dias`;
 };
 
-const serializeNotifications = (notifications: any[]): any[] => {
+const serializeNotifications = (
+  notifications: any[]
+): {
+  date: Date;
+  datePast: string;
+  notifications: {
+    title: string;
+    created_at: Date;
+    image: string;
+  }[];
+}[] => {
   let serializedNotifications: {
     date: Date;
     datePast: string;
@@ -51,26 +61,21 @@ const serializeNotifications = (notifications: any[]): any[] => {
 };
 
 export const getNotifications = procedure.query(async () => {
-  try {
-    const notifications = await db.notification.findMany({
-      include: {
-        post: {
-          include: {
-            images: true,
-          },
+  const notifications = await db.notification.findMany({
+    include: {
+      post: {
+        include: {
+          images: true,
         },
       },
-      orderBy: {
-        post: {
-          created_at: "desc",
-        },
+    },
+    orderBy: {
+      post: {
+        created_at: "desc",
       },
-    });
+    },
+  });
 
-    const serializedNotifications = serializeNotifications(notifications);
-    return serializedNotifications;
-  } catch (error) {
-    console.error("Error fetching notifications:", error);
-    return error;
-  }
+  const serializedNotifications = serializeNotifications(notifications);
+  return serializedNotifications;
 });

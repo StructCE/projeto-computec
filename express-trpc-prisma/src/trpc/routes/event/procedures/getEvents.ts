@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { db } from "../../../../db";
 import { procedure } from "../../../trpc";
 
@@ -89,7 +90,9 @@ const processDayEvents = (
   return sessions;
 };
 
-const getUpdatedDays = async (): Promise<
+const getUpdatedDays = async (
+  search?: string
+): Promise<
   {
     day: number;
     weekDay: string;
@@ -110,6 +113,22 @@ const getUpdatedDays = async (): Promise<
     },
     include: {
       events: {
+        where: {
+          OR: [
+            {
+              event: {
+                name: {
+                  contains: search || undefined,
+                },
+              },
+            },
+            {
+              local: {
+                contains: search || undefined,
+              },
+            },
+          ],
+        },
         include: {
           event: true,
           period: true,
@@ -130,7 +149,9 @@ const getUpdatedDays = async (): Promise<
   }));
 };
 
-export const getEvents = procedure.query(async () => {
-  const daysUpdated = await getUpdatedDays();
-  return daysUpdated;
-});
+export const getEvents = procedure
+  .input(z.object({ search: z.string().optional() }))
+  .query(async ({ input }) => {
+    const daysUpdated = await getUpdatedDays(input.search);
+    return daysUpdated;
+  });
