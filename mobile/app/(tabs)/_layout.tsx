@@ -61,6 +61,12 @@ export default function TabNavigationLayout() {
           }}
         />
         <Tabs.Screen
+          name="admin/crud"
+          options={{
+            href: null,
+          }}
+        />
+        <Tabs.Screen
           name="listNotification"
           options={{
             tabBarButton: () => null,
