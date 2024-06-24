@@ -8,18 +8,23 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "",
+      "image": "./assets/images/CSBC_logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSNotificationsUsageDescription": "This app uses notifications to inform you about new news articles."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": ["NOTIFICATIONS"],
+      "package": "com.matheusnevs.mobile"
     },
     "web": {
       "bundler": "metro",
@@ -29,6 +34,14 @@
     "plugins": ["expo-router", "expo-font"],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d4674eec-76e3-4b9c-b69e-1b5449f711d0"
+      }
     }
   }
 }
