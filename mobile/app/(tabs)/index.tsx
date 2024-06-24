@@ -2,17 +2,17 @@ import {
   ScheduleDayFilter,
   ScheduleEventCard,
   ScheduleLegend,
-} from "@/src/components/HomeScreen";
-import { api } from "@/utils/api";
-import { Search } from "@tamagui/lucide-icons";
-import { ScrollView, YStack, XStack, Text, View, debounce } from "tamagui";
-import { LinearGradient } from "@tamagui/linear-gradient";
-import MaskedView from "@react-native-masked-view/masked-view";
-import { useState, useEffect } from "react";
-import { TextInput } from "react-native";
+} from '@/src/components/HomeScreen';
+import { api } from '@/utils/api';
+import MaskedView from '@react-native-masked-view/masked-view';
+import { LinearGradient } from '@tamagui/linear-gradient';
+import { Search } from '@tamagui/lucide-icons';
+import { useEffect, useState } from 'react';
+import { TextInput } from 'react-native';
+import { ScrollView, Text, View, XStack, YStack, debounce } from 'tamagui';
 
 export default function Index() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(search);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Index() {
             <Text
               fontSize={24}
               style={{
-                fontFamily: "MavenProBold",
+                fontFamily: 'MavenProBold',
               }}
             >
               PROGRAMAÇÃO DA SEMANA
@@ -49,7 +49,7 @@ export default function Index() {
           }
         >
           <LinearGradient
-            colors={["#a92227", "#ed7a17"]}
+            colors={['#a92227', '#ed7a17']}
             start={{ x: 0.5, y: 2 }}
             end={{ x: 0.5, y: -0.5 }}
             locations={[0.4, 1]}
@@ -87,7 +87,7 @@ export default function Index() {
               flex: 1,
               fontSize: 16,
               height: 40,
-              fontFamily: "MavenProRegular",
+              fontFamily: 'MavenProRegular',
             }}
             underlineColorAndroid="transparent"
           />
@@ -105,7 +105,7 @@ export default function Index() {
           .map((eventsPerDay) => (
             <YStack
               key={`day-${eventsPerDay.day}`}
-              margin="$4"
+              margin="0"
               flex={1}
               gap={12}
             >
@@ -118,7 +118,7 @@ export default function Index() {
                 <Text
                   fontWeight="500"
                   fontSize={24}
-                  style={{ fontFamily: "MavenProSemiBold" }}
+                  style={{ fontFamily: 'MavenProSemiBold' }}
                 >
                   {`${eventsPerDay.weekDay} - ${eventsPerDay.day} de julho`}
                 </Text>
@@ -133,7 +133,7 @@ export default function Index() {
                   <Text
                     fontWeight="600"
                     fontSize={18}
-                    style={{ fontFamily: "MavenProMedium" }}
+                    style={{ fontFamily: 'MavenProMedium' }}
                   >
                     {session.period}
                   </Text>
