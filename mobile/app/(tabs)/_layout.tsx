@@ -1,7 +1,7 @@
-import { Tabs } from "expo-router";
-import { Home, Map, ScrollText, BookOpenText } from "@tamagui/lucide-icons";
-import { LinearGradient } from "@tamagui/linear-gradient";
-import Header from "@/src/components/Header";
+import Header from '@/src/components/Header';
+import { LinearGradient } from '@tamagui/linear-gradient';
+import { BookOpenText, Home, Map, ScrollText } from '@tamagui/lucide-icons';
+import { Tabs } from 'expo-router';
 
 export default function TabNavigationLayout() {
   return (
@@ -11,14 +11,14 @@ export default function TabNavigationLayout() {
         screenOptions={({ route }) => ({
           header: () => (
             <Header
-              routeName={route.name as "index" | "map" | "anais" | "news"}
+              routeName={route.name as 'index' | 'map' | 'anais' | 'news'}
             />
           ),
-          tabBarActiveTintColor: "white",
-          tabBarInactiveTintColor: "#CBC8C8",
+          tabBarActiveTintColor: 'white',
+          tabBarInactiveTintColor: '#CBC8C8',
           tabBarBackground: () => (
             <LinearGradient
-              colors={["#a92227", "#ed7a17"]}
+              colors={['#a92227', '#ed7a17']}
               start={{ x: 0, y: 1 }}
               locations={[0.4, 1]}
               style={{
@@ -36,21 +36,21 @@ export default function TabNavigationLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: "Início",
+            title: 'Início',
             tabBarIcon: ({ color }) => <Home size={30} color={color} />,
           }}
         />
         <Tabs.Screen
           name="map"
           options={{
-            title: "Mapa",
+            title: 'Mapa',
             tabBarIcon: ({ color }) => <Map size={30} color={color} />,
           }}
         />
         <Tabs.Screen
           name="anais"
           options={{
-            title: "Anais",
+            title: 'Anais',
             tabBarIcon: ({ color }) => <ScrollText size={30} color={color} />,
           }}
         />
@@ -67,9 +67,9 @@ export default function TabNavigationLayout() {
           }}
         />
         <Tabs.Screen
-          name="posts"
+          name="news"
           options={{
-            title: "Notícias",
+            title: 'Notícias',
             tabBarIcon: ({ color }) => <BookOpenText size={30} color={color} />,
           }}
         />
