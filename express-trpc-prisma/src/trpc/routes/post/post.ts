@@ -12,5 +12,5 @@ export const postRouter = createTRPCRouter({
   getPost: getPost,
   deletePost: deletePost,
   updatePost: updatePost,
-  createPosts: createPost,
+  createPost: createPost,
 });

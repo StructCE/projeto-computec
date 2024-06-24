@@ -5,7 +5,7 @@ import { Bell, UserRoundCog } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import { useAuth } from "@/utils/auth";
 
-type RouteNames = "index" | "map" | "anais" | "news";
+type RouteNames = "index" | "map" | "anais" | "posts";
 
 type HeaderProps = {
   routeName: RouteNames;
@@ -25,12 +25,16 @@ const Header = ({ routeName }: HeaderProps) => {
         width={100}
         height={100}
       />
-      {routeName !== "news" ? (
+      {routeName !== "posts" ? (
         <Link href={"/listNotification"}>
           <Bell size={30} color={"black"} />
         </Link>
       ) : (
-        <Link href={userSession ? "(tabs)/admin/crud" : "(tabs)/admin/login"}>
+        <Link
+          href={
+            userSession?.session ? "(tabs)/admin/crud" : "(tabs)/admin/login"
+          }
+        >
           <View>
             <XStack>
               <LinearGradient

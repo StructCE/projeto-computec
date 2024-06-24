@@ -8,7 +8,7 @@ export default function Login() {
   const { signIn, userSession } = useAuth();
 
   useEffect(() => {
-    if (userSession) {
+    if (userSession?.session) {
       router.push("/");
     }
   }, [userSession]);
