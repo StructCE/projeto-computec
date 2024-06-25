@@ -1,4 +1,4 @@
-import { View, XStack, YStack, Text } from "tamagui";
+import { YStack, Text } from "tamagui";
 import { Image } from "tamagui";
 import { TouchableOpacity } from "react-native";
 import Popover from "react-native-popover-view";
@@ -25,8 +25,8 @@ const Pin = (props: LocalPositions) => {
       >
         <Image
           source={require("../../../mobile/assets/images/pin.png")}
-          width={20}
-          height={25}
+          width={18}
+          height={21}
         />
       </TouchableOpacity>
 
@@ -36,7 +36,7 @@ const Pin = (props: LocalPositions) => {
         isVisible={showPopover}
         onRequestClose={() => setShowPopover(false)}
       >
-        <YStack ai={"center"}>
+        <YStack padding="$2" ai={"center"}>
           <Text fontSize={12}>{props.localName}</Text>
           <Text fontSize={10}>{props.originalLocation}</Text>
         </YStack>
