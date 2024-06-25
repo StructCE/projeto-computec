@@ -1,42 +1,7 @@
-import { db } from "../../../../db";
 import z from "zod";
 import { protectedProcedure } from "../../../trpc";
-import Expo, { ExpoPushMessage } from "expo-server-sdk";
-
-export const notify = async ({
-  title,
-  subtitle,
-}: {
-  title: string;
-  subtitle: string;
-}) => {
-  const expo = new Expo();
-  const pushTokens = await db.pushToken.findMany();
-
-  let notifications: ExpoPushMessage[] = [];
-  for (let pushToken of pushTokens) {
-    if (!Expo.isExpoPushToken(pushToken.token)) {
-      console.error(
-        `Push token ${pushToken.token} is not a valid Expo push token`
-      );
-    }
-    console.log(pushToken.token);
-    notifications.push({
-      to: pushToken.token,
-      sound: "default",
-      title: title,
-      body: subtitle,
-    });
-  }
-  let chunks = expo.chunkPushNotifications(notifications);
-  for (let chunk of chunks) {
-    try {
-      await expo.sendPushNotificationsAsync(chunk);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-};
+import { db } from "../../../../db";
+import { notify } from "../../../../utils/notifications/notify";
 
 export const createPost = protectedProcedure
   .input(
@@ -53,22 +18,33 @@ export const createPost = protectedProcedure
   )
   .mutation(async ({ input }) => {
     const { images, ...data } = input.data;
+
     const createdPost = await db.post.create({
       data: data,
     });
-    images.forEach(async (image) => {
-      await db.image.create({
-        data: {
-          public_id: image,
-          post_id: createdPost.id,
-        },
-      });
-    });
+
+    await Promise.all(
+      images.map((image) =>
+        db.image.create({
+          data: {
+            public_id: image,
+            post_id: createdPost.id,
+          },
+        })
+      )
+    );
+
     const createdNotification = await db.notification.create({
       data: {
         post_id: createdPost.id,
       },
     });
-    await notify(data);
+
+    await notify({
+      title: createdPost.title,
+      subtitle: createdPost.subtitle,
+      post_id: createdPost.id,
+    });
+
     return { post: createdPost, notification: createdNotification };
   });
