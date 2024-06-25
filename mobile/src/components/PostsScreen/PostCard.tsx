@@ -40,7 +40,17 @@ export default function PostCard({ post }: { post: Post }) {
 
   return (
     <View style={{ flex: 1, alignSelf: "center", position: "relative" }}>
-      <ScrollView ref={scrollViewRef} horizontal={true} pagingEnabled={true}>
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        pagingEnabled={true}
+        style={{
+          width: imageWidth,
+          height: height / 3,
+          borderRadius: 20,
+          backgroundColor: "white",
+        }}
+      >
         {post.images.map((image) => {
           return (
             <CloudImage

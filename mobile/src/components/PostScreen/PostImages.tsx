@@ -42,7 +42,16 @@ export const PostImages: React.FC<Props> = ({ post }) => {
 
   return (
     <View style={{ flex: 1, alignSelf: "center" }}>
-      <ScrollView ref={scrollViewRef} horizontal={true} pagingEnabled={true}>
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        pagingEnabled={true}
+        style={{
+          width: width,
+          height: height / 3,
+          backgroundColor: "white",
+        }}
+      >
         {post.images.map((image) => {
           return (
             <CloudImage

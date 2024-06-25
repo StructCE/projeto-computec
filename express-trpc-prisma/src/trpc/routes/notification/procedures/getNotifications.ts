@@ -17,6 +17,7 @@ const serializeNotifications = (
   date: Date;
   datePast: string;
   notifications: {
+    id: string;
     title: string;
     created_at: Date;
     image: string;
@@ -26,6 +27,7 @@ const serializeNotifications = (
     date: Date;
     datePast: string;
     notifications: {
+      id: string;
       title: string;
       created_at: Date;
       image: string;
@@ -51,6 +53,7 @@ const serializeNotifications = (
     }
 
     serializedNotifications[indexNotification].notifications.push({
+      id: notification.post.id,
       title: notification.post.title,
       created_at: notificationDate,
       image: notification.post.images[0]?.public_id,

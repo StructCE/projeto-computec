@@ -24,7 +24,7 @@ export default function RootLayout() {
     MavenProBold: MavenPro_700Bold,
   });
 
-  const { expoPushToken, notification } = usePushNotifications();
+  usePushNotifications();
 
   useEffect(() => {
     if (interLoaded || interError) {

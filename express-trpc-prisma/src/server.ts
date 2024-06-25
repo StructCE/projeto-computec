@@ -2,7 +2,7 @@ import express from "express";
 import { tRPCRouter } from "./trpc/middleware";
 import { authRouter } from "./auth";
 import { uploadRoute } from "./utils/upload/uploadRoute";
-import { setPushTokenRoute } from "./utils/setPushToken";
+import { setPushTokenRoute } from "./utils/notifications/setPushTokenRoute";
 
 export const app = express();
 
