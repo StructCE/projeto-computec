@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import * as SecureStore from "expo-secure-store";
@@ -15,15 +15,6 @@ export const usePushNotifications = () => {
     }),
   });
 
-  const [expoPushToken, setExpoPushToken] = useState<
-    Notifications.ExpoPushToken | undefined
-  >();
-
-  const [notification, setNotification] = useState<
-    Notifications.Notification | undefined
-  >();
-
-  const notificationListener = useRef<Notifications.Subscription>();
   const responseListener = useRef<Notifications.Subscription>();
 
   async function registerForPushNotificationsAsync() {
@@ -64,14 +55,12 @@ export const usePushNotifications = () => {
         lightColor: "#FF231F7C",
       });
     }
-
     return;
   }
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
       if (token) {
-        setExpoPushToken(token?.newToken);
         fetch(`http://${getBaseUrl().split(":")[1]}:3001/setPushToken`, {
           method: "POST",
           headers: {
@@ -86,27 +75,14 @@ export const usePushNotifications = () => {
       }
     });
 
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        setNotification(notification);
-      });
-
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
         console.log(response);
       });
 
     return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current!
-      );
-
       Notifications.removeNotificationSubscription(responseListener.current!);
     };
   }, []);
-
-  return {
-    expoPushToken,
-    notification,
-  };
+  return;
 };
