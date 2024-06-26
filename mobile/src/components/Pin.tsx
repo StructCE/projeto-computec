@@ -1,5 +1,4 @@
-import { YStack, Text } from "tamagui";
-import { Image } from "tamagui";
+import { YStack, Text, Image } from "tamagui";
 import { TouchableOpacity } from "react-native";
 import Popover from "react-native-popover-view";
 import { useRef, useState } from "react";
@@ -14,7 +13,7 @@ export type LocalPositions = {
 const Pin = (props: LocalPositions) => {
   const [showPopover, setShowPopover] = useState(false);
 
-  const touchable = useRef();
+  const touchable = useRef(null);
 
   return (
     <>
@@ -37,8 +36,12 @@ const Pin = (props: LocalPositions) => {
         onRequestClose={() => setShowPopover(false)}
       >
         <YStack padding="$2" ai={"center"}>
-          <Text fontSize={12}>{props.localName}</Text>
-          <Text fontSize={10}>{props.originalLocation}</Text>
+          <Text fontSize={12} style={{ fontFamily: "MavenProBold" }}>
+            {props.localName}
+          </Text>
+          <Text fontSize={10} style={{ fontFamily: "MavenProMedium" }}>
+            {props.originalLocation}
+          </Text>
         </YStack>
       </Popover>
     </>
