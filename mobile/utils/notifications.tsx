@@ -5,6 +5,7 @@ import * as SecureStore from "expo-secure-store";
 import { Platform } from "react-native";
 import { getBaseUrl } from "./api";
 import Constants from "expo-constants";
+import { router } from "expo-router";
 
 export const usePushNotifications = () => {
   Notifications.setNotificationHandler({
@@ -77,7 +78,15 @@ export const usePushNotifications = () => {
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
+        const post_id = response.notification.request.content.data.post_id;
+        if (post_id) {
+          setTimeout(() => {
+            router.push({
+              pathname: "/(tabs)/posts",
+              params: { id: post_id },
+            });
+          }, 1000);
+        }
       });
 
     return () => {
