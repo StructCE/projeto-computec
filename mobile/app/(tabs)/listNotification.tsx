@@ -76,6 +76,7 @@ export default function ListNotification() {
                     {group.notifications.map((item, idx) => (
                       <CardNotification
                         key={idx}
+                        id={item.id}
                         img={item.image}
                         title={item.title}
                         dateNotification={formatRelativeTime(item.created_at)}

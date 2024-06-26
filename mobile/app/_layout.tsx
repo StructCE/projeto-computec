@@ -11,6 +11,7 @@ import {
   MavenPro_500Medium,
   MavenPro_700Bold,
 } from "@expo-google-fonts/maven-pro";
+import { usePushNotifications } from "@/utils/notifications";
 
 export default function RootLayout() {
   const [interLoaded, interError] = useFonts({
@@ -23,9 +24,10 @@ export default function RootLayout() {
     MavenProBold: MavenPro_700Bold,
   });
 
+  usePushNotifications();
+
   useEffect(() => {
     if (interLoaded || interError) {
-      // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
       SplashScreen.hideAsync();
     }
   }, [interLoaded, interError]);

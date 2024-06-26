@@ -40,7 +40,17 @@ export default function PostCard({ post }: { post: Post }) {
 
   return (
     <View style={{ flex: 1, alignSelf: "center", position: "relative" }}>
-      <ScrollView ref={scrollViewRef} horizontal={true} pagingEnabled={true}>
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        pagingEnabled={true}
+        style={{
+          width: imageWidth,
+          height: height / 3,
+          borderRadius: 20,
+          backgroundColor: "white",
+        }}
+      >
         {post.images.map((image) => {
           return (
             <CloudImage
@@ -79,8 +89,8 @@ export default function PostCard({ post }: { post: Post }) {
             fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDay()).padStart(2, "0")}/
-          {String(post.created_at.getMonth()).padStart(2, "0")}
+          {String(post.created_at.getDate()).padStart(2, "0")}/
+          {String(post.created_at.getMonth() + 1).padStart(2, "0")}
         </Text>
       </View>
       <BlurView
