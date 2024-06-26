@@ -89,8 +89,8 @@ export const PostImages: React.FC<Props> = ({ post }) => {
             fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDay()).padStart(2, "0")}/
-          {String(post.created_at.getMonth()).padStart(2, "0")}
+          {String(post.created_at.getDate()).padStart(2, "0")}/
+          {String(post.created_at.getMonth() + 1).padStart(2, "0")}
         </Text>
       </View>
       <BlurView
