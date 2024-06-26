@@ -2,8 +2,8 @@ import CloudImage from "@/utils/cloudinary";
 import { BlurView } from "expo-blur";
 import { Link } from "expo-router";
 import React, { useEffect, useRef } from "react";
-import { Dimensions, ScrollView } from "react-native";
-import { Text, View, YStack } from "tamagui";
+import { Dimensions } from "react-native";
+import { Text, View, YStack, ScrollView } from "tamagui";
 
 type Post = {
   id: string;
@@ -136,7 +136,7 @@ export default function PostCard({ post }: { post: Post }) {
           position: "absolute",
           color: "white",
           backgroundColor: "#C1272D",
-          fontWeight: "bold",
+          fontFamily: "MavenProBold",
           bottom: 10,
           width: 132,
           alignSelf: "center",
