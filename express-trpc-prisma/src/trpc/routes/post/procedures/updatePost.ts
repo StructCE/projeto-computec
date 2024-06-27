@@ -1,6 +1,7 @@
 import { db } from "../../../../db";
 import z from "zod";
 import { protectedProcedure } from "../../../trpc";
+import { notify } from "../../../../utils/notifications/notify";
 
 export const updatePost = protectedProcedure
   .input(
@@ -48,5 +49,11 @@ export const updatePost = protectedProcedure
         },
       });
     });
+    await notify({
+      title: updatedPost.title,
+      subtitle: updatedPost.subtitle,
+      post_id: updatedPost.id,
+    });
+
     return updatedPost;
   });

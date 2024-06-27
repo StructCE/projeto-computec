@@ -1,50 +1,58 @@
-# Express Server with Lucia Auth, Prisma, and TRPC
+# Express Server com Lucia Auth, Prisma, e TRPC
 
-This backend server is built using Express.js, Lucia Auth for authentication, Prisma for database ORM, and TRPC for type-safe API endpoints. It uses a MySQL database, which can be easily set up using Docker. 
+O servidor backend é constrúido usando Express.js, Lucia Auth para autenticação, Prisma para banco de dados ORM, e TRPC para endpoints tipados da API. Usamos MySQL para banco de dados, que pode ser facilmente configurando usando Docker.
 
-## Configurations
+## Configurações
 
-### Environment Variables
+### Variáveis de Ambiente
 
-Copy the `.env.example` file to a `.env` file:
+Copie o `.env.example` para o `.env`:
 
 ```bash
 cp .env.example .env
 ```
 
-Then, set up the environment variables according to your credentials.
+Então, preencha com as suas variáveis de ambiente.
 
-### Docker Installation 
+### Instalação Docker
 
-To install Docker, use the following command on your terminal:
+Para instalar o Docker, use o seguinte comando no seu terminal:
 
 ```bash
 sudo snap install docker
 ```
 
-### Setting up the Database
+### Configurando seu banco de dados
 
-1. Navigate to the project directory.
-2. Run the `start-database.sh` script to initialize the MySQL database container:
+1. Vá até o diretório do seu projeto.
+2. Rode o arquivo `start-database.sh` que irá iniciar seu container MySQL:
 
 ```bash
 sudo ./start-database.sh
 ```
 
-This script will start a Docker container with a MySQL database instance configured according to the settings in the `.env.example` file.
+Esse script irá criar um container MySQL de acordo com as credencias que você colocou no seu `.env`.
 
-### Installing Dependencies
+### Instalando as dependências
 
-After setting up the database, install the project dependencies using `pnpm`:
+Depois de já ter configurado seu banco de dados, instale agora as dependências usados no seu projeto com o pnpm:
 
 ```bash
 pnpm install
 ```
 
-## Usage
+## Uso
 
-To start the Express server:
+Para iniciar seu servidor Express:
 
 ```bash
 pnpm dev
 ```
+
+Você pode também rodar o outro script, que irá resetar o banco de dados, no momento não temos nada nele, dar push do schema no nosso container MySQL e então executar a `seed.ts` que irá popular o banco de dados, além de gerar o Prisma Client.
+
+```bash
+pnpm db:seed
+```
+
+Este comando pnpm irá executar o shell script `reset-db.sh`.

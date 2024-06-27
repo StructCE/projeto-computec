@@ -10,7 +10,7 @@ export default function PageTitle({ title }: { title: string }) {
           <Text
             style={{
               fontSize: 24,
-              fontWeight: "bold",
+              fontFamily: "MavenProBold",
             }}
           >
             {title}

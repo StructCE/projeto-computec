@@ -1,8 +1,10 @@
 import { TouchableOpacity } from "react-native";
 import { View, Text, XStack, YStack } from "tamagui";
 import CloudImage from "@/utils/cloudinary";
+import { router } from "expo-router";
 
 type dataNotificationList = {
+  id: string;
   img: string;
   title: string;
   dateNotification: string;
@@ -10,7 +12,11 @@ type dataNotificationList = {
 
 const CardNotification = (props: dataNotificationList) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() =>
+        router.push({ pathname: "/(tabs)/post", params: { id: props.id } })
+      }
+    >
       <View marginVertical="$1.5" marginHorizontal="$5">
         <XStack>
           <View>
