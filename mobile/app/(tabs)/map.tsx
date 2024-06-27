@@ -1,10 +1,10 @@
 import Pin from "@/src/components/Pin";
 import { LocalPositionsFixed } from "@/constants/LocalPositionsFixed";
 import { View, Text, Image, ScrollView } from "tamagui";
+import { LinearGradient } from "@tamagui/linear-gradient";
 import { Dimensions } from "react-native";
-import { useEffect, useRef } from "react";
-import React from "react";
-
+import React, { useEffect, useRef } from "react";
+import MaskedView from "@react-native-masked-view/masked-view";
 export default function Map() {
   const scrollViewRef = useRef<any>(null);
   const screenWidth = Dimensions.get("window").width;
@@ -19,16 +19,35 @@ export default function Map() {
 
   return (
     <View justifyContent="center" flex={1} backgroundColor="#F2F2F2">
-      <View alignItems="center" backgroundColor="#F2F2F2">
-        <Text
-          fontSize="$5"
-          color="#A92227"
-          style={{ fontFamily: "MavenProBold" }}
+      <View backgroundColor="#F2F2F2">
+        <MaskedView
+          maskElement={
+            <Text
+              fontSize="$5"
+              textAlign="center"
+              style={{
+                fontFamily: "MavenProBold",
+              }}
+            >
+              Mapa do Evento
+            </Text>
+          }
         >
-          Mapa do Evento
-        </Text>
-
-        <Text color={"#1A1A1A"} style={{ fontFamily: "MavenProMedium" }}>
+          <LinearGradient
+            colors={["#a92227", "#ed7a17"]}
+            start={{ x: 0.5, y: 2 }}
+            end={{ x: 0.5, y: -0.5 }}
+            locations={[0.4, 1]}
+            style={{
+              height: 30,
+            }}
+          />
+        </MaskedView>
+        <Text
+          color={"#1A1A1A"}
+          textAlign="center"
+          style={{ fontFamily: "MavenProMedium" }}
+        >
           Encontre o evento que você procura aqui!
         </Text>
       </View>
