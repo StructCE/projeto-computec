@@ -1,11 +1,13 @@
 import { View, XStack, Text, ScrollView } from "tamagui";
 import { ChevronLeft } from "@tamagui/lucide-icons";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, RefreshControl } from "react-native";
 import { useRouter } from "expo-router";
 import CardNotification from "@/src/components/CardNotification";
 import { api } from "@/utils/api";
+import { useState } from "react";
 
 export default function ListNotification() {
+  const [refreshing, setRefreshing] = useState(false);
   const router = useRouter();
   const notifications = api.notification.getNotifications.useQuery();
 
@@ -53,7 +55,14 @@ export default function ListNotification() {
           </Text>
         </XStack>
       </XStack>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={notifications.refetch}
+          />
+        }
+      >
         <View>
           {notifications.data &&
             notifications.data.map((group, index) => (
