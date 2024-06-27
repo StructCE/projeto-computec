@@ -65,7 +65,7 @@ model Event {
   id        String   @id @default(cuid())
   name      String
   link      String?
-  periods   EventDayPeriod[]   
+  periods   EventDayPeriod[]
 }
 
 model Post {
@@ -93,3 +93,7 @@ model Notification {
   post    Post   @relation(references: [id], fields: [post_id])
 }
 
+model PushToken {
+  id    String @id @default(cuid())
+  token String @unique
+}

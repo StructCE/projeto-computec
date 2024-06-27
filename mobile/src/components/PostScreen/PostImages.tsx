@@ -42,7 +42,16 @@ export const PostImages: React.FC<Props> = ({ post }) => {
 
   return (
     <View style={{ flex: 1, alignSelf: "center" }}>
-      <ScrollView ref={scrollViewRef} horizontal={true} pagingEnabled={true}>
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        pagingEnabled={true}
+        style={{
+          width: width,
+          height: height / 3,
+          backgroundColor: "white",
+        }}
+      >
         {post.images.map((image) => {
           return (
             <CloudImage
@@ -80,8 +89,8 @@ export const PostImages: React.FC<Props> = ({ post }) => {
             fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDay()).padStart(2, "0")}/
-          {String(post.created_at.getMonth()).padStart(2, "0")}
+          {String(post.created_at.getDate()).padStart(2, "0")}/
+          {String(post.created_at.getMonth() + 1).padStart(2, "0")}
         </Text>
       </View>
       <BlurView

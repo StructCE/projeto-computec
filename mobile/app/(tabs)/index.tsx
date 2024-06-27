@@ -5,14 +5,28 @@ import {
 } from "@/src/components/HomeScreen";
 import { api } from "@/utils/api";
 import { Search } from "@tamagui/lucide-icons";
-import { ScrollView, YStack, XStack, Text, View } from "tamagui";
+import { ScrollView, YStack, XStack, Text, View, debounce } from "tamagui";
 import { LinearGradient } from "@tamagui/linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextInput } from "react-native";
 
 export default function Index() {
-  const events = api.event.getEvents.useQuery();
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
+
+  useEffect(() => {
+    const handler = debounce(() => setDebouncedSearch(search), 500);
+    handler();
+    return () => {
+      handler.cancel();
+      console.log(search);
+    };
+  }, [search]);
+
+  const events = api.event.getEvents.useQuery({
+    search: debouncedSearch,
+  });
   const today = new Date();
   const firstDate =
     today.getDate() > 21 && today.getDate() < 25 ? today.getDate() : 21;
@@ -65,9 +79,10 @@ export default function Index() {
             alignItems="center"
           />
           <TextInput
-            placeholder="Buscar evento"
+            placeholder="Buscar por evento ou sala"
             placeholderTextColor="#000000"
             cursorColor="#000000"
+            onChangeText={(text) => setSearch(text)}
             style={{
               flex: 1,
               fontSize: 16,
