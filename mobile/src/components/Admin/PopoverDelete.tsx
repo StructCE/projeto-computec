@@ -1,9 +1,9 @@
-import { api } from '@/utils/api';
-import { Trash2 } from 'lucide-react-native';
-import React from 'react';
-import { Alert } from 'react-native';
-import type { PopoverProps } from 'tamagui';
-import { Adapt, Button, Label, Popover, Text, XStack, YStack } from 'tamagui';
+import { api } from "@/utils/api";
+import { Trash2 } from "lucide-react-native";
+import React from "react";
+import { Alert } from "react-native";
+import type { PopoverProps } from "tamagui";
+import { Adapt, Button, Label, Popover, Text, XStack, YStack } from "tamagui";
 
 type Post = {
   id: string;
@@ -16,26 +16,26 @@ type Post = {
   local: string | null;
 };
 
-export default function PopoverDelete({
+export function PopoverDelete({
   post,
   ...props
 }: PopoverProps & { post: Post }) {
   const removePost = api.post.deletePost.useMutation({
     onSuccess: () => {
-      Alert.alert('Alerta', 'Post removido com sucesso!');
+      Alert.alert("Alerta", "Post removido com sucesso!");
     },
     onError: () => {
-      Alert.alert('Alerta', 'Erro ao remover o post.');
+      Alert.alert("Alerta", "Erro ao remover o post.");
     },
   });
 
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
-        <Button icon={Trash2} color={'red'} size={48} />
+        <Button icon={Trash2} color={"red"} size={48} />
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
-        <Popover.Sheet snapPointsMode={'fit'} modal dismissOnSnapToBottom>
+        <Popover.Sheet snapPointsMode={"fit"} modal dismissOnSnapToBottom>
           <Popover.Sheet.Frame padding="$4">
             <Adapt.Contents />
           </Popover.Sheet.Frame>
@@ -52,7 +52,7 @@ export default function PopoverDelete({
         exitStyle={{ y: -10, opacity: 0 }}
         elevate
         animation={[
-          'quick',
+          "quick",
           {
             opacity: {
               overshootClamping: true,
@@ -62,12 +62,12 @@ export default function PopoverDelete({
       >
         <YStack gap="$3">
           <YStack>
-            <Label style={{ fontWeight: 'bold', fontSize: 24 }}>
+            <Label style={{ fontWeight: "bold", fontSize: 24 }}>
               Deseja deletar a postagem?
             </Label>
             <Text style={{ fontSize: 16 }}>
               O conteúdo da postagem "
-              <Text color={'#C1272D'} fontWeight={600}>
+              <Text color={"#C1272D"} fontWeight={600}>
                 {post.title}
               </Text>
               " será excluído e a ação não pode ser desfeita.
@@ -76,7 +76,7 @@ export default function PopoverDelete({
           <XStack
             style={{
               flex: 1,
-              justifyContent: 'space-evenly',
+              justifyContent: "space-evenly",
               gap: 24,
               marginBottom: 48,
             }}
@@ -86,7 +86,7 @@ export default function PopoverDelete({
                 style={{
                   fontSize: 14,
                   flex: 1,
-                  shadowColor: '#1A1A1A',
+                  shadowColor: "#1A1A1A",
                   shadowOffset: { width: 0, height: 0 },
                   shadowOpacity: 0.25,
                   shadowRadius: 3,
@@ -98,11 +98,11 @@ export default function PopoverDelete({
             </Popover.Close>
             <Button
               style={{
-                backgroundColor: '#ED7A17',
-                color: 'white',
+                backgroundColor: "#ED7A17",
+                color: "white",
                 flex: 1,
-                fontWeight: 'bold',
-                shadowColor: '#1A1A1A',
+                fontWeight: "bold",
+                shadowColor: "#1A1A1A",
                 shadowOffset: { width: 0, height: 0 },
                 shadowOpacity: 0.3,
                 shadowRadius: 4,

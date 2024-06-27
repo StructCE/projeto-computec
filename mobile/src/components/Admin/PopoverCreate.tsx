@@ -1,12 +1,12 @@
-import { api } from '@/utils/api';
+import { api } from "@/utils/api";
 import DateTimePicker, {
   DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
-import * as ImagePicker from 'expo-image-picker';
-import { Plus, Upload } from 'lucide-react-native';
-import { useState } from 'react';
-import { Alert } from 'react-native';
-import type { PopoverProps } from 'tamagui';
+} from "@react-native-community/datetimepicker";
+import * as ImagePicker from "expo-image-picker";
+import { Plus, Upload } from "@tamagui/lucide-icons";
+import { useState } from "react";
+import { Alert } from "react-native";
+import type { PopoverProps } from "tamagui";
 import {
   Adapt,
   Button,
@@ -17,17 +17,17 @@ import {
   Text,
   XStack,
   YStack,
-} from 'tamagui';
+} from "tamagui";
 
-export default function PopoverCreate({ ...props }: PopoverProps) {
+export function PopoverCreate({ ...props }: PopoverProps) {
   /* Inputs */
-  const [inputTitle, setInputTitle] = useState('');
-  const [inputSubtitle, setInputSubtitle] = useState('');
-  const [inputLocal, setInputLocal] = useState('');
-  const [inputDescription, setInputDescription] = useState('');
+  const [inputTitle, setInputTitle] = useState("");
+  const [inputSubtitle, setInputSubtitle] = useState("");
+  const [inputLocal, setInputLocal] = useState("");
+  const [inputDescription, setInputDescription] = useState("");
 
   /* ImagePicker */
-  const [selectedImage, setSelectedImage] = useState(['']);
+  const [selectedImage, setSelectedImage] = useState([""]);
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: false,
@@ -40,7 +40,7 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
         setSelectedImage([...selectedImage, result.assets[i].uri]);
       }
     } else {
-      alert('Você não selecionou nenhuma imagem.');
+      alert("Você não selecionou nenhuma imagem.");
     }
   };
 
@@ -50,7 +50,7 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
     event: DateTimePickerEvent | undefined,
     selectedDate: Date | undefined
   ) => {
-    if (event?.type === 'neutralButtonPressed') {
+    if (event?.type === "neutralButtonPressed") {
       setNewdate(new Date(0));
     } else {
       setNewdate(selectedDate!);
@@ -60,10 +60,10 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
 
   const createPost = api.post.createPosts.useMutation({
     onSuccess: () => {
-      Alert.alert('Alerta', 'Post criado com sucesso!');
+      Alert.alert("Alerta", "Post criado com sucesso!");
     },
     onError: () => {
-      Alert.alert('Alerta', 'Erro ao criar o post.');
+      Alert.alert("Alerta", "Erro ao criar o post.");
     },
   });
 
@@ -74,8 +74,8 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
           icon={Plus}
           size={56}
           style={{
-            color: 'white',
-            backgroundColor: '#ED7A17',
+            color: "white",
+            backgroundColor: "#ED7A17",
             borderRadius: 32,
             width: 56,
           }}
@@ -83,7 +83,7 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
         <Popover.Sheet
-          snapPointsMode={'percent'}
+          snapPointsMode={"percent"}
           snapPoints={[80]}
           modal
           dismissOnSnapToBottom
@@ -104,7 +104,7 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
         exitStyle={{ y: -10, opacity: 0 }}
         elevate
         animation={[
-          'quick',
+          "quick",
           {
             opacity: {
               overshootClamping: true,
@@ -114,11 +114,11 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
       >
         <YStack gap="$3">
           <ScrollView>
-            <Label style={{ fontWeight: 'bold', fontSize: 24 }}>
+            <Label style={{ fontWeight: "bold", fontSize: 24 }}>
               Criar postagem
             </Label>
             <Text style={{ fontSize: 16, marginVertical: 4 }}>
-              Preencha todos os campos{' '}
+              Preencha todos os campos{" "}
               <Text color="#C1272D">obrigatórios*</Text> para criar uma notícia.
             </Text>
             <Input
@@ -149,24 +149,24 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
             <XStack
               style={{
                 flex: 1,
-                justifyContent: 'space-evenly',
-                alignItems: 'center',
+                justifyContent: "space-evenly",
+                alignItems: "center",
                 marginVertical: 8,
               }}
             >
               <Button
                 style={{
-                  backgroundColor: '#f8f8f8',
-                  color: '#ED7A17',
+                  backgroundColor: "#f8f8f8",
+                  color: "#ED7A17",
                   borderWidth: 1,
                   outlineWidth: 0,
-                  borderColor: '#ededed',
+                  borderColor: "#ededed",
                 }}
                 size={40}
                 icon={Upload}
                 onPress={pickImageAsync}
               >
-                <Text color={'black'}>Imagens</Text>
+                <Text color={"black"}>Imagens</Text>
               </Button>
               <DateTimePicker
                 mode="datetime"
@@ -174,14 +174,14 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
                 value={newdate}
                 onChange={onChangeDatePicker}
                 minuteInterval={10}
-                timeZoneName={'America/Sao_Paulo'}
+                timeZoneName={"America/Sao_Paulo"}
               />
             </XStack>
           </ScrollView>
           <XStack
             style={{
               flex: 1,
-              justifyContent: 'space-evenly',
+              justifyContent: "space-evenly",
               gap: 24,
               marginBottom: 48,
             }}
@@ -191,17 +191,17 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
                 style={{
                   fontSize: 14,
                   flex: 1,
-                  shadowColor: '#1A1A1A',
+                  shadowColor: "#1A1A1A",
                   shadowOffset: { width: 0, height: 0 },
                   shadowOpacity: 0.25,
                   shadowRadius: 3,
                   elevation: 5,
                 }}
                 onPress={() => {
-                  setInputTitle('');
-                  setInputSubtitle('');
-                  setInputLocal('');
-                  setInputDescription('');
+                  setInputTitle("");
+                  setInputSubtitle("");
+                  setInputLocal("");
+                  setInputDescription("");
                 }}
               >
                 Cancelar
@@ -209,12 +209,12 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
             </Popover.Close>
             <Button
               style={{
-                backgroundColor: '#ED7A17',
-                color: 'white',
+                backgroundColor: "#ED7A17",
+                color: "white",
                 flex: 1,
-                fontWeight: 'bold',
+                fontWeight: "bold",
                 borderRadius: 5,
-                shadowColor: '#1A1A1A',
+                shadowColor: "#1A1A1A",
                 shadowOffset: { width: 0, height: 0 },
                 shadowOpacity: 0.3,
                 shadowRadius: 4,

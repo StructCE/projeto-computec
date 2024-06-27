@@ -1,12 +1,12 @@
-import { api } from '@/utils/api';
+import { api } from "@/utils/api";
 import DateTimePicker, {
   DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
-import * as ImagePicker from 'expo-image-picker';
-import { Eye, EyeOff, SquarePen, Upload } from 'lucide-react-native';
-import { useState } from 'react';
-import { Alert } from 'react-native';
-import type { PopoverProps } from 'tamagui';
+} from "@react-native-community/datetimepicker";
+import * as ImagePicker from "expo-image-picker";
+import { Eye, EyeOff, SquarePen, Upload } from "@tamagui/lucide-icons";
+import { useState } from "react";
+import { Alert } from "react-native";
+import type { PopoverProps } from "tamagui";
 import {
   Adapt,
   Button,
@@ -17,8 +17,8 @@ import {
   Text,
   XStack,
   YStack,
-} from 'tamagui';
-import RemoveImageCard from './RemoveImageCard';
+} from "tamagui";
+import { RemoveImageCard } from "./index";
 
 type Post = {
   id: string;
@@ -31,20 +31,17 @@ type Post = {
   local: string | null;
 };
 
-export default function PopoverEdit({
-  post,
-  ...props
-}: PopoverProps & { post: Post }) {
+export function PopoverEdit({ post, ...props }: PopoverProps & { post: Post }) {
   /* Inputs */
   const [inputTitle, setInputTitle] = useState(post.title);
   const [inputSubtitle, setInputSubtitle] = useState(post.subtitle);
   const [inputLocal, setInputLocal] = useState(post.local);
   const [inputDescription, setInputDescription] = useState(post.description);
 
-  const newLocal = inputLocal ? inputLocal : '';
+  const newLocal = inputLocal ? inputLocal : "";
 
   /* ImagePicker */
-  const [selectedImage, setSelectedImage] = useState(['']);
+  const [selectedImage, setSelectedImage] = useState([""]);
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: false,
@@ -57,7 +54,7 @@ export default function PopoverEdit({
         setSelectedImage([...selectedImage, result.assets[i].uri]);
       }
     } else {
-      alert('Você não selecionou nenhuma imagem.');
+      alert("Você não selecionou nenhuma imagem.");
     }
   };
 
@@ -67,7 +64,7 @@ export default function PopoverEdit({
     event: DateTimePickerEvent | undefined,
     selectedDate: Date | undefined
   ) => {
-    if (event?.type === 'neutralButtonPressed') {
+    if (event?.type === "neutralButtonPressed") {
       setNewdate(new Date(0));
     } else {
       setNewdate(selectedDate!);
@@ -78,29 +75,29 @@ export default function PopoverEdit({
   const [showImages, setShowImages] = useState<boolean>(false);
   function handleShowImages() {
     if (showImages === true) {
-      return 'flex';
+      return "flex";
     } else {
-      return 'none';
+      return "none";
     }
   }
 
   const updatePost = api.post.updatePost.useMutation({
     onSuccess: () => {
-      Alert.alert('Alerta', 'Post criado com sucesso!');
+      Alert.alert("Alerta", "Post criado com sucesso!");
     },
     onError: () => {
-      Alert.alert('Alerta', 'Erro ao criar o post.');
+      Alert.alert("Alerta", "Erro ao criar o post.");
     },
   });
 
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
-        <Button icon={SquarePen} color={'#FBB03B'} size={48} />
+        <Button icon={SquarePen} color={"#FBB03B"} size={48} />
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
         <Popover.Sheet
-          snapPointsMode={'percent'}
+          snapPointsMode={"percent"}
           snapPoints={[75]}
           modal
           dismissOnSnapToBottom
@@ -121,7 +118,7 @@ export default function PopoverEdit({
         exitStyle={{ y: -10, opacity: 0 }}
         elevate
         animation={[
-          'quick',
+          "quick",
           {
             opacity: {
               overshootClamping: true,
@@ -131,12 +128,12 @@ export default function PopoverEdit({
       >
         <YStack>
           <ScrollView>
-            <Label style={{ fontWeight: 'bold', fontSize: 24 }}>
+            <Label style={{ fontWeight: "bold", fontSize: 24 }}>
               Editar postagem
             </Label>
             <Text style={{ fontSize: 16, marginVertical: 4 }}>
               Altere os campos para atualizar informações da notícia "
-              <Text color={'#C1272D'} fontWeight={600}>
+              <Text color={"#C1272D"} fontWeight={600}>
                 {post.title}
               </Text>
               ".
@@ -153,7 +150,7 @@ export default function PopoverEdit({
             ></Input>
             <Input
               style={{ marginVertical: 4 }}
-              value={inputLocal ? inputLocal : ''}
+              value={inputLocal ? inputLocal : ""}
               onChangeText={setInputLocal}
             ></Input>
             {/* Tentei usar TextArea e Input multiline para a descrição mas estava dando um bug ao preencher o campo no expo, não soube arrumar por isso deixei como Input */}
@@ -171,11 +168,11 @@ export default function PopoverEdit({
               <Button
                 icon={showImages ? EyeOff : Eye}
                 style={{
-                  backgroundColor: '#f8f8f8',
-                  color: '#ED7A17',
+                  backgroundColor: "#f8f8f8",
+                  color: "#ED7A17",
                   borderWidth: 1,
                   outlineWidth: 0,
-                  borderColor: '#ededed',
+                  borderColor: "#ededed",
                   width: 32,
                   marginRight: 8,
                 }}
@@ -184,18 +181,18 @@ export default function PopoverEdit({
               ></Button>
               <Button
                 style={{
-                  backgroundColor: '#f8f8f8',
-                  color: '#ED7A17',
+                  backgroundColor: "#f8f8f8",
+                  color: "#ED7A17",
                   borderWidth: 1,
                   outlineWidth: 0,
-                  borderColor: '#ededed',
+                  borderColor: "#ededed",
                   padding: 8,
                 }}
                 size={40}
                 icon={Upload}
                 onPress={pickImageAsync}
               >
-                <Text color={'black'}>Imagens</Text>
+                <Text color={"black"}>Imagens</Text>
               </Button>
               <DateTimePicker
                 mode="datetime"
@@ -203,7 +200,7 @@ export default function PopoverEdit({
                 value={post.dateTime ? post.dateTime : new Date()}
                 onChange={onChangeDatePicker}
                 minuteInterval={10}
-                timeZoneName={'America/Sao_Paulo'}
+                timeZoneName={"America/Sao_Paulo"}
               />
             </XStack>
             <YStack style={{ gap: 8 }} display={handleShowImages()}>
@@ -216,12 +213,12 @@ export default function PopoverEdit({
             <XStack
               style={{
                 flex: 1,
-                justifyContent: 'space-between',
+                justifyContent: "space-between",
                 gap: 12,
                 marginHorizontal: 6,
                 marginTop: 12,
                 marginBottom: 48,
-                shadowColor: '#1A1A1A',
+                shadowColor: "#1A1A1A",
                 shadowOffset: { width: 0, height: 0 },
                 shadowOpacity: 0.2,
                 shadowRadius: 3,
@@ -233,7 +230,7 @@ export default function PopoverEdit({
                   style={{
                     fontSize: 14,
                     flex: 1,
-                    shadowColor: '#1A1A1A',
+                    shadowColor: "#1A1A1A",
                     shadowOffset: { width: 0, height: 0 },
                     shadowOpacity: 0.25,
                     shadowRadius: 3,
@@ -251,11 +248,11 @@ export default function PopoverEdit({
               </Popover.Close>
               <Button
                 style={{
-                  backgroundColor: '#ED7A17',
-                  color: 'white',
+                  backgroundColor: "#ED7A17",
+                  color: "white",
                   flex: 1,
-                  fontWeight: 'bold',
-                  shadowColor: '#1A1A1A',
+                  fontWeight: "bold",
+                  shadowColor: "#1A1A1A",
                   shadowOffset: { width: 0, height: 0 },
                   shadowOpacity: 0.3,
                   shadowRadius: 4,

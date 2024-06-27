@@ -1,10 +1,10 @@
-import { api } from '@/utils/api';
-import CloudImage from '@/utils/cloudinary';
-import { Trash2 } from 'lucide-react-native';
-import { Dimensions } from 'react-native';
-import { AlertDialog, Button, View, XStack, YStack } from 'tamagui';
+import { api } from "@/utils/api";
+import CloudImage from "@/utils/cloudinary";
+import { Trash2 } from "lucide-react-native";
+import { Dimensions } from "react-native";
+import { AlertDialog, Button, View, XStack, YStack } from "tamagui";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 type Post = {
   id: string;
@@ -17,33 +17,33 @@ type Post = {
   local: string | null;
 };
 
-export default function RemoveImageCard({
+export function RemoveImageCard({
   post,
   index,
 }: {
   post: Post;
   index: number;
 }) {
-  const postLocal = post.local ? post.local : '';
+  const postLocal = post.local ? post.local : "";
   const postDateTime = post.dateTime ? post.dateTime : new Date();
 
   const updatePost = api.post.updatePost.useMutation({
     onSuccess: () => {
-      console.log('Imagem removida com sucesso');
+      console.log("Imagem removida com sucesso");
     },
     onError: () => {
-      console.log('Erro ao remover a imagem.');
+      console.log("Erro ao remover a imagem.");
     },
   });
 
   return (
-    <View style={{ flex: 1, alignSelf: 'center', position: 'relative' }}>
+    <View style={{ flex: 1, alignSelf: "center", position: "relative" }}>
       <CloudImage
         key={post.images[index]}
         public_id={post.images[index]}
         style={{
           borderRadius: 8,
-          overflow: 'hidden',
+          overflow: "hidden",
           width: width - 48,
           height: 100,
         }}
@@ -55,10 +55,10 @@ export default function RemoveImageCard({
             size={40}
             style={{
               width: 40,
-              color: 'red',
+              color: "red",
               bottom: 8,
               right: 8,
-              position: 'absolute',
+              position: "absolute",
             }}
           ></Button>
         </AlertDialog.Trigger>
@@ -76,7 +76,7 @@ export default function RemoveImageCard({
             elevate
             key="content"
             animation={[
-              'quick',
+              "quick",
               {
                 opacity: {
                   overshootClamping: true,

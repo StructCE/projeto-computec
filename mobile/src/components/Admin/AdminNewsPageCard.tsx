@@ -1,9 +1,9 @@
-import CloudImage from '@/utils/cloudinary';
-import { BlurView } from 'expo-blur';
-import { Dimensions, ImageBackground } from 'react-native';
-import { Text, View, XStack, YStack } from 'tamagui';
-import PopoverDelete from './PopoverDelete';
-import PopoverEdit from './PopoverEdit';
+import CloudImage from "@/utils/cloudinary";
+import { BlurView } from "expo-blur";
+import { Dimensions, ImageBackground } from "react-native";
+import { Text, View, XStack, YStack } from "tamagui";
+import PopoverDelete from "./PopoverDelete";
+import PopoverEdit from "./PopoverEdit";
 
 type Post = {
   id: string;
@@ -15,14 +15,14 @@ type Post = {
   dateTime: Date | null;
   local: string | null;
 };
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
-export default function AdminNewsPageCard({ post }: { post: Post }) {
+export function AdminNewsPageCard({ post }: { post: Post }) {
   const margin = 24;
   const imageWidth = width - 2 * margin;
 
   return (
-    <View style={{ flex: 1, alignSelf: 'center', position: 'relative' }}>
+    <View style={{ flex: 1, alignSelf: "center", position: "relative" }}>
       <CloudImage
         key={post.images[0]}
         public_id={post.images[0]}
@@ -35,42 +35,42 @@ export default function AdminNewsPageCard({ post }: { post: Post }) {
       />
       <View
         style={{
-          position: 'absolute',
+          position: "absolute",
           right: 12,
           top: 12,
-          backgroundColor: 'white',
+          backgroundColor: "white",
           borderRadius: 9,
           padding: 8,
-          alignItems: 'center',
-          alignSelf: 'flex-end',
+          alignItems: "center",
+          alignSelf: "flex-end",
         }}
       >
-        <Text style={{ fontSize: 12, fontFamily: 'MavenProMedium' }}>
+        <Text style={{ fontSize: 12, fontFamily: "MavenProMedium" }}>
           Postado
         </Text>
         <Text
           style={{
-            color: 'black',
+            color: "black",
             fontSize: 13,
-            fontFamily: 'MavenProMedium',
+            fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDay()).padStart(2, '0')}/
-          {String(post.created_at.getMonth()).padStart(2, '0')}
+          {String(post.created_at.getDay()).padStart(2, "0")}/
+          {String(post.created_at.getMonth()).padStart(2, "0")}
         </Text>
       </View>
       <BlurView
         intensity={15}
         style={{
-          position: 'absolute',
-          top: '20%',
+          position: "absolute",
+          top: "20%",
           width: width - width / 3,
           maxHeight: 160,
-          overflow: 'hidden',
+          overflow: "hidden",
           borderStartEndRadius: 20,
           borderEndEndRadius: 20,
-          backgroundColor: 'rgba(0, 0, 0, 0.2)',
-          borderColor: 'rgba(0, 0, 0, 0.01)',
+          backgroundColor: "rgba(0, 0, 0, 0.2)",
+          borderColor: "rgba(0, 0, 0, 0.01)",
           paddingLeft: 24,
           paddingRight: 12,
           paddingVertical: 20,
@@ -84,8 +84,8 @@ export default function AdminNewsPageCard({ post }: { post: Post }) {
           <Text
             style={{
               fontSize: 24,
-              fontFamily: 'MavenProSemiBold',
-              color: 'white',
+              fontFamily: "MavenProSemiBold",
+              color: "white",
             }}
           >
             {post.title}
@@ -94,11 +94,11 @@ export default function AdminNewsPageCard({ post }: { post: Post }) {
       </BlurView>
       <XStack
         style={{
-          position: 'absolute',
+          position: "absolute",
           bottom: 12,
           right: 12,
-          alignItems: 'center',
-          alignSelf: 'flex-end',
+          alignItems: "center",
+          alignSelf: "flex-end",
           gap: 6,
         }}
       >
