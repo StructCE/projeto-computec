@@ -1,9 +1,11 @@
+import { api } from '@/utils/api';
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import { Plus, Upload } from 'lucide-react-native';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 import type { PopoverProps } from 'tamagui';
 import {
   Adapt,
@@ -25,7 +27,7 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
   const [inputDescription, setInputDescription] = useState('');
 
   /* ImagePicker */
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState(['']);
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: false,
@@ -34,9 +36,8 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
     });
 
     if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
       for (let i = 0; i < result.assets.length; i++) {
-        console.log(result.assets[i].uri); // Uri's das imagens selecionadas
+        setSelectedImage([...selectedImage, result.assets[i].uri]);
       }
     } else {
       alert('Você não selecionou nenhuma imagem.');
@@ -57,6 +58,15 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
     // 'newdate' armazena a nova data e horario apos mudanca no DatePicker, porem nos meus testes o horario estava saindo 3 horas adiantado (verificar antes de usar)
   };
 
+  const createPost = api.post.createPosts.useMutation({
+    onSuccess: () => {
+      Alert.alert('Alerta', 'Post criado com sucesso!');
+    },
+    onError: () => {
+      Alert.alert('Alerta', 'Erro ao criar o post.');
+    },
+  });
+
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
@@ -73,8 +83,8 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
         <Popover.Sheet
-          snapPointsMode={'mixed'}
-          snapPoints={['fit', '75%']}
+          snapPointsMode={'percent'}
+          snapPoints={[80]}
           modal
           dismissOnSnapToBottom
         >
@@ -211,7 +221,16 @@ export default function PopoverCreate({ ...props }: PopoverProps) {
                 elevation: 5,
               }}
               onPress={() => {
-                /* Código para criar a postagem */
+                createPost.mutate({
+                  data: {
+                    title: inputTitle,
+                    subtitle: inputSubtitle,
+                    local: inputLocal,
+                    description: inputDescription,
+                    dateTime: newdate,
+                    images: selectedImage,
+                  },
+                });
               }}
             >
               Criar

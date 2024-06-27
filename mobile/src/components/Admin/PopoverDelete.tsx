@@ -1,5 +1,7 @@
+import { api } from '@/utils/api';
 import { Trash2 } from 'lucide-react-native';
 import React from 'react';
+import { Alert } from 'react-native';
 import type { PopoverProps } from 'tamagui';
 import { Adapt, Button, Label, Popover, Text, XStack, YStack } from 'tamagui';
 
@@ -18,6 +20,15 @@ export default function PopoverDelete({
   post,
   ...props
 }: PopoverProps & { post: Post }) {
+  const removePost = api.post.deletePost.useMutation({
+    onSuccess: () => {
+      Alert.alert('Alerta', 'Post removido com sucesso!');
+    },
+    onError: () => {
+      Alert.alert('Alerta', 'Erro ao remover o post.');
+    },
+  });
+
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
@@ -98,7 +109,7 @@ export default function PopoverDelete({
                 elevation: 5,
               }}
               onPress={() => {
-                /* Código para deletar postagem */
+                removePost.mutate({ id: post.id });
               }}
             >
               Deletar

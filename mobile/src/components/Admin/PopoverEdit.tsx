@@ -1,9 +1,11 @@
+import { api } from '@/utils/api';
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import { Eye, EyeOff, SquarePen, Upload } from 'lucide-react-native';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 import type { PopoverProps } from 'tamagui';
 import {
   Adapt,
@@ -39,8 +41,10 @@ export default function PopoverEdit({
   const [inputLocal, setInputLocal] = useState(post.local);
   const [inputDescription, setInputDescription] = useState(post.description);
 
+  const newLocal = inputLocal ? inputLocal : '';
+
   /* ImagePicker */
-  const [selectedImage, setSelectedImage] = useState(''); // ToDo: Poder editar as imagens ja existentes, alem de adicionar novas
+  const [selectedImage, setSelectedImage] = useState(['']);
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: false,
@@ -49,9 +53,8 @@ export default function PopoverEdit({
     });
 
     if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
       for (let i = 0; i < result.assets.length; i++) {
-        console.log(result.assets[i].uri); // Uri's das imagens selecionadas
+        setSelectedImage([...selectedImage, result.assets[i].uri]);
       }
     } else {
       alert('Você não selecionou nenhuma imagem.');
@@ -81,6 +84,15 @@ export default function PopoverEdit({
     }
   }
 
+  const updatePost = api.post.updatePost.useMutation({
+    onSuccess: () => {
+      Alert.alert('Alerta', 'Post criado com sucesso!');
+    },
+    onError: () => {
+      Alert.alert('Alerta', 'Erro ao criar o post.');
+    },
+  });
+
   return (
     <Popover size="$5" allowFlip {...props}>
       <Popover.Trigger asChild>
@@ -88,8 +100,8 @@ export default function PopoverEdit({
       </Popover.Trigger>
       <Adapt when="sm" platform="touch">
         <Popover.Sheet
-          snapPointsMode={'mixed'}
-          snapPoints={['fit', '75%']}
+          snapPointsMode={'percent'}
+          snapPoints={[75]}
           modal
           dismissOnSnapToBottom
         >
@@ -195,8 +207,10 @@ export default function PopoverEdit({
               />
             </XStack>
             <YStack style={{ gap: 8 }} display={handleShowImages()}>
-              {post.images.map((image) => {
-                return <RemoveImageCard image={image}></RemoveImageCard>;
+              {post.images.map((image, index) => {
+                return (
+                  <RemoveImageCard post={post} index={index}></RemoveImageCard>
+                );
               })}
             </YStack>
             <XStack
@@ -230,7 +244,6 @@ export default function PopoverEdit({
                     setInputSubtitle(post.subtitle);
                     setInputLocal(post.local);
                     setInputDescription(post.description);
-                    // Código para desfazer edições feitas nas imagens?
                   }}
                 >
                   Cancelar
@@ -249,7 +262,17 @@ export default function PopoverEdit({
                   elevation: 5,
                 }}
                 onPress={() => {
-                  /* Código para salvar a edição da postagem */
+                  updatePost.mutate({
+                    id: post.id,
+                    data: {
+                      title: inputTitle,
+                      subtitle: inputSubtitle,
+                      local: newLocal, // = inputLocal ? inputLocal : ''
+                      description: inputDescription,
+                      dateTime: newdate,
+                      images: selectedImage,
+                    },
+                  });
                 }}
               >
                 Salvar
