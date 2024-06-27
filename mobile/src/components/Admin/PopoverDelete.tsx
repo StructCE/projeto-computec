@@ -4,13 +4,14 @@ import type { PopoverProps } from 'tamagui';
 import { Adapt, Button, Label, Popover, Text, XStack, YStack } from 'tamagui';
 
 type Post = {
-  images: string[];
+  id: string;
   title: string;
   subtitle: string;
   description: string;
-  date: Date;
-  local: string;
-  posted: string;
+  created_at: Date;
+  images: string[];
+  dateTime: Date | null;
+  local: string | null;
 };
 
 export default function PopoverDelete({

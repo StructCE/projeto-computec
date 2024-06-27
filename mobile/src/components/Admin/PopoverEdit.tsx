@@ -2,9 +2,8 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
-import { Eye, EyeOff, SquarePen, Trash2, Upload } from 'lucide-react-native';
+import { Eye, EyeOff, SquarePen, Upload } from 'lucide-react-native';
 import { useState } from 'react';
-import { Dimensions, ImageBackground } from 'react-native';
 import type { PopoverProps } from 'tamagui';
 import {
   Adapt,
@@ -14,21 +13,20 @@ import {
   Popover,
   ScrollView,
   Text,
-  View,
   XStack,
   YStack,
 } from 'tamagui';
-
-const { width, height } = Dimensions.get('window');
+import RemoveImageCard from './RemoveImageCard';
 
 type Post = {
-  images: string[];
+  id: string;
   title: string;
   subtitle: string;
   description: string;
-  date: Date;
-  local: string;
-  posted: string;
+  created_at: Date;
+  images: string[];
+  dateTime: Date | null;
+  local: string | null;
 };
 
 export default function PopoverEdit({
@@ -143,7 +141,7 @@ export default function PopoverEdit({
             ></Input>
             <Input
               style={{ marginVertical: 4 }}
-              value={inputLocal}
+              value={inputLocal ? inputLocal : ''}
               onChangeText={setInputLocal}
             ></Input>
             {/* Tentei usar TextArea e Input multiline para a descrição mas estava dando um bug ao preencher o campo no expo, não soube arrumar por isso deixei como Input */}
@@ -190,34 +188,16 @@ export default function PopoverEdit({
               <DateTimePicker
                 mode="datetime"
                 accentColor="#ED7A17"
-                value={post.date}
+                value={post.dateTime ? post.dateTime : new Date()}
                 onChange={onChangeDatePicker}
                 minuteInterval={10}
                 timeZoneName={'America/Sao_Paulo'}
               />
             </XStack>
             <YStack style={{ gap: 8 }} display={handleShowImages()}>
-              {post.images.map((image) => (
-                <ImageBackground
-                  source={{ uri: image, width: width - 48 }}
-                  style={{ borderRadius: 8, overflow: 'hidden' }}
-                >
-                  <Button
-                    icon={Trash2}
-                    size={40}
-                    style={{
-                      width: 40,
-                      margin: 8,
-                      marginTop: 48,
-                      alignSelf: 'flex-end',
-                      color: 'red',
-                    }}
-                    onPress={() => {
-                      /* Código para remover a imagem */
-                    }}
-                  ></Button>
-                </ImageBackground>
-              ))}
+              {post.images.map((image) => {
+                return <RemoveImageCard image={image}></RemoveImageCard>;
+              })}
             </YStack>
             <XStack
               style={{
