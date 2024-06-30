@@ -43,6 +43,7 @@ export default function PostCard({ post }: { post: Post }) {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
         style={{
           width: imageWidth,
