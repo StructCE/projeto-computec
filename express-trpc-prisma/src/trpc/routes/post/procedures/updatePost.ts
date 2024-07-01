@@ -11,8 +11,8 @@ export const updatePost = protectedProcedure
         title: z.string(),
         subtitle: z.string(),
         description: z.string(),
-        local: z.string(),
-        dateTime: z.date(),
+        local: z.string().optional(),
+        dateTime: z.date().optional(),
         images: z.array(z.string()),
       }),
     })

@@ -1,10 +1,13 @@
-import { db } from '../../../../db';
-import { procedure } from '../../../trpc';
+import { db } from "../../../../db";
+import { procedure } from "../../../trpc";
 
 export const getPosts = procedure.query(async () => {
   const posts = await db.post.findMany({
     include: {
       images: true,
+    },
+    orderBy: {
+      created_at: "desc",
     },
   });
   return posts.map((post) => ({
