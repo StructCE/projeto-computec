@@ -1,15 +1,10 @@
+import { HeaderProps } from "@/constants/interfaces/headerProps";
 import { useAuth } from "@/utils/auth";
 import { LinearGradient } from "@tamagui/linear-gradient";
 import { Bell, UserRoundCog } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import { StatusBar } from "react-native";
 import { Image, View, XStack } from "tamagui";
-
-type RouteNames = "index" | "map" | "anais" | "posts";
-
-type HeaderProps = {
-  routeName: RouteNames;
-};
 
 const Header = ({ routeName }: HeaderProps) => {
   const { userSession } = useAuth();
@@ -31,7 +26,9 @@ const Header = ({ routeName }: HeaderProps) => {
         </Link>
       ) : (
         <Link
-          href={userSession?.session ? "/admin/crud" : "(tabs)/admin/login"}
+          href={
+            userSession?.session ? "(tabs)/admin/crud" : "(tabs)/admin/login"
+          }
         >
           <View>
             <XStack>

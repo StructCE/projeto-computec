@@ -1,20 +1,11 @@
+import { Event } from "@/constants/interfaces/event";
 import { TouchableOpacity, Linking } from "react-native";
 import { Text, View } from "tamagui";
 
-export function ScheduleEventCard({
-  eventName,
-  eventLocation,
-  eventBackgroundColor,
-  eventLink,
-}: {
-  eventName: string;
-  eventLocation: string | null;
-  eventBackgroundColor: string;
-  eventLink: string | null;
-}) {
+export function ScheduleEventCard(event: Event) {
   const handlePress = () => {
-    if (!eventLink) return;
-    Linking.openURL(eventLink).catch((err) =>
+    if (!event.link) return;
+    Linking.openURL(event.link).catch((err) =>
       console.error("Failed to open URL:", err)
     );
   };
@@ -22,7 +13,7 @@ export function ScheduleEventCard({
   const CardContent = (
     <View
       style={{
-        backgroundColor: eventBackgroundColor,
+        backgroundColor: event.color,
         alignItems: "center",
         justifyContent: "center",
         padding: 8,
@@ -37,9 +28,9 @@ export function ScheduleEventCard({
           fontSize: 15,
         }}
       >
-        {eventName}
+        {event.event}
       </Text>
-      {eventLocation && (
+      {event.local && (
         <Text
           style={{
             color: "white",
@@ -47,13 +38,13 @@ export function ScheduleEventCard({
             fontSize: 15,
           }}
         >
-          Sala: {eventLocation}
+          Sala: {event.local}
         </Text>
       )}
     </View>
   );
 
-  return eventLink ? (
+  return event.link ? (
     <TouchableOpacity onPress={handlePress}>{CardContent}</TouchableOpacity>
   ) : (
     <>{CardContent}</>

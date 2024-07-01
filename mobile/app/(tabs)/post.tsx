@@ -10,7 +10,7 @@ import {
   LoadingScreen,
 } from "@/src/components/PostScreen";
 
-const PostPage: React.FC = () => {
+const PostPage = () => {
   const [refreshing, setRefreshing] = useState(false);
   const { id }: { id?: string | undefined } = useLocalSearchParams();
   const {
@@ -52,8 +52,17 @@ const PostPage: React.FC = () => {
           color={"black"}
         />
       </TouchableOpacity>
-      <PostImages post={post} />
-      <PostDetails post={post} />
+      <PostImages
+        title={post.title}
+        subtitle={post.subtitle}
+        created_at={post.created_at}
+        images={post.images}
+      />
+      <PostDetails
+        description={post.description}
+        dateTime={post.dateTime}
+        local={post.local}
+      />
     </ScrollView>
   );
 };

@@ -5,6 +5,7 @@ import { LinearGradient } from "@tamagui/linear-gradient";
 import { Dimensions } from "react-native";
 import React, { useEffect, useRef } from "react";
 import MaskedView from "@react-native-masked-view/masked-view";
+
 export default function Map() {
   const scrollViewRef = useRef<any>(null);
   const screenWidth = Dimensions.get("window").width;
@@ -67,8 +68,8 @@ export default function Map() {
             key={index}
             localName={local.localName}
             originalLocation={local.originalLocation}
-            PosLeft={local.PosLeft}
-            PosTop={local.PosTop}
+            posLeft={local.PosLeft}
+            posTop={local.PosTop}
           />
         ))}
       </ScrollView>
