@@ -1,49 +1,47 @@
 import CloudImage from "@/utils/cloudinary";
 import { BlurView } from "expo-blur";
-import { Dimensions, ImageBackground } from "react-native";
-import { Text, View, XStack, YStack } from "tamagui";
-import PopoverDelete from "./PopoverDelete";
-import PopoverEdit from "./PopoverEdit";
+import { Dimensions } from "react-native";
+import { Text, View, XStack } from "tamagui";
+import { PopoverDelete } from "./share";
+import { ManagePost } from "./ManagePost";
+import { Post } from "@/constants/interfaces/post";
 
-type Post = {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  created_at: Date;
-  images: string[];
-  dateTime: Date | null;
-  local: string | null;
-};
 const { width, height } = Dimensions.get("window");
 
-export function AdminNewsPageCard({ post }: { post: Post }) {
+export function AdminPostCard({ post }: { post: Post }) {
   const margin = 24;
   const imageWidth = width - 2 * margin;
 
   return (
     <View style={{ flex: 1, alignSelf: "center", position: "relative" }}>
-      <CloudImage
-        key={post.images[0]}
-        public_id={post.images[0]}
-        style={{
-          width: imageWidth,
-          height: height / 3.75,
-          borderRadius: 20,
-          padding: 12,
-        }}
-      />
       <View
-        style={{
-          position: "absolute",
-          right: 12,
-          top: 12,
-          backgroundColor: "white",
-          borderRadius: 9,
-          padding: 8,
-          alignItems: "center",
-          alignSelf: "flex-end",
-        }}
+        width={imageWidth}
+        height={height / 3.75}
+        borderRadius={20}
+        backgroundColor={"white"}
+      >
+        {post.images[0] && (
+          <CloudImage
+            key={post.images[0]}
+            public_id={post.images[0]}
+            style={{
+              width: imageWidth,
+              height: height / 3.75,
+              borderRadius: 20,
+              padding: 12,
+            }}
+          />
+        )}
+      </View>
+      <View
+        position="absolute"
+        right={12}
+        top={12}
+        backgroundColor={"white"}
+        borderRadius={9}
+        padding={8}
+        alignItems={"center"}
+        alignSelf="flex-end"
       >
         <Text style={{ fontSize: 12, fontFamily: "MavenProMedium" }}>
           Postado
@@ -55,8 +53,8 @@ export function AdminNewsPageCard({ post }: { post: Post }) {
             fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDay()).padStart(2, "0")}/
-          {String(post.created_at.getMonth()).padStart(2, "0")}
+          {String(post.created_at.getDate()).padStart(2, "0")}/
+          {String(post.created_at.getMonth() + 1).padStart(2, "0")}
         </Text>
       </View>
       <BlurView
@@ -80,17 +78,15 @@ export function AdminNewsPageCard({ post }: { post: Post }) {
           borderBottomRightRadius: 19,
         }}
       >
-        <YStack style={{ gap: 6 }}>
-          <Text
-            style={{
-              fontSize: 24,
-              fontFamily: "MavenProSemiBold",
-              color: "white",
-            }}
-          >
-            {post.title}
-          </Text>
-        </YStack>
+        <Text
+          style={{
+            fontSize: 24,
+            fontFamily: "MavenProSemiBold",
+            color: "white",
+          }}
+        >
+          {post.title}
+        </Text>
       </BlurView>
       <XStack
         style={{
@@ -103,7 +99,7 @@ export function AdminNewsPageCard({ post }: { post: Post }) {
         }}
       >
         <PopoverDelete post={post}></PopoverDelete>
-        <PopoverEdit post={post}></PopoverEdit>
+        <ManagePost post={post}></ManagePost>
       </XStack>
     </View>
   );

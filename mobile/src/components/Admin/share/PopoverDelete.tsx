@@ -1,19 +1,20 @@
 import { api } from "@/utils/api";
-import { Trash2 } from "lucide-react-native";
+import { Trash2 } from "@tamagui/lucide-icons";
 import React from "react";
 import { Alert } from "react-native";
-import type { PopoverProps } from "tamagui";
-import { Adapt, Button, Label, Popover, Text, XStack, YStack } from "tamagui";
+import {
+  Button,
+  Label,
+  Popover,
+  Text,
+  XStack,
+  YStack,
+  type PopoverProps,
+} from "tamagui";
 
 type Post = {
   id: string;
   title: string;
-  subtitle: string;
-  description: string;
-  created_at: Date;
-  images: string[];
-  dateTime: Date | null;
-  local: string | null;
 };
 
 export function PopoverDelete({
@@ -34,20 +35,10 @@ export function PopoverDelete({
       <Popover.Trigger asChild>
         <Button icon={Trash2} color={"red"} size={48} />
       </Popover.Trigger>
-      <Adapt when="sm" platform="touch">
-        <Popover.Sheet snapPointsMode={"fit"} modal dismissOnSnapToBottom>
-          <Popover.Sheet.Frame padding="$4">
-            <Adapt.Contents />
-          </Popover.Sheet.Frame>
-          <Popover.Sheet.Overlay
-            animation="lazy"
-            enterStyle={{ opacity: 0 }}
-            exitStyle={{ opacity: 0 }}
-          />
-        </Popover.Sheet>
-      </Adapt>
       <Popover.Content
         borderWidth={1}
+        borderColor="#B3B3B3"
+        marginHorizontal="$4"
         enterStyle={{ y: -10, opacity: 0 }}
         exitStyle={{ y: -10, opacity: 0 }}
         elevate
@@ -62,12 +53,12 @@ export function PopoverDelete({
       >
         <YStack gap="$3">
           <YStack>
-            <Label style={{ fontWeight: "bold", fontSize: 24 }}>
+            <Label style={{ fontFamily: "MavenProBold", fontSize: 24 }}>
               Deseja deletar a postagem?
             </Label>
-            <Text style={{ fontSize: 16 }}>
+            <Text style={{ fontFamily: "MavenProRegular", fontSize: 16 }}>
               O conteúdo da postagem "
-              <Text color={"#C1272D"} fontWeight={600}>
+              <Text color={"#C1272D"} style={{ fontFamily: "MavenProRegular" }}>
                 {post.title}
               </Text>
               " será excluído e a ação não pode ser desfeita.
@@ -91,29 +82,32 @@ export function PopoverDelete({
                   shadowOpacity: 0.25,
                   shadowRadius: 3,
                   elevation: 5,
+                  fontFamily: "MavenProBold",
                 }}
               >
                 Cancelar
               </Button>
             </Popover.Close>
-            <Button
-              style={{
-                backgroundColor: "#ED7A17",
-                color: "white",
-                flex: 1,
-                fontWeight: "bold",
-                shadowColor: "#1A1A1A",
-                shadowOffset: { width: 0, height: 0 },
-                shadowOpacity: 0.3,
-                shadowRadius: 4,
-                elevation: 5,
-              }}
-              onPress={() => {
-                removePost.mutate({ id: post.id });
-              }}
-            >
-              Deletar
-            </Button>
+            <Popover.Close asChild>
+              <Button
+                style={{
+                  backgroundColor: "#ED7A17",
+                  color: "white",
+                  flex: 1,
+                  fontFamily: "MavenProBold",
+                  shadowColor: "#1A1A1A",
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 4,
+                  elevation: 5,
+                }}
+                onPress={async () => {
+                  removePost.mutate({ id: post.id });
+                }}
+              >
+                Deletar
+              </Button>
+            </Popover.Close>
           </XStack>
         </YStack>
       </Popover.Content>
