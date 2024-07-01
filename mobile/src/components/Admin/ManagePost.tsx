@@ -208,7 +208,12 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
               marginTop={12}
               marginBottom={48}
             >
-              <Button fontSize={14} flex={1} onPress={resetStates}>
+              <Button
+                fontSize={14}
+                flex={1}
+                onPress={resetStates}
+                style={{ fontFamily: "MavenProBold" }}
+              >
                 Cancelar
               </Button>
               <Button
@@ -217,6 +222,7 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
                 flex={1}
                 fontWeight="bold"
                 onPress={handleSubmit}
+                style={{ fontFamily: "MavenProBold" }}
               >
                 {isEditMode ? "Salvar" : "Criar"}
               </Button>

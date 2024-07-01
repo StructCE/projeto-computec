@@ -29,7 +29,7 @@ export function ImagePickerComponent({
       });
       setSelectedImages([...selectedImages, ...uploadedImagesId]);
     } else {
-      Alert.alert("Você não selecionou nenhuma imagem.");
+      Alert.alert("Alerta", "Você não selecionou nenhuma imagem.");
     }
   };
 
