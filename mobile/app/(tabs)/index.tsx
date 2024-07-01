@@ -8,7 +8,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from '@tamagui/linear-gradient';
 import { Search } from '@tamagui/lucide-icons';
 import { useEffect, useState } from 'react';
-import { TextInput } from 'react-native';
+import { Dimensions, TextInput } from 'react-native';
 import {
   AnimatePresence,
   ScrollView,
@@ -17,7 +17,6 @@ import {
   XStack,
   YStack,
   debounce,
-  usePresence,
 } from 'tamagui';
 
 export default function Index() {
@@ -40,12 +39,6 @@ export default function Index() {
   const firstDate =
     today.getDate() > 21 && today.getDate() < 25 ? today.getDate() : 21;
   const [day, setDay] = useState(firstDate);
-
-  const [isPresent, safeToRemove] = usePresence();
-
-  useEffect(() => {
-    !isPresent && setTimeout(safeToRemove, 1000);
-  }, [isPresent]);
 
   return (
     <ScrollView>
@@ -120,7 +113,7 @@ export default function Index() {
           .map((eventsPerDay) => (
             <YStack
               key={`day-${eventsPerDay.day}`}
-              margin="$2"
+              margin="$1.5"
               flex={1}
               gap={12}
             >
@@ -152,21 +145,21 @@ export default function Index() {
                   >
                     {session.period}
                   </Text>
-                  <AnimatePresence>
-                    {isPresent &&
-                      session.events.map((event) => (
+                  {session.events.map((event) => {
+                    return (
+                      <AnimatePresence>
                         <View
-                          key={event.event}
+                          key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
                           animation="bouncy"
                           enterStyle={{
                             opacity: 0,
-                            x: -100,
-                            scale: 0.9,
+                            x: -150,
+                            scale: 0.8,
                           }}
                           exitStyle={{
                             opacity: 0,
                             x: 100,
-                            scale: 0.9,
+                            scale: 0.8,
                           }}
                         >
                           <ScheduleEventCard
@@ -177,8 +170,9 @@ export default function Index() {
                             eventLink={event.link}
                           />
                         </View>
-                      ))}
-                  </AnimatePresence>
+                      </AnimatePresence>
+                    );
+                  })}
                 </YStack>
               ))}
             </YStack>
