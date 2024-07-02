@@ -29,7 +29,7 @@ export default function News() {
               marginTop: 20,
             }}
           >
-            Nenhuma notícia foi publicada.
+            Nenhuma notícia ainda foi publicada.
           </Text>
         ) : (
           data &&

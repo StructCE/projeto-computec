@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import { Home, Map, ScrollText, BookOpenText } from "@tamagui/lucide-icons";
 import { LinearGradient } from "@tamagui/linear-gradient";
 import Header from "@/src/components/Header";
+import { View } from "tamagui";
 
 export default function TabNavigationLayout() {
   return (
@@ -14,6 +15,8 @@ export default function TabNavigationLayout() {
               routeName={route.name as "index" | "map" | "anais" | "news"}
             />
           ),
+
+          tabBarHideOnKeyboard: "false",
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#CBC8C8",
           tabBarBackground: () => (
@@ -27,9 +30,9 @@ export default function TabNavigationLayout() {
             />
           ),
           tabBarStyle: {
-            height: `${8}%`,
-            paddingBottom: `${2}%`,
-            paddingTop: `${2}%`,
+            height: 62,
+            paddingBottom: 5,
+            paddingTop: 5,
           },
         })}
       >
