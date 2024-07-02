@@ -4,12 +4,12 @@ import {
   ScheduleLegend,
 } from "@/src/components/HomeScreen";
 import { api } from "@/utils/api";
-import { Search } from "@tamagui/lucide-icons";
-import { ScrollView, YStack, XStack, Text, View, debounce } from "tamagui";
-import { LinearGradient } from "@tamagui/linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { useState, useEffect } from "react";
+import { LinearGradient } from "@tamagui/linear-gradient";
+import { Search } from "@tamagui/lucide-icons";
+import { useEffect, useState } from "react";
 import { TextInput } from "react-native";
+import { ScrollView, Text, View, XStack, YStack, debounce } from "tamagui";
 
 export default function Index() {
   const [search, setSearch] = useState("");
@@ -105,7 +105,7 @@ export default function Index() {
           .map((eventsPerDay) => (
             <YStack
               key={`day-${eventsPerDay.day}`}
-              margin="$4"
+              margin="0"
               flex={1}
               gap={12}
             >
@@ -140,10 +140,10 @@ export default function Index() {
                   {session.events.map((event) => (
                     <ScheduleEventCard
                       key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
-                      eventName={event.event}
-                      eventLocation={event.local}
-                      eventBackgroundColor={event.color}
-                      eventLink={event.link}
+                      event={event.event}
+                      local={event.local}
+                      color={event.color}
+                      link={event.link}
                     />
                   ))}
                 </YStack>

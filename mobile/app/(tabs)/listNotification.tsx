@@ -86,9 +86,9 @@ export default function ListNotification() {
                       <CardNotification
                         key={idx}
                         id={item.id}
-                        img={item.image}
+                        image={item.image}
                         title={item.title}
-                        dateNotification={formatRelativeTime(item.created_at)}
+                        datePast={formatRelativeTime(item.created_at)}
                       />
                     ))}
                   </>

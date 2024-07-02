@@ -1,22 +1,19 @@
 import { ArrowLeft, ArrowRight } from "@tamagui/lucide-icons";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Dimensions, TouchableOpacity } from "react-native";
 import { ScrollView, View, XStack, YStack, Text } from "tamagui";
 import CloudImage from "@/utils/cloudinary";
 import { BlurView } from "expo-blur";
+import { Post } from "@/constants/interfaces/post";
 
 const { height, width } = Dimensions.get("window");
 
-type Props = {
-  post: {
-    images: string[];
-    created_at: Date;
-    title: string;
-    subtitle: string;
-  };
-};
-
-export const PostImages: React.FC<Props> = ({ post }) => {
+export const PostImages = ({
+  title,
+  subtitle,
+  created_at,
+  images,
+}: Pick<Post, "title" | "subtitle" | "created_at" | "images">) => {
   const scrollViewRef = useRef<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -31,7 +28,7 @@ export const PostImages: React.FC<Props> = ({ post }) => {
   };
 
   const handleNext = () => {
-    if (post.images && currentIndex < post.images.length - 1) {
+    if (images && currentIndex < images.length - 1) {
       setCurrentIndex(currentIndex + 1);
       scrollViewRef.current?.scrollTo({
         x: (currentIndex + 1) * width,
@@ -52,7 +49,7 @@ export const PostImages: React.FC<Props> = ({ post }) => {
           backgroundColor: "white",
         }}
       >
-        {post.images.map((image) => {
+        {images.map((image) => {
           return (
             <CloudImage
               key={image}
@@ -89,8 +86,8 @@ export const PostImages: React.FC<Props> = ({ post }) => {
             fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDate()).padStart(2, "0")}/
-          {String(post.created_at.getMonth() + 1).padStart(2, "0")}
+          {String(created_at.getDate()).padStart(2, "0")}/
+          {String(created_at.getMonth() + 1).padStart(2, "0")}
         </Text>
       </View>
       <BlurView
@@ -122,7 +119,7 @@ export const PostImages: React.FC<Props> = ({ post }) => {
               color: "white",
             }}
           >
-            {post.title}
+            {title}
           </Text>
           <Text
             style={{
@@ -131,7 +128,7 @@ export const PostImages: React.FC<Props> = ({ post }) => {
               color: "white",
             }}
           >
-            {post.subtitle}
+            {subtitle}
           </Text>
         </YStack>
       </BlurView>

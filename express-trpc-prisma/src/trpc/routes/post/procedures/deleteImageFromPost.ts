@@ -1,18 +1,12 @@
-import { db } from "../../../../db";
-import z from "zod";
-import { protectedProcedure } from "../../../trpc";
-import { notify } from "../../../../utils/notifications/notify";
+import z from 'zod';
+import { db } from '../../../../db';
+import { protectedProcedure } from '../../../trpc';
 
-export const updatePost = protectedProcedure
+export const deleteImageFromPost = protectedProcedure
   .input(
     z.object({
       id: z.string(),
       data: z.object({
-        title: z.string(),
-        subtitle: z.string(),
-        description: z.string(),
-        local: z.string().optional(),
-        dateTime: z.date().optional(),
         images: z.array(z.string()),
       }),
     })
@@ -34,14 +28,6 @@ export const updatePost = protectedProcedure
       },
       data: data,
     });
-    images.forEach(async (image) => {
-      await db.image.create({
-        data: {
-          public_id: image,
-          post_id: updatedPost.id,
-        },
-      });
-    });
     oldImagesId?.forEach(async (imageId) => {
       await db.image.delete({
         where: {
@@ -49,11 +35,5 @@ export const updatePost = protectedProcedure
         },
       });
     });
-    await notify({
-      title: updatedPost.title,
-      subtitle: updatedPost.subtitle,
-      post_id: updatedPost.id,
-    });
-
     return updatedPost;
   });
