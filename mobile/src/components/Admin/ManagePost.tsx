@@ -112,6 +112,7 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
       <Sheet
         modal
         open={open}
+        onOpenChange={setOpen}
         snapPoints={[75]}
         dismissOnSnapToBottom
         animation="lazy"
@@ -123,21 +124,30 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
             <Label fontSize={24} style={{ fontFamily: "MavenProBold" }}>
               {isEditMode ? "Editar postagem" : "Criar postagem"}
             </Label>
-            <Text
-              fontSize={16}
-              marginVertical={4}
-              style={{ fontFamily: "MavenProRegular" }}
-            >
-              {isEditMode ? (
-                `Altere os campos para atualizar informações da notícia "${post?.title}".`
-              ) : (
-                <Text style={{ fontSize: 16, marginVertical: 4 }}>
-                  Preencha todos os campos{" "}
-                  <Text color="#C1272D">obrigatórios*</Text> para criar uma
-                  notícia.
+            {isEditMode ? (
+              <Text
+                fontSize={16}
+                marginVertical={4}
+                style={{ fontFamily: "MavenProRegular" }}
+              >
+                Altere os campos para atualizar informações da notícia{" "}
+                <Text color="#C1272D" style={{ fontFamily: "MavenProRegular" }}>
+                  "{post?.title}"
                 </Text>
-              )}
-            </Text>
+              </Text>
+            ) : (
+              <Text
+                fontSize={16}
+                marginVertical={4}
+                style={{ fontFamily: "MavenProRegular" }}
+              >
+                Preencha todos os campos{" "}
+                <Text color="#C1272D" style={{ fontFamily: "MavenProRegular" }}>
+                  obrigatórios*
+                </Text>{" "}
+                para criar uma notícia.
+              </Text>
+            )}
 
             <Input
               marginVertical={4}
@@ -211,7 +221,10 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
               <Button
                 fontSize={14}
                 flex={1}
-                onPress={resetStates}
+                onPress={() => {
+                  resetStates();
+                  setOpen(false);
+                }}
                 style={{ fontFamily: "MavenProBold" }}
               >
                 Cancelar
@@ -220,7 +233,6 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
                 backgroundColor="#ED7A17"
                 color="white"
                 flex={1}
-                fontWeight="bold"
                 onPress={handleSubmit}
                 style={{ fontFamily: "MavenProBold" }}
               >
