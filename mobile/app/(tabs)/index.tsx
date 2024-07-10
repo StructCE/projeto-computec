@@ -9,7 +9,15 @@ import { LinearGradient } from "@tamagui/linear-gradient";
 import { Search } from "@tamagui/lucide-icons";
 import { useEffect, useState } from "react";
 import { TextInput } from "react-native";
-import { ScrollView, Text, View, XStack, YStack, debounce } from "tamagui";
+import {
+  AnimatePresence,
+  ScrollView,
+  Text,
+  View,
+  XStack,
+  YStack,
+  debounce,
+} from "tamagui";
 
 export default function Index() {
   const [search, setSearch] = useState("");
@@ -105,7 +113,7 @@ export default function Index() {
           .map((eventsPerDay) => (
             <YStack
               key={`day-${eventsPerDay.day}`}
-              margin="0"
+              margin="$1.5"
               flex={1}
               gap={12}
             >
@@ -137,15 +145,34 @@ export default function Index() {
                   >
                     {session.period}
                   </Text>
-                  {session.events.map((event) => (
-                    <ScheduleEventCard
-                      key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
-                      event={event.event}
-                      local={event.local}
-                      color={event.color}
-                      link={event.link}
-                    />
-                  ))}
+                  {session.events.map((event) => {
+                    return (
+                      <AnimatePresence
+                        key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
+                      >
+                        <View
+                          animation="bouncy"
+                          enterStyle={{
+                            opacity: 0,
+                            x: -150,
+                            scale: 0.8,
+                          }}
+                          exitStyle={{
+                            opacity: 0,
+                            x: 100,
+                            scale: 0.8,
+                          }}
+                        >
+                          <ScheduleEventCard
+                            event={event.event}
+                            local={event.local}
+                            color={event.color}
+                            link={event.link}
+                          />
+                        </View>
+                      </AnimatePresence>
+                    );
+                  })}
                 </YStack>
               ))}
             </YStack>
