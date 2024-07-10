@@ -1,3 +1,4 @@
+import { Post } from "@/constants/interfaces/post";
 import CloudImage from "@/utils/cloudinary";
 import { BlurView } from "expo-blur";
 import { Link } from "expo-router";
@@ -5,24 +6,22 @@ import React, { useEffect, useRef } from "react";
 import { Dimensions } from "react-native";
 import { Text, View, YStack, ScrollView } from "tamagui";
 
-type Post = {
-  id: string;
-  title: string;
-  subtitle: string;
-  created_at: Date;
-  images: string[];
-};
-
 const { width, height } = Dimensions.get("window");
 
-export default function PostCard({ post }: { post: Post }) {
+export default function PostCard({
+  id,
+  title,
+  subtitle,
+  created_at,
+  images,
+}: Pick<Post, "id" | "title" | "subtitle" | "created_at" | "images">) {
   const margin = 16;
   const imageWidth = width - 2 * margin;
 
   const scrollViewRef = useRef<any>(null);
 
   useEffect(() => {
-    const numOfBackground = post.images.length;
+    const numOfBackground = images.length;
     let scrollValue = 0,
       scrolled = 0;
     const intervalId = setInterval(() => {
@@ -43,22 +42,23 @@ export default function PostCard({ post }: { post: Post }) {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
         style={{
           width: imageWidth,
-          height: height / 3,
+          height: height / 3.5,
           borderRadius: 20,
           backgroundColor: "white",
         }}
       >
-        {post.images.map((image) => {
+        {images.map((image) => {
           return (
             <CloudImage
               key={image}
               public_id={image}
               style={{
                 width: imageWidth,
-                height: height / 3,
+                height: height / 3.5,
                 borderRadius: 20,
                 padding: 12,
               }}
@@ -68,16 +68,14 @@ export default function PostCard({ post }: { post: Post }) {
       </ScrollView>
 
       <View
-        style={{
-          position: "absolute",
-          right: 16,
-          top: 20,
-          backgroundColor: "white",
-          borderRadius: 9,
-          padding: 8,
-          alignItems: "center",
-          alignSelf: "flex-end",
-        }}
+        position="absolute"
+        right={16}
+        top={20}
+        backgroundColor="white"
+        borderRadius={9}
+        padding={8}
+        alignItems="center"
+        alignSelf="flex-end"
       >
         <Text style={{ fontSize: 12, fontFamily: "MavenProMedium" }}>
           Postado
@@ -89,8 +87,8 @@ export default function PostCard({ post }: { post: Post }) {
             fontFamily: "MavenProMedium",
           }}
         >
-          {String(post.created_at.getDate()).padStart(2, "0")}/
-          {String(post.created_at.getMonth() + 1).padStart(2, "0")}
+          {String(created_at.getDate()).padStart(2, "0")}/
+          {String(created_at.getMonth() + 1).padStart(2, "0")}
         </Text>
       </View>
       <BlurView
@@ -99,7 +97,7 @@ export default function PostCard({ post }: { post: Post }) {
           position: "absolute",
           top: 20,
           width: width - width / 3,
-          maxHeight: 160,
+          maxHeight: 130,
           overflow: "hidden",
           borderStartEndRadius: 20,
           borderEndEndRadius: 20,
@@ -122,7 +120,7 @@ export default function PostCard({ post }: { post: Post }) {
               color: "white",
             }}
           >
-            {post.title}
+            {title}
           </Text>
           <Text
             style={{
@@ -131,7 +129,7 @@ export default function PostCard({ post }: { post: Post }) {
               color: "white",
             }}
           >
-            {post.subtitle}
+            {subtitle}
           </Text>
         </YStack>
       </BlurView>
@@ -139,7 +137,7 @@ export default function PostCard({ post }: { post: Post }) {
         href={{
           pathname: "/(tabs)/post",
           params: {
-            id: post.id,
+            id: id,
           },
         }}
         style={{

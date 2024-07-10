@@ -1,11 +1,11 @@
-import PostCard from "@/src/components/PostsScreen/PostCard";
 import PageTitle from "@/src/components/PageTitle";
+import PostCard from "@/src/components/PostsScreen/PostCard";
 import { api } from "@/utils/api";
 import { ScrollView, YStack, Text, View, Spinner } from "tamagui";
 import { useState } from "react";
 import { RefreshControl } from "react-native";
 
-export default function News() {
+export default function Posts() {
   const [refreshing, setRefreshing] = useState(false);
   const { data, isLoading, isFetched, refetch } = api.post.getPosts.useQuery();
   return (
@@ -34,7 +34,16 @@ export default function News() {
         ) : (
           data &&
           data.map((post) => {
-            return <PostCard key={post.id} post={post}></PostCard>;
+            return (
+              <PostCard
+                key={post.id}
+                id={post.id}
+                created_at={post.created_at}
+                title={post.title}
+                subtitle={post.subtitle}
+                images={post.images}
+              ></PostCard>
+            );
           })
         )}
       </YStack>

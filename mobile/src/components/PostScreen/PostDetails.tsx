@@ -1,16 +1,11 @@
-import React from "react";
+import { Post } from "@/constants/interfaces/post";
 import { Text, XStack, YStack } from "tamagui";
 
-type Props = {
-  post: {
-    id: string;
-    description: string;
-    dateTime?: Date | null;
-    local?: string | null;
-  };
-};
-
-export const PostDetails: React.FC<Props> = ({ post }) => (
+export const PostDetails = ({
+  description,
+  dateTime,
+  local,
+}: Pick<Post, "description" | "dateTime" | "local">) => (
   <YStack margin={20}>
     <Text
       fontSize={24}
@@ -25,32 +20,29 @@ export const PostDetails: React.FC<Props> = ({ post }) => (
       textAlign="justify"
       style={{ fontFamily: "MavenProRegular" }}
     >
-      {post.description}
+      {description}
     </Text>
-    {post.dateTime && (
+    {dateTime && (
       <>
         <DetailRow
           label="Dia:"
-          value={`${post.dateTime.getDate()}/${String(
-            post.dateTime.getMonth() + 1
+          value={`${String(dateTime.getDate()).padStart(2, "0")}/${String(
+            dateTime.getMonth() + 1
           ).padStart(2, "0")}`}
         />
         <DetailRow
           label="Horário do Evento:"
-          value={`${String(post.dateTime.getHours()).padStart(2, "0")}:${String(
-            post.dateTime.getMinutes()
+          value={`${String(dateTime.getHours()).padStart(2, "0")}:${String(
+            dateTime.getMinutes()
           ).padStart(2, "0")}`}
         />
       </>
     )}
-    {post.local && <DetailRow label="Local:" value={post.local} />}
+    {local && <DetailRow label="Local:" value={local} />}
   </YStack>
 );
 
-const DetailRow: React.FC<{ label: string; value: string }> = ({
-  label,
-  value,
-}) => (
+const DetailRow = ({ label, value }: { label: string; value: string }) => (
   <XStack gap={4} marginVertical={1}>
     <Text fontSize={13} style={{ fontFamily: "MavenProRegular" }}>
       {label}

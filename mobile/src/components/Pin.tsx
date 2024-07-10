@@ -2,15 +2,9 @@ import { YStack, Text, Image } from "tamagui";
 import { TouchableOpacity } from "react-native";
 import Popover from "react-native-popover-view";
 import { useRef, useState } from "react";
+import { LocalPositions } from "@/constants/interfaces/localPositions";
 
-export type LocalPositions = {
-  localName: string;
-  originalLocation: string;
-  PosLeft: number;
-  PosTop: number;
-};
-
-const Pin = (props: LocalPositions) => {
+const Pin = (localPositions: LocalPositions) => {
   const [showPopover, setShowPopover] = useState(false);
 
   const touchable = useRef(null);
@@ -20,7 +14,11 @@ const Pin = (props: LocalPositions) => {
       <TouchableOpacity
         ref={touchable}
         onPress={() => setShowPopover(true)}
-        style={{ position: "absolute", left: props.PosLeft, top: props.PosTop }}
+        style={{
+          position: "absolute",
+          left: localPositions.posLeft,
+          top: localPositions.posTop,
+        }}
       >
         <Image
           source={require("../../../mobile/assets/images/pin.png")}
@@ -37,10 +35,10 @@ const Pin = (props: LocalPositions) => {
       >
         <YStack padding="$2" ai={"center"}>
           <Text fontSize={12} style={{ fontFamily: "MavenProBold" }}>
-            {props.localName}
+            {localPositions.localName}
           </Text>
           <Text fontSize={10} style={{ fontFamily: "MavenProMedium" }}>
-            {props.originalLocation}
+            {localPositions.originalLocation}
           </Text>
         </YStack>
       </Popover>

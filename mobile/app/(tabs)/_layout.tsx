@@ -1,8 +1,7 @@
-import { Tabs } from "expo-router";
-import { Home, Map, ScrollText, BookOpenText } from "@tamagui/lucide-icons";
-import { LinearGradient } from "@tamagui/linear-gradient";
 import Header from "@/src/components/Header";
-import { View } from "tamagui";
+import { LinearGradient } from "@tamagui/linear-gradient";
+import { BookOpenText, Home, Map, ScrollText } from "@tamagui/lucide-icons";
+import { Tabs } from "expo-router";
 
 export default function TabNavigationLayout() {
   return (
@@ -12,11 +11,10 @@ export default function TabNavigationLayout() {
         screenOptions={({ route }) => ({
           header: () => (
             <Header
-              routeName={route.name as "index" | "map" | "anais" | "news"}
+              routeName={route.name as "index" | "map" | "anais" | "posts"}
             />
           ),
-
-          tabBarHideOnKeyboard: "false",
+          tabBarHideOnKeyboard: true,
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#CBC8C8",
           tabBarBackground: () => (
@@ -59,6 +57,12 @@ export default function TabNavigationLayout() {
         />
         <Tabs.Screen
           name="admin/login"
+          options={{
+            href: null,
+          }}
+        />
+        <Tabs.Screen
+          name="admin/crud"
           options={{
             href: null,
           }}
