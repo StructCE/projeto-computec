@@ -1,15 +1,10 @@
-import { StatusBar } from "react-native";
-import { View, XStack, Image } from "tamagui";
+import { HeaderProps } from "@/constants/interfaces/headerProps";
+import { useAuth } from "@/utils/auth";
 import { LinearGradient } from "@tamagui/linear-gradient";
 import { Bell, UserRoundCog } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
-import { useAuth } from "@/utils/auth";
-
-type RouteNames = "index" | "map" | "anais" | "posts";
-
-type HeaderProps = {
-  routeName: RouteNames;
-};
+import { StatusBar } from "react-native";
+import { Image, View, XStack } from "tamagui";
 
 const Header = ({ routeName }: HeaderProps) => {
   const { userSession } = useAuth();

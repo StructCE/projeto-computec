@@ -2,15 +2,9 @@ import { TouchableOpacity } from "react-native";
 import { View, Text, XStack, YStack } from "tamagui";
 import CloudImage from "@/utils/cloudinary";
 import { router } from "expo-router";
+import { Notification } from "@/constants/interfaces/notification";
 
-type dataNotificationList = {
-  id: string;
-  img: string;
-  title: string;
-  dateNotification: string;
-};
-
-const CardNotification = (props: dataNotificationList) => {
+const CardNotification = (props: Notification) => {
   return (
     <TouchableOpacity
       onPress={() =>
@@ -29,7 +23,7 @@ const CardNotification = (props: dataNotificationList) => {
                 backgroundColor: "gray",
                 borderBottomLeftRadius: 10,
               }}
-              public_id={props.img}
+              public_id={props.image}
             />
           </View>
           <YStack fd={"column"} marginLeft="$2">
@@ -60,7 +54,7 @@ const CardNotification = (props: dataNotificationList) => {
                 fontFamily: "MavenProMedium",
               }}
             >
-              {props.dateNotification}
+              {props.datePast}
             </Text>
           </YStack>
         </XStack>

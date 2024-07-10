@@ -246,7 +246,16 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
   ["Flor de Pequi", "25", "6", "ENCompIF"],
 ];
 
-const posts: [string, string, string, string, string, string[]][] = [
+const posts: [
+  string,
+  string,
+  string,
+  string,
+  string,
+  string[],
+  string,
+  string
+][] = [
   [
     "Evento hackerman cancelado",
     "Esta programação foi cancelada por problemas técnicos",
@@ -254,6 +263,8 @@ const posts: [string, string, string, string, string, string[]][] = [
     "2024-06-16T08:00:00.000Z",
     "Ipê Amarelo",
     ["cld-sample-5", "cld-sample-4"],
+    "2024-06-16T08:00:00.000Z",
+    "Ipê Amarelo",
   ],
 
   [
@@ -263,6 +274,8 @@ const posts: [string, string, string, string, string, string[]][] = [
     "2024-06-17T08:00:00.000Z",
     "Ipê Rosa",
     ["cld-sample-5", "cld-sample-4"],
+    "2024-06-16T08:00:00.000Z",
+    "Ipê Amarelo",
   ],
 
   [
@@ -272,6 +285,8 @@ const posts: [string, string, string, string, string, string[]][] = [
     "2024-06-18T08:00:00.000Z",
     "Ipê Roxo",
     ["cld-sample-5", "cld-sample-4"],
+    "2024-06-16T08:00:00.000Z",
+    "Ipê Amarelo",
   ],
 ];
 

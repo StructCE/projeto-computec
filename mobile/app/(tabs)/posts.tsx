@@ -1,5 +1,5 @@
-import PostCard from "@/src/components/PostsScreen/PostCard";
 import PageTitle from "@/src/components/PageTitle";
+import PostCard from "@/src/components/PostsScreen/PostCard";
 import { api } from "@/utils/api";
 import { ScrollView, YStack } from "tamagui";
 import { useState } from "react";
@@ -18,7 +18,16 @@ export default function News() {
         <PageTitle title="Notícias"></PageTitle>
         {posts.data &&
           posts.data.map((post) => {
-            return <PostCard key={post.id} post={post}></PostCard>;
+            return (
+              <PostCard
+                key={post.id}
+                id={post.id}
+                created_at={post.created_at}
+                title={post.title}
+                subtitle={post.subtitle}
+                images={post.images}
+              ></PostCard>
+            );
           })}
       </YStack>
     </ScrollView>
