@@ -2,15 +2,11 @@ import { useLocalSearchParams, router } from "expo-router";
 import { ArrowLeftCircle } from "@tamagui/lucide-icons";
 import React, { useState } from "react";
 import { TouchableOpacity, RefreshControl } from "react-native";
-import { ScrollView } from "tamagui";
+import { ScrollView, View, Spinner } from "tamagui";
 import { api } from "@/utils/api";
-import {
-  PostImages,
-  PostDetails,
-  LoadingScreen,
-} from "@/src/components/PostScreen";
+import { PostImages, PostDetails } from "@/src/components/PostScreen";
 
-const PostPage = () => {
+export default function PostPage() {
   const [refreshing, setRefreshing] = useState(false);
   const { id }: { id?: string | undefined } = useLocalSearchParams();
   const {
@@ -26,7 +22,11 @@ const PostPage = () => {
   }
 
   if (isLoading || !post) {
-    return <LoadingScreen />;
+    return (
+      <View>
+        <Spinner size="large" color="$orange10" />
+      </View>
+    );
   }
 
   return (
@@ -65,6 +65,4 @@ const PostPage = () => {
       />
     </ScrollView>
   );
-};
-
-export default PostPage;
+}

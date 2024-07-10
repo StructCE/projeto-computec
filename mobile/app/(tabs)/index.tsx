@@ -4,20 +4,21 @@ import {
   ScheduleLegend,
 } from "@/src/components/HomeScreen";
 import { api } from "@/utils/api";
-import MaskedView from "@react-native-masked-view/masked-view";
-import { LinearGradient } from "@tamagui/linear-gradient";
 import { Search } from "@tamagui/lucide-icons";
-import { useEffect, useState } from "react";
-import { TextInput } from "react-native";
 import {
   AnimatePresence,
   ScrollView,
+  YStack,
+  XStack,
   Text,
   View,
-  XStack,
-  YStack,
   debounce,
+  Spinner,
 } from "tamagui";
+import { LinearGradient } from "@tamagui/linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
+import { useEffect, useState } from "react";
+import { TextInput } from "react-native";
 
 export default function Index() {
   const [search, setSearch] = useState("");
@@ -32,13 +33,21 @@ export default function Index() {
     };
   }, [search]);
 
-  const events = api.event.getEvents.useQuery({
-    search: debouncedSearch,
-  });
   const today = new Date();
   const firstDate =
     today.getDate() > 21 && today.getDate() < 25 ? today.getDate() : 21;
   const [day, setDay] = useState(firstDate);
+
+  const { data, isLoading, isFetched } = api.event.getEvents.useQuery({
+    search: debouncedSearch,
+  });
+
+  const hasEvents = () => {
+    return data?.some(
+      (eventsPerDay) =>
+        eventsPerDay.day === day && eventsPerDay.sessions.length > 0
+    );
+  };
 
   return (
     <ScrollView>
@@ -62,7 +71,7 @@ export default function Index() {
             end={{ x: 0.5, y: -0.5 }}
             locations={[0.4, 1]}
             style={{
-              height: 30,
+              height: 60,
             }}
           />
         </MaskedView>
@@ -108,45 +117,47 @@ export default function Index() {
         <ScheduleLegend />
 
         {/* FILTRO DE EVENTOS */}
-        {events.data
-          ?.filter((eventsPerDay) => eventsPerDay.day === day)
-          .map((eventsPerDay) => (
-            <YStack
-              key={`day-${eventsPerDay.day}`}
-              margin="$1.5"
-              flex={1}
-              gap={12}
-            >
-              {/* NOME DIA DA SEMANA */}
-              <View
-                key={`day-header-${eventsPerDay.day}`}
-                alignItems="center"
-                marginTop={4}
+        {isLoading ? (
+          <View>
+            <Spinner size="large" color="$orange10" />
+          </View>
+        ) : hasEvents() ? (
+          data
+            ?.filter((eventsPerDay) => eventsPerDay.day === day)
+            .map((eventsPerDay) => (
+              <YStack
+                key={`day-${eventsPerDay.day}`}
+                margin="$1.5"
+                flex={1}
+                gap={12}
               >
-                <Text
-                  fontWeight="500"
-                  fontSize={24}
-                  style={{ fontFamily: "MavenProSemiBold" }}
-                >
-                  {`${eventsPerDay.weekDay} - ${eventsPerDay.day} de julho`}
-                </Text>
-              </View>
-
-              {/* INFORMAÇÕES VINDAS DO BACKEND */}
-              {eventsPerDay.sessions.map((session) => (
-                <YStack
-                  key={`session-${eventsPerDay.day}-${session.period}`}
-                  gap={5}
+                {/* NOME DIA DA SEMANA */}
+                <View
+                  key={`day-header-${eventsPerDay.day}`}
+                  alignItems="center"
+                  marginTop={4}
                 >
                   <Text
-                    fontWeight="600"
-                    fontSize={18}
-                    style={{ fontFamily: "MavenProMedium" }}
+                    fontSize={24}
+                    style={{ fontFamily: "MavenProSemiBold" }}
                   >
-                    {session.period}
+                    {`${eventsPerDay.weekDay} - ${eventsPerDay.day} de julho`}
                   </Text>
-                  {session.events.map((event) => {
-                    return (
+                </View>
+
+                {/* INFORMAÇÕES VINDAS DO BACKEND */}
+                {eventsPerDay.sessions.map((session) => (
+                  <YStack
+                    key={`session-${eventsPerDay.day}-${session.period}`}
+                    gap={5}
+                  >
+                    <Text
+                      fontSize={18}
+                      style={{ fontFamily: "MavenProMedium" }}
+                    >
+                      {session.period}
+                    </Text>
+                    {session.events.map((event) => (
                       <AnimatePresence
                         key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
                       >
@@ -171,12 +182,25 @@ export default function Index() {
                           />
                         </View>
                       </AnimatePresence>
-                    );
-                  })}
-                </YStack>
-              ))}
-            </YStack>
-          ))}
+                    ))}
+                  </YStack>
+                ))}
+              </YStack>
+            ))
+        ) : (
+          isFetched && (
+            <Text
+              fontSize={18}
+              style={{
+                fontFamily: "MavenProRegular",
+                textAlign: "center",
+                marginTop: 20,
+              }}
+            >
+              Nenhum evento encontrado para a busca "{debouncedSearch}"
+            </Text>
+          )
+        )}
       </YStack>
     </ScrollView>
   );

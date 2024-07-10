@@ -16,7 +16,7 @@ export function ScheduleLegend() {
         >
           Legenda:
         </Text>
-        <XStack style={{ flex: 1, gap: 20 }}>
+        <XStack style={{ flex: 1, gap: 16 }}>
           <XStack
             style={{
               alignItems: "center",
@@ -24,7 +24,13 @@ export function ScheduleLegend() {
             }}
           >
             <Circle size={16} fill={"#52AED5"} color={"#52AED5"}></Circle>
-            <Text style={{ fontSize: 14, fontFamily: "MavenProRegular" }}>
+            <Text
+              style={{
+                fontSize: 12,
+                fontFamily: "MavenProRegular",
+                letterSpacing: -1.2,
+              }}
+            >
               Cerrado (Térreo)
             </Text>
           </XStack>
@@ -35,7 +41,13 @@ export function ScheduleLegend() {
             }}
           >
             <Circle size={16} fill={"#556AD2"} color={"#556AD2"}></Circle>
-            <Text style={{ fontSize: 14, fontFamily: "MavenProRegular" }}>
+            <Text
+              style={{
+                fontSize: 12,
+                fontFamily: "MavenProRegular",
+                letterSpacing: -1.2,
+              }}
+            >
               Praça dos Ipês (Piso Superior)
             </Text>
           </XStack>

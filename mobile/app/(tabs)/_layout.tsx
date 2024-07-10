@@ -14,6 +14,7 @@ export default function TabNavigationLayout() {
               routeName={route.name as "index" | "map" | "anais" | "posts"}
             />
           ),
+          tabBarHideOnKeyboard: true,
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#CBC8C8",
           tabBarBackground: () => (
@@ -27,9 +28,9 @@ export default function TabNavigationLayout() {
             />
           ),
           tabBarStyle: {
-            height: `${8}%`,
-            paddingBottom: `${2}%`,
-            paddingTop: `${2}%`,
+            height: 62,
+            paddingBottom: 5,
+            paddingTop: 5,
           },
         })}
       >
