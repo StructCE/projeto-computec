@@ -9,7 +9,7 @@
 
 # On Lunux and macOS you can run this script directly - `./start-database.sh`
 
-DB_CONTAINER_NAME="my-app-mysql"
+DB_CONTAINER_NAME="computec-mysql"
 
 if ! [ -x "$(command -v docker)" ]; then
   echo "Docker is not installed. Please install docker and try again.\nDocker install guide: https://docs.docker.com/engine/install/"
@@ -39,6 +39,5 @@ if [ "$DB_PASSWORD" == "password" ]; then
   sed -i -e "s/:password@/:$DB_PASSWORD@/" .env
 fi
 
-docker run --name $DB_CONTAINER_NAME -e MYSQL_ROOT_PASSWORD=$DB_PASSWORD -e MYSQL_DATABASE=my-app -d -p 3306:3306 docker.io/mysql # Comente se BD já criado
-# docker start $DB_CONTAINER_NAME # Descomente se BD já criado
+docker run --name $DB_CONTAINER_NAME -e MYSQL_ROOT_PASSWORD=$DB_PASSWORD -e MYSQL_DATABASE=computec -d -p 3306:3306 docker.io/mysql
 echo "Database container was succesfuly started"

@@ -10,5 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(tRPCRouter, authRouter, setPushTokenRoute);
 
-app.listen(3001);
-console.log("Server listening on port 3001");
+const port = process.env.PORT || 3002;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
