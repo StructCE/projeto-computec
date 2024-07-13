@@ -7,7 +7,6 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 COPY . .
 
-RUN pnpm setup
 RUN pnpm install -g prisma tsx
 RUN chmod +x ./start.sh
 
