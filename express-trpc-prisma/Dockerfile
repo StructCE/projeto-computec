@@ -7,6 +7,6 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 COPY ./express-trpc-prisma .
 
-RUN chmod +x ./express-trpc-prisma/start.sh
+RUN chmod +x ./start.sh
 
-CMD ["./express-trpc-prisma/start.sh"]
+CMD ["./start.sh"]
