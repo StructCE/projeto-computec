@@ -9,4 +9,4 @@ COPY . .
 
 RUN chmod +x ./start.sh
 
-CMD ["./start.sh"]
+CMD ["./express-trpc-prisma/start.sh"]
