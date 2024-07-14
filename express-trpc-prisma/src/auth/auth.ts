@@ -28,7 +28,7 @@ export const github = new GitHub(
 export const google = new Google(
   process.env.GOOGLE_CLIENT_ID!,
   process.env.GOOGLE_CLIENT_SECRET!,
-  "http://192.168.100.16:3001/auth/login/google/callback"
+  "https://api.csbc.structej.com/auth/login/google/callback"
 ); // Troque 192.168.100.16 pelo ip da sua máquina
 
 declare module "lucia" {

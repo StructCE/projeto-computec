@@ -1,4 +1,4 @@
-import { GitHub, OAuth2RequestError, generateState } from "arctic";
+import { OAuth2RequestError, generateState } from "arctic";
 import express from "express";
 import { github, lucia } from "../../auth";
 import { parseCookies, serializeCookie } from "oslo/cookie";

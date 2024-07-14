@@ -3,7 +3,6 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import * as SecureStore from "expo-secure-store";
 import { Platform } from "react-native";
-import { getBaseUrl } from "./api";
 import Constants from "expo-constants";
 import { router } from "expo-router";
 
@@ -62,7 +61,7 @@ export const usePushNotifications = () => {
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
       if (token) {
-        fetch(`http://${getBaseUrl().split(":")[1]}:3001/setPushToken`, {
+        fetch(`${process.env.EXPO_PUBLIC_API_URL}/setPushToken`, {
           method: "POST",
           headers: {
             Accept: "application/json",
