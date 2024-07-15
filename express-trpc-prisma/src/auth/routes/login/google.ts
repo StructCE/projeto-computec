@@ -78,7 +78,7 @@ googleLoginRouter.get("/auth/login/google/callback", async (req, res) => {
     if (existingAccount) {
       const session = await lucia.createSession(existingAccount.user_id, {});
       return res.redirect(
-        `exp://${req.hostname}:8081/?session_token=${session.id}`
+        `exp://192.168.100.16:8081/?session_token=${session.id}`
       );
     }
     const existingUser = await db.user.findFirst({
@@ -96,7 +96,7 @@ googleLoginRouter.get("/auth/login/google/callback", async (req, res) => {
       });
       const session = await lucia.createSession(account.user_id, {});
       return res.redirect(
-        `exp://${req.hostname}:8081/?session_token=${session.id}`
+        `exp://192.168.100.16:8081/?session_token=${session.id}`
       );
     }
     const newUser = await db.user.create({
@@ -114,7 +114,7 @@ googleLoginRouter.get("/auth/login/google/callback", async (req, res) => {
     });
     const session = await lucia.createSession(newAccount.user_id, {});
     return res.redirect(
-      `exp://${req.hostname}:8081/?session_token=${session.id}`
+      `exp://192.168.100.16:8081/?session_token=${session.id}`
     );
   } catch (e) {
     if (
