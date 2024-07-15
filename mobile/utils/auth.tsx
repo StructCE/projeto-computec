@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: any) => {
   async function signIn(provider: "google" | "github") {
     const result = await Browser.openAuthSessionAsync(
       `${process.env.EXPO_PUBLIC_API_URL}/auth/login/${provider}`,
-      `exp:${getBaseUrl("8081")}/`
+      `exp://192.168.100.16:8081/`
     );
     if (result.type !== "success") {
       return;
