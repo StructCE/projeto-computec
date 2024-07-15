@@ -54,7 +54,7 @@ importers:
         specifier: ~0.12.3
         version: 0.12.3(expo@51.0.20(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9)))
       expo-constants:
-        specifier: ~16.0.1
+        specifier: ~16.0.2
         version: 16.0.2(expo@51.0.20(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9)))
       expo-crypto:
         specifier: ~13.0.2
@@ -81,10 +81,10 @@ importers:
         specifier: ~3.5.18
         version: 3.5.18(xg2bq5zibnjcwcz2wy7s3vyeaq)
       expo-secure-store:
-        specifier: ^13.0.1
+        specifier: ^13.0.2
         version: 13.0.2(expo@51.0.20(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9)))
       expo-splash-screen:
-        specifier: ~0.27.4
+        specifier: ~0.27.5
         version: 0.27.5(expo-modules-autolinking@1.11.1)(expo@51.0.20(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9)))
       expo-status-bar:
         specifier: ~1.12.1
@@ -108,7 +108,7 @@ importers:
         specifier: 0.74.3
         version: 0.74.3(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(@types/react@18.2.79)(react@18.2.0)
       react-native-gesture-handler:
-        specifier: ~2.16.1
+        specifier: ~2.16.2
         version: 2.16.2(react-native@0.74.3(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       react-native-popover-view:
         specifier: ^5.1.8
@@ -129,7 +129,7 @@ importers:
         specifier: 3.31.1
         version: 3.31.1(react-native@0.74.3(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       react-native-web:
-        specifier: ~0.19.10
+        specifier: ~0.19.12
         version: 0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       superjson:
         specifier: ^2.2.1
@@ -139,10 +139,10 @@ importers:
         version: 1.102.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react-native@0.74.3(@babel/core@7.24.9)(@babel/preset-env@7.24.8(@babel/core@7.24.9))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@babel/core':
-        specifier: ^7.20.0
+        specifier: ^7.24.9
         version: 7.24.9
       '@types/react':
-        specifier: ~18.2.45
+        specifier: ~18.2.79
         version: 18.2.79
       '@types/react-test-renderer':
         specifier: ^18.0.7
