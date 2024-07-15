@@ -1,10 +1,17 @@
 import { eventosBase, eventosSatelite } from "@/constants/eventsAndLinks";
 import { View, Text, ScrollView } from "tamagui";
 import { LinearGradient } from "@tamagui/linear-gradient";
-import { Link } from "expo-router";
+import * as Browser from "expo-web-browser";
 import MaskedView from "@react-native-masked-view/masked-view";
+import { TouchableOpacity } from "react-native";
 
 export default function Anais() {
+  const handlePress = (link: string) => {
+    if (!link) return;
+    Browser.openBrowserAsync(link).catch((err) =>
+      console.error("Failed to open URL:", err)
+    );
+  };
   return (
     <ScrollView>
       <View
@@ -64,35 +71,41 @@ export default function Anais() {
           <Text style={{ fontFamily: "MavenProBold" }}>Eventos-Base</Text>
           <View gap={7} marginLeft={12}>
             {eventosBase.map((eventoBase, idx) => (
-              <Link
+              <TouchableOpacity
                 key={idx}
-                href={eventoBase[1]}
-                style={{
-                  fontFamily: "MavenProRegular",
-                  fontSize: 12,
-                  color: "#C1272D",
-                  textDecorationLine: "underline",
-                }}
+                onPress={() => handlePress(eventoBase[1])}
               >
-                {eventoBase[0]}
-              </Link>
+                <Text
+                  style={{
+                    fontFamily: "MavenProRegular",
+                    fontSize: 12,
+                    color: "#C1272D",
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  {eventoBase[0]}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
           <Text style={{ fontFamily: "MavenProBold" }}>Eventos-satélite</Text>
           <View gap={7} marginLeft={12}>
             {eventosSatelite.map((eventoSatelite, idx) => (
-              <Link
+              <TouchableOpacity
                 key={idx}
-                href={eventoSatelite[1]}
-                style={{
-                  fontFamily: "MavenProRegular",
-                  fontSize: 12,
-                  color: "#C1272D",
-                  textDecorationLine: "underline",
-                }}
+                onPress={() => handlePress(eventoSatelite[1])}
               >
-                {eventoSatelite[0]}
-              </Link>
+                <Text
+                  style={{
+                    fontFamily: "MavenProRegular",
+                    fontSize: 12,
+                    color: "#C1272D",
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  {eventoSatelite[0]}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
         </View>

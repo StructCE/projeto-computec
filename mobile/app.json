@@ -4,8 +4,8 @@
     "slug": "mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "CSBC_logo.png",
-    "scheme": "CSBC",
+    "icon": "",
+    "scheme": "csbc",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/CSBC_logo.png",

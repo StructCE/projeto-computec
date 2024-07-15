@@ -1,11 +1,12 @@
 import { Event } from "@/constants/interfaces/event";
-import { TouchableOpacity, Linking } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Text, View } from "tamagui";
+import * as Browser from "expo-web-browser";
 
 export function ScheduleEventCard(event: Event) {
   const handlePress = () => {
     if (!event.link) return;
-    Linking.openURL(event.link).catch((err) =>
+    Browser.openBrowserAsync(event.link).catch((err) =>
       console.error("Failed to open URL:", err)
     );
   };
