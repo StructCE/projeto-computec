@@ -12,6 +12,7 @@ import {
   MavenPro_700Bold,
 } from "@expo-google-fonts/maven-pro";
 import { usePushNotifications } from "@/utils/notifications";
+import { Platform } from "react-native";
 
 export default function RootLayout() {
   const [interLoaded, interError] = useFonts({
@@ -24,7 +25,8 @@ export default function RootLayout() {
     MavenProBold: MavenPro_700Bold,
   });
 
-  usePushNotifications();
+  if (Platform.OS === "android" || Platform.OS === "ios")
+    usePushNotifications();
 
   useEffect(() => {
     if (interLoaded || interError) {
