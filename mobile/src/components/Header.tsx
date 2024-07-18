@@ -3,7 +3,7 @@ import { useAuth } from "@/utils/auth";
 import { LinearGradient } from "@tamagui/linear-gradient";
 import { Bell, UserRoundCog } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
-import { StatusBar } from "react-native";
+import { Platform, StatusBar } from "react-native";
 import { Image, View, XStack } from "tamagui";
 
 const Header = ({ routeName }: HeaderProps) => {
@@ -20,11 +20,7 @@ const Header = ({ routeName }: HeaderProps) => {
         width={100}
         height={100}
       />
-      {routeName !== "posts" ? (
-        <Link href={"/listNotification"}>
-          <Bell size={30} color={"black"} />
-        </Link>
-      ) : (
+      {routeName == "posts" && Platform.OS !== "web" ? (
         <Link
           href={
             userSession?.session ? "(tabs)/admin/crud" : "(tabs)/admin/login"
@@ -52,6 +48,10 @@ const Header = ({ routeName }: HeaderProps) => {
               />
             </XStack>
           </View>
+        </Link>
+      ) : (
+        <Link href={"/listNotification"}>
+          <Bell size={30} color={"black"} />
         </Link>
       )}
     </XStack>

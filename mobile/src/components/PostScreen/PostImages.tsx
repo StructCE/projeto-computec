@@ -2,9 +2,10 @@ import { ArrowLeft, ArrowRight } from "@tamagui/lucide-icons";
 import { useRef, useState } from "react";
 import { Dimensions, TouchableOpacity } from "react-native";
 import { ScrollView, View, XStack, YStack, Text } from "tamagui";
-import CloudImage from "@/utils/cloudinary";
+import CloudImage, { cld } from "@/utils/cloudinary";
 import { BlurView } from "expo-blur";
 import { Post } from "@/constants/interfaces/post";
+import { fill } from "@cloudinary/url-gen/actions/resize";
 
 const { height, width } = Dimensions.get("window");
 
@@ -45,7 +46,7 @@ export const PostImages = ({
         pagingEnabled={true}
         style={{
           width: width,
-          height: height / 3,
+          height: height / 4,
           backgroundColor: "white",
         }}
       >
@@ -53,12 +54,11 @@ export const PostImages = ({
           return (
             <CloudImage
               key={image}
-              public_id={image}
-              style={{
-                width: width,
-                height: height / 3,
-                padding: 12,
-              }}
+              cloudImage={cld.image(image).resize(
+                fill()
+                  .width(width)
+                  .height(height / 4)
+              )}
             />
           );
         })}

@@ -1,5 +1,7 @@
 import { Post } from "@/constants/interfaces/post";
-import CloudImage from "@/utils/cloudinary";
+import CloudImage, { cld } from "@/utils/cloudinary";
+import { fill } from "@cloudinary/url-gen/actions/resize";
+import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
 import { BlurView } from "expo-blur";
 import { Link } from "expo-router";
 import React, { useEffect, useRef } from "react";
@@ -17,7 +19,7 @@ export default function PostCard({
 }: Pick<Post, "id" | "title" | "subtitle" | "created_at" | "images">) {
   const margin = 16;
   const imageWidth = width - 2 * margin;
-
+  const imageHeight = height / 4;
   const scrollViewRef = useRef<any>(null);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function PostCard({
         pagingEnabled={true}
         style={{
           width: imageWidth,
-          height: height / 3.5,
+          height: imageHeight,
           borderRadius: 20,
           backgroundColor: "white",
         }}
@@ -55,13 +57,10 @@ export default function PostCard({
           return (
             <CloudImage
               key={image}
-              public_id={image}
-              style={{
-                width: imageWidth,
-                height: height / 3.5,
-                borderRadius: 20,
-                padding: 12,
-              }}
+              cloudImage={cld
+                .image(image)
+                .resize(fill().width(imageWidth).height(imageHeight))
+                .roundCorners(byRadius(20))}
             />
           );
         })}

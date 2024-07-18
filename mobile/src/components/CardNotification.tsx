@@ -1,8 +1,9 @@
 import { TouchableOpacity } from "react-native";
 import { View, Text, XStack, YStack } from "tamagui";
-import CloudImage from "@/utils/cloudinary";
+import CloudImage, { cld } from "@/utils/cloudinary";
 import { router } from "expo-router";
 import { Notification } from "@/constants/interfaces/notification";
+import { fill } from "@cloudinary/url-gen/actions/resize";
 
 const CardNotification = (props: Notification) => {
   return (
@@ -13,17 +14,11 @@ const CardNotification = (props: Notification) => {
     >
       <View marginVertical="$1.5" marginHorizontal="$5">
         <XStack>
-          <View>
+          <View marginRight={2}>
             <CloudImage
-              style={{
-                borderTopLeftRadius: 10,
-                marginRight: 2,
-                width: 75,
-                height: 90,
-                backgroundColor: "gray",
-                borderBottomLeftRadius: 10,
-              }}
-              public_id={props.image}
+              cloudImage={cld
+                .image(props.image)
+                .resize(fill().width(100).height(120))}
             />
           </View>
           <YStack fd={"column"} marginLeft="$2">
