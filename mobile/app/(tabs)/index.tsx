@@ -70,9 +70,7 @@ export default function Index() {
             start={{ x: 0.5, y: 2 }}
             end={{ x: 0.5, y: -0.5 }}
             locations={[0.4, 1]}
-            style={{
-              height: 60,
-            }}
+            style={{ flex: 1 }}
           />
         </MaskedView>
 

@@ -1,0 +1,42 @@
+{
+  "short_name": "CSBC",
+  "name": "CSBC 2024",
+  "description": "App para evento CSBC de 2024",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1368x855",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot2.jpg",
+      "sizes": "371x808",
+      "type": "image/jpg",
+      "form_factor": "narrow"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ED7A17",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "prefer-related-application": false
+}
