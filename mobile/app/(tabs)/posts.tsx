@@ -14,7 +14,7 @@ export default function Posts() {
         <RefreshControl refreshing={refreshing} onRefresh={refetch} />
       }
     >
-      <YStack margin={16} style={{ flex: 1, gap: 16 }}>
+      <YStack margin={16} gap={16} style={{ flex: 1 }}>
         <PageTitle title="Notícias"></PageTitle>
         {isLoading ? (
           <View>

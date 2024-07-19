@@ -34,7 +34,7 @@ export function ScheduleDayFilter({
   };
 
   return (
-    <YStack style={{ gap: 4 }}>
+    <YStack gap={4}>
       <Button onPress={() => setState(21)} style={getButtonStyle(21)}>
         Domingo
       </Button>

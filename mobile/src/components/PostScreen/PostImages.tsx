@@ -65,16 +65,14 @@ export const PostImages = ({
       </ScrollView>
 
       <View
-        style={{
-          position: "absolute",
-          right: 16,
-          top: 20,
-          backgroundColor: "white",
-          borderRadius: 9,
-          padding: 8,
-          alignItems: "center",
-          alignSelf: "flex-end",
-        }}
+        position="absolute"
+        right={16}
+        top={20}
+        backgroundColor="white"
+        borderRadius={9}
+        padding={8}
+        alignItems="center"
+        alignSelf="flex-end"
       >
         <Text style={{ fontSize: 12, fontFamily: "MavenProMedium" }}>
           Postado
@@ -133,12 +131,10 @@ export const PostImages = ({
         </YStack>
       </BlurView>
       <XStack
-        style={{
-          justifyContent: "space-between",
-          width: width,
-          position: "absolute",
-          bottom: 16,
-        }}
+        justifyContent= "space-between"
+        width={width}
+        position= "absolute"
+        bottom={16}
       >
         <TouchableOpacity
           style={{

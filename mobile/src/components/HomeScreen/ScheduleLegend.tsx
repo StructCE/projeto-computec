@@ -16,12 +16,10 @@ export function ScheduleLegend() {
         >
           Legenda:
         </Text>
-        <XStack style={{ flex: 1, gap: 16 }}>
+        <XStack flex={1} gap={16}>
           <XStack
-            style={{
-              alignItems: "center",
-              gap: 4,
-            }}
+            alignItems="center"
+            gap={4}
           >
             <Circle size={16} fill={"#52AED5"} color={"#52AED5"}></Circle>
             <Text
@@ -35,10 +33,8 @@ export function ScheduleLegend() {
             </Text>
           </XStack>
           <XStack
-            style={{
-              alignItems: "center",
-              gap: 4,
-            }}
+            alignItems="center"
+            gap={4}
           >
             <Circle size={16} fill={"#556AD2"} color={"#556AD2"}></Circle>
             <Text

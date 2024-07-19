@@ -13,13 +13,18 @@ export function ScheduleEventCard(event: Event) {
 
   const CardContent = (
     <View
-      style={{
-        backgroundColor: event.color,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 8,
-        borderRadius: 4,
-      }}
+      // style={{
+      //   backgroundColor: event.color,
+      //   alignItems: "center",
+      //   justifyContent: "center",
+      //   padding: 8,
+      //   borderRadius: 4,
+      // }}
+      backgroundColor={event.color}
+      alignItems="center"
+      justifyContent="center"
+      padding={8}
+      borderRadius={4}
     >
       <Text
         style={{
