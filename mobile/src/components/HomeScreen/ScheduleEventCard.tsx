@@ -13,13 +13,6 @@ export function ScheduleEventCard(event: Event) {
 
   const CardContent = (
     <View
-      // style={{
-      //   backgroundColor: event.color,
-      //   alignItems: "center",
-      //   justifyContent: "center",
-      //   padding: 8,
-      //   borderRadius: 4,
-      // }}
       backgroundColor={event.color}
       alignItems="center"
       justifyContent="center"
@@ -27,21 +20,20 @@ export function ScheduleEventCard(event: Event) {
       borderRadius={4}
     >
       <Text
+        color="white"
+        fontSize={15}
         style={{
-          fontWeight: "600",
-          color: "white",
           fontFamily: "MavenProMedium",
-          fontSize: 15,
         }}
       >
         {event.event}
       </Text>
       {event.local && (
         <Text
+          color="white"
+          fontSize={15}
           style={{
-            color: "white",
             fontFamily: "MavenProRegular",
-            fontSize: 15,
           }}
         >
           Sala: {event.local}

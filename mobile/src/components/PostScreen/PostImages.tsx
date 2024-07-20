@@ -74,13 +74,13 @@ export const PostImages = ({
         alignItems="center"
         alignSelf="flex-end"
       >
-        <Text style={{ fontSize: 12, fontFamily: "MavenProMedium" }}>
+        <Text fontSize={12} style={{ fontFamily: "MavenProMedium" }}>
           Postado
         </Text>
         <Text
+          color="black"
+          fontSize={13}
           style={{
-            color: "black",
-            fontSize: 13,
             fontFamily: "MavenProMedium",
           }}
         >
@@ -92,9 +92,9 @@ export const PostImages = ({
         intensity={15}
         style={{
           position: "absolute",
-          top: 60,
-          width: width - width / 6,
-          maxHeight: 120,
+          top: 30,
+          width: width - width / 4.5,
+          maxHeight: 140,
           overflow: "hidden",
           borderStartEndRadius: 20,
           borderEndEndRadius: 20,
@@ -131,9 +131,9 @@ export const PostImages = ({
         </YStack>
       </BlurView>
       <XStack
-        justifyContent= "space-between"
+        justifyContent="space-between"
         width={width}
-        position= "absolute"
+        position="absolute"
         bottom={16}
       >
         <TouchableOpacity

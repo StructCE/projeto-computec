@@ -40,18 +40,16 @@ export default function PostCard({
   }, []);
 
   return (
-    <View style={{ flex: 1, alignSelf: "center", position: "relative" }}>
+    <View flex={1} alignSelf="center" position="relative">
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
-        style={{
-          width: imageWidth,
-          height: imageHeight,
-          borderRadius: 20,
-          backgroundColor: "white",
-        }}
+        width={imageWidth}
+        height={imageHeight}
+        borderRadius={20}
+        bg="white"
       >
         {images.map((image) => {
           return (
@@ -76,13 +74,13 @@ export default function PostCard({
         alignItems="center"
         alignSelf="flex-end"
       >
-        <Text style={{ fontSize: 12, fontFamily: "MavenProMedium" }}>
+        <Text fontSize={12} style={{ fontFamily: "MavenProMedium" }}>
           Postado
         </Text>
         <Text
+          color="black"
+          fontSize={13}
           style={{
-            color: "black",
-            fontSize: 13,
             fontFamily: "MavenProMedium",
           }}
         >
@@ -94,9 +92,9 @@ export default function PostCard({
         intensity={15}
         style={{
           position: "absolute",
-          top: 20,
+          top: 10,
           width: width - width / 3,
-          maxHeight: 130,
+          maxHeight: 140,
           overflow: "hidden",
           borderStartEndRadius: 20,
           borderEndEndRadius: 20,
@@ -106,7 +104,6 @@ export default function PostCard({
           paddingRight: 12,
           paddingVertical: 20,
           marginVertical: 12,
-          marginBottom: 20,
           borderTopRightRadius: 19,
           borderBottomRightRadius: 19,
         }}
