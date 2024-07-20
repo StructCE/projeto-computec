@@ -32,17 +32,11 @@ const getLocalColor = (local: string | null): string => {
   return GENERIC_LOCAL_COLOR;
 };
 
-const formatPeriodString = (startTime: Date, endTime: Date): string => {
-  return `${startTime.getHours()}h${String(startTime.getMinutes()).padStart(
-    2,
-    "0"
-  )} - ${endTime.getHours()}h${String(endTime.getMinutes()).padStart(2, "0")}`;
-};
-
 const processDayEvents = (
   events: any[]
 ): {
-  period: string;
+  startTime: Date;
+  endTime: Date;
   events: {
     event: string;
     local: string | null;
@@ -51,7 +45,8 @@ const processDayEvents = (
   }[];
 }[] => {
   const sessions: {
-    period: string;
+    startTime: Date;
+    endTime: Date;
     events: {
       event: string;
       local: string | null;
@@ -65,7 +60,6 @@ const processDayEvents = (
   events.forEach((event) => {
     const startTime = new Date(event.period.startTime);
     const endTime = new Date(event.period.endTime);
-    const periodString = formatPeriodString(startTime, endTime);
 
     if (
       lastStartTime === null ||
@@ -74,7 +68,8 @@ const processDayEvents = (
       indexEvents++;
       lastStartTime = startTime;
       sessions.push({
-        period: periodString,
+        startTime: startTime,
+        endTime: endTime,
         events: [],
       });
     }
@@ -97,7 +92,8 @@ const getUpdatedDays = async (
     day: number;
     weekDay: string;
     sessions: {
-      period: string;
+      startTime: Date;
+      endTime: Date;
       events: {
         event: string;
         local: string | null;

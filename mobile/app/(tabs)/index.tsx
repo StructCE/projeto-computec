@@ -146,18 +146,25 @@ export default function Index() {
                 {/* INFORMAÇÕES VINDAS DO BACKEND */}
                 {eventsPerDay.sessions.map((session) => (
                   <YStack
-                    key={`session-${eventsPerDay.day}-${session.period}`}
+                    key={`session-${eventsPerDay.day}-${session.startTime}-${session.endTime}`}
                     gap={5}
                   >
                     <Text
                       fontSize={18}
                       style={{ fontFamily: "MavenProMedium" }}
                     >
-                      {session.period}
+                      {`${session.startTime.getHours()}h${String(
+                        session.startTime.getMinutes()
+                      ).padStart(
+                        2,
+                        "0"
+                      )} - ${session.endTime.getHours()}h${String(
+                        session.endTime.getMinutes()
+                      ).padStart(2, "0")}`}
                     </Text>
                     {session.events.map((event) => (
                       <AnimatePresence
-                        key={`event-${eventsPerDay.day}-${session.period}-${event.event}`}
+                        key={`session-${eventsPerDay.day}-${session.startTime}-${session.endTime}-${event.event}`}
                       >
                         <View
                           animation="bouncy"

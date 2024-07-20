@@ -311,8 +311,8 @@ const createPeriods = async () => {
   const promises = periods.map(async (period, index) => {
     let startTime = new Date("1970-01-01T" + period[0] + "Z");
     let endTime = new Date("1970-01-01T" + period[1] + "Z");
-    startTime.setHours(startTime.getHours() + 3);
-    endTime.setHours(endTime.getHours() + 3);
+    startTime.setUTCHours(startTime.getUTCHours() + 3);
+    endTime.setUTCHours(endTime.getUTCHours() + 3);
     const periodCreated = await db.period.create({
       data: {
         startTime,
@@ -375,16 +375,18 @@ const createEventsDayPeriod = async (
 const createPostsAndNotifications = async () => {
   let postsCreated = {};
   const promises = posts.map(async (post, index) => {
-    const dateTime = new Date();
+    const created_at = new Date();
+    const dateTime = new Date(post[3]);
+    dateTime.setUTCHours(dateTime.getUTCHours() + 3);
     dateTime.setDate(dateTime.getDate() - index);
     const postCreated = await db.post.create({
       data: {
         title: post[0],
         subtitle: post[1],
         description: post[2],
-        dateTime: post[3],
+        dateTime: dateTime,
         local: post[4],
-        created_at: dateTime,
+        created_at: created_at,
       },
     });
     const notificationCreated = await db.notification.create({
