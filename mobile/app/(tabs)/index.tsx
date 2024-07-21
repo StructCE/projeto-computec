@@ -61,7 +61,7 @@ export default function Index() {
                 fontFamily: "MavenProBold",
               }}
             >
-              PROGRAMAÇÃO DA SEMANA
+              Programação da Semana
             </Text>
           }
         >
@@ -82,15 +82,14 @@ export default function Index() {
           borderRadius={5}
           shadowColor="#1A1A1A"
           shadowOffset={{ width: 0, height: 0 }}
-          shadowOpacity={0.3}
+          shadowOpacity={0.8}
           shadowRadius={4}
           elevation={5}
         >
           <Search
-            size="$1.5"
+            size="$1"
             padding={12}
             color="rgba(26,26,26,0.8)"
-            margin={10}
             alignItems="center"
           />
           <TextInput
@@ -103,6 +102,7 @@ export default function Index() {
               fontSize: 16,
               height: 40,
               fontFamily: "MavenProRegular",
+              paddingLeft: 10,
             }}
             underlineColorAndroid="transparent"
           />
@@ -116,7 +116,7 @@ export default function Index() {
 
         {/* FILTRO DE EVENTOS */}
         {isLoading ? (
-          <View>
+          <View marginTop="$4">
             <Spinner size="large" color="$orange10" />
           </View>
         ) : hasEvents() ? (

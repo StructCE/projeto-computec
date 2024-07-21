@@ -16,21 +16,23 @@ export default function TabNavigationLayout() {
           ),
           tabBarHideOnKeyboard: true,
           tabBarActiveTintColor: "white",
-          tabBarInactiveTintColor: "#CBC8C8",
+          tabBarAllowFontScaling: true,
+          tabBarInactiveTintColor: "#dddddd",
           tabBarBackground: () => (
             <LinearGradient
               colors={["#a92227", "#ed7a17"]}
-              start={{ x: 0, y: 1 }}
               locations={[0.4, 1]}
               style={{
-                height: 70,
+                height: 78,
               }}
+              start={[0, 0]}
+              end={[1, 1]}
             />
           ),
           tabBarStyle: {
-            height: 62,
-            paddingBottom: 5,
-            paddingTop: 5,
+            height: 75,
+            paddingBottom: 20,
+            paddingTop: 6,
           },
         })}
       >
@@ -38,21 +40,21 @@ export default function TabNavigationLayout() {
           name="index"
           options={{
             title: "Início",
-            tabBarIcon: ({ color }) => <Home size={30} color={color} />,
+            tabBarIcon: ({ color }) => <Home size={26} color={color} />,
           }}
         />
         <Tabs.Screen
           name="map"
           options={{
             title: "Mapa",
-            tabBarIcon: ({ color }) => <Map size={30} color={color} />,
+            tabBarIcon: ({ color }) => <Map size={26} color={color} />,
           }}
         />
         <Tabs.Screen
           name="anais"
           options={{
             title: "Anais",
-            tabBarIcon: ({ color }) => <ScrollText size={30} color={color} />,
+            tabBarIcon: ({ color }) => <ScrollText size={26} color={color} />,
           }}
         />
         <Tabs.Screen
@@ -77,7 +79,7 @@ export default function TabNavigationLayout() {
           name="posts"
           options={{
             title: "Notícias",
-            tabBarIcon: ({ color }) => <BookOpenText size={30} color={color} />,
+            tabBarIcon: ({ color }) => <BookOpenText size={26} color={color} />,
           }}
         />
         <Tabs.Screen

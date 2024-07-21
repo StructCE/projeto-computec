@@ -15,9 +15,9 @@ export default function Posts() {
       }
     >
       <YStack margin={16} gap={16} style={{ flex: 1 }}>
-        <PageTitle title="Notícias"></PageTitle>
+        <PageTitle title="Notícias" />
         {isLoading ? (
-          <View>
+          <View marginTop="$4">
             <Spinner size="large" color="$orange10" />
           </View>
         ) : isFetched && (!data || data.length === 0) ? (
