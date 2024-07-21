@@ -57,7 +57,7 @@ export default function PostCard({
               key={image}
               cloudImage={cld
                 .image(image)
-                .resize(fill().width(imageWidth).height(imageHeight))
+                .resize(fill().width(imageWidth))
                 .roundCorners(byRadius(20))}
             />
           );

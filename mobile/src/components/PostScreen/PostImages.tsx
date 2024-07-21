@@ -54,11 +54,7 @@ export const PostImages = ({
           return (
             <CloudImage
               key={image}
-              cloudImage={cld.image(image).resize(
-                fill()
-                  .width(width)
-                  .height(height / 4)
-              )}
+              cloudImage={cld.image(image).resize(fill().width(width))}
             />
           );
         })}
