@@ -6,9 +6,9 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 
 type DateTimePickerProps = {
-  newDate: Date;
+  newDate?: Date;
   setNewDate: React.Dispatch<React.SetStateAction<Date>>;
-  newTime: Date;
+  newTime?: Date;
   setNewTime: React.Dispatch<React.SetStateAction<Date>>;
 };
 
@@ -65,7 +65,7 @@ export function DateTimePickerComponent({
       />
       {showDatePicker && (
         <DateTimePicker
-          value={newDate}
+          value={newDate || new Date()}
           mode="date"
           display="default"
           onChange={onChangeDatePicker}
@@ -74,7 +74,7 @@ export function DateTimePickerComponent({
       )}
       {showTimePicker && (
         <DateTimePicker
-          value={newTime}
+          value={newTime || new Date()}
           mode="time"
           display="default"
           onChange={onChangeTimePicker}

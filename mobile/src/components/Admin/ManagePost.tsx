@@ -32,10 +32,10 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
   );
   const [selectedImages, setSelectedImages] = useState(post?.images || []);
   const [newDate, setNewDate] = useState(
-    new Date(post?.dateTime || Date.now())
+    post?.dateTime ? new Date(post?.dateTime) : undefined
   );
   const [newTime, setNewTime] = useState(
-    new Date(post?.dateTime || Date.now())
+    post?.dateTime ? new Date(post?.dateTime) : undefined
   );
 
   const resetStates = () => {
@@ -57,14 +57,17 @@ export function ManagePost({ post, ...props }: PopoverProps & { post?: Post }) {
   });
 
   const handleSubmit = async () => {
-    const combinedDateTime = new Date(
-      newDate.getUTCFullYear(),
-      newDate.getUTCMonth(),
-      newDate.getUTCDate(),
-      newTime.getUTCHours(),
-      newTime.getUTCMinutes(),
-      newTime.getUTCSeconds()
-    );
+    const combinedDateTime =
+      newDate && newTime
+        ? new Date(
+            newDate.getUTCFullYear(),
+            newDate.getUTCMonth(),
+            newDate.getUTCDate(),
+            newTime.getUTCHours(),
+            newTime.getUTCMinutes(),
+            newTime.getUTCSeconds()
+          )
+        : undefined;
 
     const postData = {
       title: inputTitle,
