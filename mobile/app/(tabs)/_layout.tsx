@@ -9,6 +9,7 @@ export default function TabNavigationLayout() {
       <Tabs
         backBehavior="history"
         screenOptions={({ route }) => ({
+          title: "",
           header: () => (
             <Header
               routeName={route.name as "index" | "map" | "anais" | "posts"}
@@ -23,15 +24,15 @@ export default function TabNavigationLayout() {
               colors={["#a92227", "#ed7a17"]}
               locations={[0.4, 1]}
               style={{
-                height: 78,
+                height: 68,
               }}
               start={[0, 0]}
               end={[1, 1]}
             />
           ),
           tabBarStyle: {
-            height: 75,
-            paddingBottom: 20,
+            height: 68,
+            paddingBottom: 18,
             paddingTop: 6,
           },
         })}
