@@ -255,40 +255,7 @@ const posts: [
   string[],
   string,
   string
-][] = [
-  [
-    "Evento hackerman cancelado",
-    "Esta programação foi cancelada por problemas técnicos",
-    "Descrição do evento hackerman cancelado",
-    "2024-06-16T08:00:00.000Z",
-    "Ipê Amarelo",
-    ["cld-sample-5", "cld-sample-4"],
-    "2024-06-16T08:00:00.000Z",
-    "Ipê Amarelo",
-  ],
-
-  [
-    "Criador do linux presente no OS AI",
-    "Criador do linux estará presente no evento base, no dia 25/06",
-    "Descrição do evento criador do linux presente no OS AI",
-    "2024-06-17T08:00:00.000Z",
-    "Ipê Rosa",
-    ["cld-sample-5", "cld-sample-4"],
-    "2024-06-16T08:00:00.000Z",
-    "Ipê Amarelo",
-  ],
-
-  [
-    "Outra notícia de exemplo",
-    "Outra notícia de exemplo é o subtítulo de outra notícia de exemplo",
-    "Descrição de outra notícia de exemplo",
-    "2024-06-18T08:00:00.000Z",
-    "Ipê Roxo",
-    ["cld-sample-5", "cld-sample-4"],
-    "2024-06-16T08:00:00.000Z",
-    "Ipê Amarelo",
-  ],
-];
+][] = [];
 
 const createDays = async () => {
   let daysCreated = {};
