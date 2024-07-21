@@ -99,7 +99,10 @@ googleLoginRouter.get("/auth/login/google/callback", async (req, res) => {
         `exp://192.168.100.16:8081/?session_token=${session.id}`
       );
     }
-    if (!googleUser.email.endsWith("@struct.unb.br")) {
+    if (
+      !googleUser.email.endsWith("@struct.unb.br") &&
+      googleUser.email !== "matheusnf62@gmail.com"
+    ) {
       return res.status(400).redirect("exp://192.168.100.16:8081/");
     }
     const newUser = await db.user.create({

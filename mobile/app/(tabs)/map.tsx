@@ -68,8 +68,8 @@ export default function Map() {
             key={index}
             localName={local.localName}
             originalLocation={local.originalLocation}
-            posLeft={local.PosLeft}
-            posTop={local.PosTop}
+            posLeft={local.posLeft}
+            posTop={local.posTop}
           />
         ))}
       </ScrollView>
