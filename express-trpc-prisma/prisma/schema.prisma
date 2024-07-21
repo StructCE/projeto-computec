@@ -73,7 +73,7 @@ model Post {
   created_at    DateTime @default(now())
   title         String
   subtitle      String
-  description   String
+  description   String   @db.Text
   dateTime      DateTime?
   local         String?
   images        Image[]
