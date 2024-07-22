@@ -246,16 +246,38 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
   ["Flor de Pequi", "25", "6", "ENCompIF"],
 ];
 
-const posts: [
+const posts: [ // titulo, subtitulo, descricao, dateTime, local, imagens
   string,
   string,
   string,
-  string,
-  string,
+  string | undefined,
+  string | undefined,
   string[],
-  string,
-  string
-][] = [];
+][] = [
+  ["Sejam Bem-Vindos",
+    "Sejam bem-vindos ao maior congresso de TI da América Latina",
+    "O congresso da Sociedade Brasileira de Computação começa neste Domingo (21/07), que comece o 44º CSBC",
+    ,
+    ,
+    ["SEJAM BEM VINDOS"]
+  ],
+  [
+    "AWS DEEPREACKER",
+    "Parabén a todos os participantes do AWS DEEPRACER!",
+    "Mesmo que você não tenha se classificado para as finais, queremos vê-lo no CSBC 2024. Esperamos por você em Brasília!",
+    ,
+    ,
+    ["DEEPRACER"]
+  ],
+  [
+    "COMPUTEC 2024", 
+    "Seminário de Computação e Mercado",
+    "O COMPUTEC é um evento que promove a cooperação entre universidades, empresas, sociedade e governos na área de Computação, buscando soluções inovadoras. Refletimos sobre desafios e oportunidades em inovação tecnológica, com foco na interação universidade-empresa, pesquisa aplicada e programas governamentais. Representantes de diferentes setores compartilham ideias sobre políticas públicas, estratégias de desenvolvimento e visões de mercado, contribuindo para o avanço da Computação no Brasil.",
+    ,
+    ,
+    ["COMPUTEC"]
+  ]
+];
 
 const createDays = async () => {
   let daysCreated = {};
@@ -343,9 +365,11 @@ const createPostsAndNotifications = async () => {
   let postsCreated = {};
   const promises = posts.map(async (post, index) => {
     const created_at = new Date();
-    const dateTime = new Date(post[3]);
-    dateTime.setUTCHours(dateTime.getUTCHours() + 3);
-    dateTime.setDate(dateTime.getDate() - index);
+    const dateTime = post[3] && new Date(post[3]);
+    if (dateTime) {
+      dateTime.setUTCHours(dateTime.getUTCHours() + 3);
+      dateTime.setDate(dateTime.getDate() - index);
+    }
     const postCreated = await db.post.create({
       data: {
         title: post[0],
