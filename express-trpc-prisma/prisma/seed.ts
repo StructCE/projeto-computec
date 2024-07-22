@@ -100,17 +100,17 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
 
   [, "22", "1", "Coffe-Break"],
 
-  ["Ipê Rosa", "22", "3", "Reunião SRs"],
-  ["Ipê Amarelo", "22", "3", "COMPUTEC"],
-  ["Ipê Roxo", "22", "3", "WEI"],
-  ["Ipê Branco", "22", "3", "SEMISH"],
-  ["Caliandra", "22", "3", "EIMP"],
-  ["Flamboyant", "22", "3", "CQEB"],
-  ["Cajuzinho", "22", "3", "JAI 1"],
-  ["Chuveirinho", "22", "3", "WCGE"],
-  ["Flor de Pequi", "22", "3", "BraSNAM"],
-  ["Para-tudo", "22", "3", "WCAMA"],
-  ["Lobeira", "22", "3", "WPerformance"],
+  ["Ipê Rosa", "22", "2", "Reunião SRs"],
+  ["Ipê Amarelo", "22", "2", "COMPUTEC"],
+  ["Ipê Roxo", "22", "2", "WEI"],
+  ["Ipê Branco", "22", "2", "SEMISH"],
+  ["Caliandra", "22", "2", "EIMP"],
+  ["Flamboyant", "22", "2", "CQEB"],
+  ["Cajuzinho", "22", "2", "JAI 1"],
+  ["Chuveirinho", "22", "2", "WCGE"],
+  ["Flor de Pequi", "22", "2", "BraSNAM"],
+  ["Para-tudo", "22", "2", "WCAMA"],
+  ["Lobeira", "22", "2", "WPerformance"],
 
   [, "22", "3", "Almoço"],
 
