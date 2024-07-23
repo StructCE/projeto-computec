@@ -2,6 +2,7 @@ import {
   ScheduleDayFilter,
   ScheduleEventCard,
   ScheduleLegend,
+  DownloadSchedule,
 } from "@/src/components/HomeScreen";
 import { api } from "@/utils/api";
 import { Search } from "@tamagui/lucide-icons";
@@ -29,7 +30,6 @@ export default function Index() {
     handler();
     return () => {
       handler.cancel();
-      console.log(search);
     };
   }, [search]);
 
@@ -133,6 +133,7 @@ export default function Index() {
                 <View
                   key={`day-header-${eventsPerDay.day}`}
                   alignItems="center"
+                  position="relative"
                   marginTop={4}
                 >
                   <Text
@@ -141,6 +142,9 @@ export default function Index() {
                   >
                     {`${eventsPerDay.weekDay} - ${eventsPerDay.day} de julho`}
                   </Text>
+                  <View position="absolute" right={10}>
+                    <DownloadSchedule day={day} />
+                  </View>
                 </View>
 
                 {/* INFORMAÇÕES VINDAS DO BACKEND */}
