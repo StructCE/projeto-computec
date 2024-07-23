@@ -139,9 +139,9 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
   ["Ipê Branco", "23", "0", "SEMISH"],
   ["Caliandra", "23", "0", "EIMP"],
   ["Flamboyant", "23", "0", "WASHES"],
-  ["Cajuzinho", "23", "0", "JAI 2"],
+  ["Flor de Pequi", "23", "0", "JAI 2"],
   ["Chuveirinho", "23", "0", "WCGE"],
-  ["Flor de Pequi", "23", "0", "BraSNAM"],
+  ["Cajuzinho", "23", "0", "BraSNAM"],
 
   [, "23", "1", "Coffe-Break"],
 
@@ -151,9 +151,9 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
   ["Ipê Branco", "23", "2", "SEMISH"],
   ["Caliandra", "23", "2", "EIMP"],
   ["Flamboyant", "23", "2", "WASHES"],
-  ["Cajuzinho", "23", "2", "JAI 2"],
+  ["Flor de Pequi", "23", "2", "JAI 2"],
   ["Chuveirinho", "23", "2", "WCGE"],
-  ["Flor de Pequi", "23", "2", "BraSNAM"],
+  ["Cajuzinho", "23", "2", "BraSNAM"],
 
   [, "23", "3", "Almoço"],
 
@@ -169,7 +169,7 @@ const eventsDayPeriod: [string | undefined, string, string, string][] = [
   ["Flamboyant", "23", "6", "WASHES"],
   ["Cajuzinho", "23", "6", "Reunião do CGI"],
   ["Chuveirinho", "23", "6", "WCGE"],
-  ["Flor de Pequi", "23", "6", "BraSNAM"],
+  ["Cajuzinho", "23", "6", "BraSNAM"],
 
   ["Ipê Rosa", "24", "0", "Fórum PG"],
   ["Ipê Amarelo", "24", "0", "WIT"],
