@@ -10,6 +10,7 @@ const GROUND_FLOOR = [
   "Chuveirinho",
   "Flor de Pequi",
   "Para-tudo",
+  "Lobeira",
 ];
 const GROUND_FLOOR_COLOR = "#52AED5";
 const UPPER_FLOOR_COLOR = "#556AD2";
